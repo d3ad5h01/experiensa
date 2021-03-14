@@ -29,13 +29,13 @@
                     <div class="row">
                       <!-- Image -->
                       <div class="col-sm-3 text-center">
-                        <a href="#">
+                        <!--<a href="#">
                           <img
                             :src="product.photo"
                             style="width: 150px;"
                             class="img-fluid"
                           />
-                        </a>
+                        </a>-->
                       </div>
 
                       <div class="col-sm-9">
@@ -57,9 +57,8 @@
                         <div class="a-row a-spacing-small">
                           <span class="a-size-small a-color-secondary">by</span>
                           <span class="a-size-small a-color-secondary">
-                            <a href="#" class="a-link-normal a-text-normal">{{
-                              product.owner.name
-                            }}</a>
+                            <!--<a href="#" class="a-link-normal a-text-normal">
+                              {{product.owner.name}}</a>-->
                           </span>
                         </div>
 
