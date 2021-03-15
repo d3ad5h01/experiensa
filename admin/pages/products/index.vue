@@ -6,7 +6,7 @@
         <div class="col-sm-6">
           <div class="a-section">
             <div class="a-spacing-top-medium"></div>
-            <h2 style="text-align: center">Add a new product</h2>
+            <h2 style="text-align: center">Add aaaa new product</h2>
             <form action>
               <!-- Category Dropdown -->
               <div class="a-spacing-top-medium">
@@ -120,12 +120,12 @@ export default {
 
       const [catResponse, ownerResponse] = await Promise.all([
         categories,
-        owners,
+        owners
       ]);
 
       return {
         categories: catResponse.categories,
-        owners: ownerResponse.owners,
+        owners: ownerResponse.owners
       };
     } catch (err) {
       console.log(err);
@@ -139,27 +139,20 @@ export default {
       title: "",
       price: 0,
       stockQuantity: 1,
-      description: "",
-      selectedFile: null,
-      fileName: "",
+      description: ""
     };
   },
 
   methods: {
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
-      this.fileName = event.target.files[0].name;
-    },
-
     async onAddProduct() {
-      let data = new FormData();
-      data.append("categoryID", this.categories);
-      data.append("ownerID", this.ownerID);
-      data.append("title", this.title);
-      data.append("price", this.price);
-      data.append("stockQuantity", this.stockQuantity);
-      data.append("description", this.description);
-      // data.append("photo", this.selectedFile, this.selectedFile.name);
+      let data = {
+        categoryID: this.categories,
+        title: this.title,
+        ownerID: this.ownerID,
+        price: this.price,
+        stockQuantity: this.stockQuantity,
+        description: this.description
+      };
 
       let result = await this.$axios.$post(
         "http://localhost:3000/api/products",
@@ -167,7 +160,7 @@ export default {
       );
 
       this.$router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>

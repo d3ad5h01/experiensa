@@ -85,9 +85,10 @@ export default {
 
     async onAddOwner() {
       try {
-        let data = new FormData();
-        data.append("name", this.name);
-        data.append("about", this.about);
+        let data = {
+          name: this.name,
+          about: this.about
+        };
         //data.append("photo", this.selectedFile, this.selectedFile.name);
 
         let response = await this.$axios.$post(

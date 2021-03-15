@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const Owner = require("../models/owner");
 
-const upload = require("../middlewares/upload-photo");
+//const upload = require("../middlewares/upload-photo");
 const { route } = require("./product");
 
 // POST request

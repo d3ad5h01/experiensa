@@ -158,14 +158,14 @@ export default {
     },
 
     async onUpdateProduct() {
-      let data = new FormData();
-      data.append("categoryID", this.categories);
-      data.append("ownerID", this.ownerID);
-      data.append("title", this.title);
-      data.append("price", this.price);
-      data.append("stockQuantity", this.stockQuantity);
-      data.append("description", this.description);
-      //data.append("photo", this.selectedFile, this.selectedFile.name);
+      let data = {
+        categoryID: this.categories,
+        title: this.title,
+        ownerID: this.ownerID,
+        price: this.price,
+        stockQuantity: this.stockQuantity,
+        description: this.description
+      };
 
       let result = await this.$axios.$put(
         `http://localhost:3000/api/products/${this.$route.params.id}`,

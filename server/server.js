@@ -2,17 +2,17 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+//const dotenv = require("dotenv");
 const cors = require("cors");
 
 const User = require("./models/user");
 
-dotenv.config();
+//dotenv.config();
 
 const app = express();
 
 mongoose.connect(
-  process.env.DATABASE,
+  "mongodb+srv://root:2dmb1ZEGlGr3UNuJ@cluster0.qo2y6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) {

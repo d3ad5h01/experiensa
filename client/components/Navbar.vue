@@ -11,9 +11,7 @@
           </div>
 
           <!-- Search Bar -->
-          <div class="col-sm-6 pt-0">
-            <Search />
-          </div>
+
           <div class="col-sm-4"></div>
         </div>
 
@@ -52,15 +50,7 @@
                 </nuxt-link>
               </div>
 
-              <div class="nav-xshop-container">
-                <div class="nav-xshop">
-                  <a href="#" class="nav-a">Today's deals</a>
-                  <a href="#" class="nav-a">Your amazon.com</a>
-                  <a href="#" class="nav-a">Gift cards</a>
-                  <a href="#" class="nav-a">Registry</a>
-                  <a href="#" class="nav-a">Sell</a>
-                </div>
-              </div>
+              <div class="nav-xshop-container"></div>
             </div>
           </div>
           <!-- Accounts, Order and Cart -->
@@ -72,10 +62,7 @@
                 class="nav-a nav-a-2 icp-link-style-2"
               >
                 <span class="icp-nav-link-inner">
-                  <span class="nav-line-1">
-                    <span class="icp-nav-globe-img-2"></span>
-                    <span class="icp-nav-language">EN</span>
-                  </span>
+                  <span class="nav-line-1"> </span>
 
                   <span class="nav-line-2">
                     &nbsp;
