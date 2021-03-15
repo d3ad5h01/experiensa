@@ -2,12 +2,12 @@ const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-//const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 const cors = require("cors");
 
 const User = require("./models/user");
 
-//dotenv.config();
+dotenv.config();
 
 const app = express();
 
@@ -33,10 +33,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const ownerRoutes = require("./routes/owner");
+const userRoutes = require("./routes/auth");
 
 app.use("/api", productRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", ownerRoutes);
+app.use("/api", userRoutes);
 
 app.listen(3000, (err) => {
   if (err) {
