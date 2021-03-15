@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.1",
-    "nuxt": "^2.14.0"
+    "nuxt": "^2.14.0",
+    "vuetify": "^2.4.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3",
+    "vue-cli-plugin-vuetify": "~2.2.2"
+  }
 }
