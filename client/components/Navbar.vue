@@ -1,119 +1,82 @@
 <template>
-  <div>
-    <header class="nav-opt-sprite nav-locate-us nav-lang-en nav-ssl nav-unrec">
-      <div class="container-fluid dekstop-nav">
-        <div class="row">
-          <!-- Logo -->
-          <div class="col-sm-2">
-            <div class="logo-area">
-              <img src="/img/logo.png" alt="Logo" class="img-fluid" />
-            </div>
-          </div>
-
-          <!-- Search Bar -->
-
-          <div class="col-sm-4"></div>
-        </div>
-
-        <div class="row">
-          <!-- Delivery -->
-          <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 pl-2">
-            <div class="nav-global-location">
-              <nuxt-link to="/address" class="nav-a nav-a-2">
-                <div class="nav-sprite" id="nav-packard-glow-loc-icon"></div>
-                <div id="glow-ingress-block">
-                  <span class="nav-line-1" id="glow-ingress-line1"
-                    >Deliver to</span
-                  >
-                  <span class="nav-line-2" id="glow-ingress-line2"
-                    >California</span
-                  >
-                </div>
-              </nuxt-link>
-            </div>
-          </div>
-          <!-- Shopping -->
-          <div class="col-xl-6 col-lg-5 col-md-4 col-sm-6 p-0">
-            <div class="nav-fill">
-              <div class="nav-shop">
-                <nuxt-link
-                  to="/history"
-                  class="nav-a nav-a-2 nav-single-row-link"
-                >
-                  <span class="nav-line-2">
-                    Browsing History
-                    <span
-                      class="nav-icon nav-arrow"
-                      style="visibility: visible"
-                    ></span>
-                  </span>
-                </nuxt-link>
-              </div>
-
-              <div class="nav-xshop-container"></div>
-            </div>
-          </div>
-          <!-- Accounts, Order and Cart -->
-          <div class="col-xl-4 col-lg-5 col-md-6 col-sm-4 p-0">
-            <div class="nav-tools">
-              <a
-                href="#"
-                id="icp-nav-flyout"
-                class="nav-a nav-a-2 icp-link-style-2"
-              >
-                <span class="icp-nav-link-inner">
-                  <span class="nav-line-1"> </span>
-
-                  <span class="nav-line-2">
-                    &nbsp;
-                    <span
-                      class="nav-icon nav-arrow"
-                      style="visibility: visible"
-                    ></span>
-                  </span>
-                </span>
-              </a>
-              <span class="icp-nav-link-border"></span>
-              <nuxt-link
-                to="/register"
-                class="nav-a nav-a-2"
-                id="nav-link-accountList"
-                tabindex="0"
-              >
-                <span class="nav-line-1">Hello, Sign in</span>
-                <span class="nav-line-2">
-                  Account &amp; Lists
-                  <span
-                    class="nav-icon nav-arrow"
-                    style="visibility: visible"
-                  ></span>
-                </span>
-              </nuxt-link>
-              <nuxt-link to="/orders" class="nav-a nav-a-2 nav-single-row-link">
-                <span class="nav-line-1"></span>
-                <span class="nav-line-2">Orders</span>
-              </nuxt-link>
-
-              <nuxt-link to="/cart" class="nav-a nav-a-2" id="nav-cart">
-                <span aria-hidden="true" class="nav-line-1"></span>
-                <span aria-hidden="true" class="nav-line-2">Cart</span>
-                <span class="nav-cart-icon nav-sprite"></span>
-                <span
-                  id="nav-cart-count"
-                  aria-hidden="true"
-                  class="nav-cart-count nav-cart-0"
-                  >0</span
-                >
-              </nuxt-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-  </div>
+    <nav>
+       
+        <v-app-bar color="blue darken-1" dark >
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-spacer></v-spacer>
+        <v-btn icon>
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
+        </v-app-bar>
+  
+      <v-navigation-drawer  v-model="drawer" absolute bottom temporary>
+         
+       <v-list-item class="mb-10 mt-10 d-flex justify-center">
+         <v-icon x-large>mdi-account-box-multiple</v-icon>
+      </v-list-item>
+      <v-list-item-title class="title" align="center">
+           TEZ
+          </v-list-item-title>
+          <v-list-item-subtitle align="center">
+           IIT2019220@iiita.ac.in
+          </v-list-item-subtitle>
+      <v-list>
+        <v-list-item-group
+        v-model="selectedItem"
+        color="blue">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          active-class="border"
+        >
+          <v-list-item-icon>
+            <v-icon v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+      </v-list>
+        <!--<v-list nav dense>
+          <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
+            <v-list-item>
+              <v-list-item-title>Foo</v-list-item-title>
+            </v-list-item>
+  
+            <v-list-item>
+              <v-list-item-title>Bar</v-list-item-title>
+            </v-list-item>
+  
+            <v-list-item>
+              <v-list-item-title>Fizz</v-list-item-title>
+            </v-list-item>
+  
+            <v-list-item>
+              <v-list-item-title>Buzz</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>-->
+      </v-navigation-drawer>
+    </nav>
 </template>
 
 <script>
-import Search from "~/components/Search";
-export default {};
+export default {
+    data() {
+        return {
+            drawer: false,
+           items: [
+        { title: 'Profile', icon: 'mdi-account-circle' },
+        { title: 'Internships', icon: 'mdi-account-search' },
+        { title: 'Updates', icon: 'mdi-message' },
+        { title: 'My Tasks', icon: 'mdi-format-list-bulleted' },  
+        { title: 'Contact Us', icon: 'mdi-help-box' },
+        { title: 'Log Out', icon: 'mdi-logout' },
+        
+      ],
+      right: null,
+        }
+    }
+}
 </script>

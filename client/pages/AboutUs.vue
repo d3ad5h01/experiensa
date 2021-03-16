@@ -1,7 +1,6 @@
 
-
 <template>
-<div class="Home">
+<div class="AboutUs">
      
     <v-app class="cyan lighten-5">
     <v-app-bar
@@ -39,29 +38,20 @@
     <v-main class="white">
       <v-container >
           <div>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
         
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-         Welcome to IIITA Internship Portal
-        </v-card-title>
-        <v-card-text>
-          <p>This portal is to help students .</p>
-          
-          
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-        
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
-  </div>
+      <v-container color="black">
+        <v-row>
+          <v-col
+            v-for="n in 3"
+            :key="n"
+            cols="12"
+          >
+            <v-card height="500" class="cyan lighten-3"></v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+   
+    </div>
       </v-container>
     </v-main>
     
