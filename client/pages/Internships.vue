@@ -69,11 +69,13 @@
       </v-card-title>
       <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="interncards"
         :search="search"
         class="cyan darken-1"
          active-class="cyan darken-4" 
       >
+    
+
        
      <template #item.val="{ item }">
         
@@ -89,12 +91,12 @@
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog
+          Learn More
         </v-btn>
       </template>
       <v-card class="cyan darken-3">
         <v-card-title>
-          <span class="headline">{{item.name}}</span>
+          <span class="headline"></span>
         </v-card-title>
         <v-card-text>
            wisi et, sollicitudin nunc vestibulum, 
@@ -160,6 +162,15 @@ a:hover {
 
 <script>
   export default {
+      async asyncData({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:3000/api/interncards");
+
+      return {
+        interncards: response.interncards
+      };
+    } catch (err) {}
+  },
     data: () => ({
      
       cards: ['Announcements'],
@@ -203,16 +214,16 @@ a:hover {
           text: 'Companies',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'company',
         },
 
-        { text: 'Start Date', value: 'StartDate' },
-        { text: 'Last Date', value: 'EndDate' },
-        { text: 'CTC', value: 'CTC' },
+        { text: 'Start Date', value: 'startDate' },
+        { text: 'Apply Deadline', value: 'applyBy' },
+        { text: 'Stipend', value: 'stipend' },
         { text: 'Apply', value: 'Apply' },
         { text: 'Learn More', value: 'val' },
         
-      ],
+      ],/*
       desserts: [
         {
           name: 'Airtel',
@@ -250,7 +261,18 @@ a:hover {
           Apply:"Done",
           website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
         },
-              ],
+              ],*/
     }),
   }
+  /*
+      company: String,
+    role: String,
+    stipend: String,
+    duration: String,
+    startDate: String,
+    applyBy: String,
+  
+  */
 </script>
+
+

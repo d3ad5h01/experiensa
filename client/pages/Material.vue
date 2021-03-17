@@ -69,7 +69,7 @@
       </v-card-title>
       <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="studycards"
         :search="search"
         class="cyan darken-1"
          active-class="cyan darken-4" 
@@ -77,8 +77,8 @@
        
      <template #item.val="{ item }">
         
-        <a a target="_blank" :href="item.website">
-          {{ item.val }}
+        <a a target="_blank" :href="item.link">
+          Learn More
         </a>
     </template>
       </v-data-table>
@@ -117,7 +117,16 @@ a:hover {
 <script>
   export default {
     data: () => ({
-      cards: ['Announcements'],
+      async asyncData ({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:3000/api/studycards");
+
+      return {
+        studycards: response.studycards
+      };
+    } catch (err) {}
+  },
+      cards: ['Materials'],
       drawer: null,
       links: [
         ['mdi-inbox-arrow-down', 'Inbox'],
@@ -158,9 +167,9 @@ a:hover {
           text: 'Topics',
           align: 'start',
           sortable: false,
-          value: 'name',
+          value: 'title',
         },
-        { text: 'Learn More', value: 'val' },
+        { text: 'Learn More', value: 'link' },
         
       ],
       desserts: [

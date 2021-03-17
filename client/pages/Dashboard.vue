@@ -60,19 +60,18 @@
       >
         <v-row class="white">
           <v-col
-            v-for="card in cards"
-            :key="card"
             cols="12"
             class="white"
           >
             <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">{{ card }}</v-subheader>
+              <v-subheader class="black--text text-h5  font-weight-regular">Announcements</v-subheader>
               
               <v-container>
                 
               <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 6">
-                  <div :key="n"
+                
+                <template v-for="announcementcard in announcementcards" >
+                  <div :key="announcementcard._id"
                     class="white rounded-lg">
                   <v-list-item
 
@@ -83,10 +82,10 @@
                     </v-list-item-avatar>
 
                     <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
+                      <v-list-item-title class="black--text  font-weight-regular">{{announcementcard.title}}</v-list-item-title>
 
                       <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
+                        {{announcementcard.description}}
                       </v-list-item-subtitle>
                     </v-list-item-content>
                     
@@ -107,42 +106,7 @@
         </v-row>
       </v-container>
       </v-col>
-      <v-col  cols="12">
-      <v-container
-        class=" white"
-        fluid
-       
-      >
-        <v-row class="white">
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-            class="white"
-          >
-            <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">Applications</v-subheader>
-              
-              <v-container>
-               <v-row>
-                 <v-col cols="12" v-for="n in 3">
-                  <div :key="n"
-                    class="grey lighten-5 rounded">
-                    <v-container>
-<div class ="black--text">                <p>Hello</p></div>
       
-                    </v-container>
-                    </div>
-                  </v-col>
-                 </v-row> 
-            
-              
-              </v-container>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      </v-col>
       
       </v-row>
     </v-main>
@@ -151,7 +115,16 @@
 </template>
 
 <script>
-  export default {
+export default {
+  async asyncData ({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:3000/api/announcementcards");
+
+      return {
+        announcementcards: response.announcementcards
+      };
+    } catch (err) {}
+  },
     data: () => ({
       cards: ['Announcements'],
       drawer: null,
