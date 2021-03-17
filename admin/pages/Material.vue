@@ -1,20 +1,11 @@
 <template>
-<div class="Material">
+<div class="Material ">
   <v-app >
-    <v-system-bar app class="cyan darken-3">
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
 
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="cyan lighten-3 "
+      class="cyan lighten-3 elevation-3 rounded-r-xl"
     >
       <v-sheet
         class="pa-4 cyan lighten-3"
@@ -32,7 +23,7 @@
 
       <v-list>
         <v-list-item
-            
+
          v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -50,90 +41,104 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="white">
+    <v-main class="cyan lighten-5">
         <v-row>
             <v-col  cols="12">
-     <v-container>
+     <v-container class="cyan lighten-5">
+       <v-card class="cyan lighten-3 rounded-ls">
        <div>
-      <v-toolbar flat color="white">
-        <v-toolbar-title>My CRUD</v-toolbar-title>
+      <v-toolbar flat color="cyan lighten-3">
+        <v-toolbar-title class="text-h4">Announcements</v-toolbar-title>
         <v-divider
           class="mx-2"
           inset
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-btn slot="activator" color="primary" dark class="mb-2" @click="dialog=true">New Item</v-btn>
-          <v-card>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+        <v-spacer></v-spacer>
+        
+        
+        <v-dialog v-model="dialog" max-width="500px" >
+          <v-btn slot="activator" color="cyan darken-1" dark class="mb-2" @click="dialog=true">New Item</v-btn>
+          <v-card  class="cyan darken-3">
             <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
+              <span class="headline">Edits...</span>
             </v-card-title>
-  
-            <v-card-text>
-              <v-container grid-list-md>
-                <v-layout wrap>
+
+            <v-card-text color="cyan darken-3" >
+              <v-container grid-list-md class="cyan darken-3">
+                <v-layout wrap >
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="title" label="Title" class="cyan darken-3" color="black" ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="link" label="link" color="black"></v-text-field>
                   </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                  </v-flex>
+
                 </v-layout>
               </v-container>
             </v-card-text>
-  
+
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+              <!--<v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>-->
+              <v-btn color="cyan darken-1" flat @click.native="onAddAnnouncement">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </v-toolbar>
-      
+       
+      <v-container class="cyan lighten-3">
       <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="studycards"
+         :search="search"
         hide-actions
-        class="elevation-1"
+        class="elevation-1 cyan darken-1"
+
       >
+
+      
       <template #item.edit="{ item }">
-        
+       <v-btn class="green darken-4 ">
        <v-icon
               small
               class="mr-2"
               color="success"
               @click="editItem(item)"
             >
-              edit
+            Edit
             </v-icon>
+            </v-btn>
+            <v-btn>
             <v-icon
               small
               color="error"
-          @click="deleteItem(item)"
+          @click="deleteItem(studycards[studycards.indexOf(item)]._id,item)"
             >
-              delete
+              Delete
             </v-icon>
+            </v-btn>
        <btn>
 
        </btn>
     </template>
-        
+
       </v-data-table>
-    </div>
       </v-container>
-      </v-col>
+    </div>
+      </v-card>
+      </v-container>
       
+      </v-col>
+
       </v-row>
     </v-main>
   </v-app>
@@ -142,7 +147,20 @@
 
 <script>
   export default {
+    async asyncData ({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:3000/api/studycards");
+
+      return {
+        studycards: response.studycards
+      };
+    } catch (err) {}
+  },
     data: () => ({
+      title:"",
+      ide:"",
+      link:"",
+      ind:"",
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -178,183 +196,120 @@
           to: '/'
         }
       ],
+       search: '',
       dialog: false,
+      edt: 0,
     headers: [
       {
-        text: 'Dessert (100g serving)',
+        text: 'Title',
         align: 'left',
-        sortable: false,
-        value: 'name'
+        sortable: true,
+        value: 'title'
       },
-      { text: 'Learn More', value: 'protein' },
+      { text: 'link', value: 'link' },
       { text: 'Actions', value: 'edit', sortable: false }
     ],
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
+      title: '',
+      link: 0,
     },
     defaultItem: {
-      name: '',
-      calories: 0,
-      fat: 0,
-      carbs: 0,
-      protein: 0
+     title: '',
+    link: 0,
     }
     }),
     computed: {
-    formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-    }
+   
   },
 
-  watch: {
-    dialog (val) {
-      val || this.close()
-    }
-  },
 
-  created () {
-    this.initialize()
-  },
+
+
 
   methods: {
-    initialize () {
-      this.desserts = [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7
-        }
-      ]
-    },
 
     editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
+      this.edt=1;
+      this.title=this.studycards[this.studycards.indexOf(item)].title;
+      this.link=this.studycards[this.studycards.indexOf(item)].link;
+      this.ind=this.studycards.indexOf(item);
+      this.dialog=true;
     },
 
-    deleteItem (item) {
-      const index = this.desserts.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+   async deleteItem (id,item) {
+      const index = this.studycards.indexOf(item)
+
+      //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+     try {
+        let response = await this.$axios.$delete(
+          `http://localhost:3000/api/studycards/${id}`
+        );
+      console.log(response);
+        if (response.status) {
+          this.studycards.splice(index, 1);
+        }
+      } catch (err) {}
+
+
     },
 
-    close () {
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
-    },
-
-    save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
+    async onAddAnnouncement() {
+      
+      if(this.edt==1)
+      {
+         this.ide = this.studycards[this.ind]._id;
+        let data = {
+          title: this.title,
+          link: this.link
+        };
+          let result = await this.$axios.$put(
+        `http://localhost:3000/api/studycards/${this.ide}`,
+        data
+      );
+      this.dialog=false;
+       this.studycards[this.ind].title=this.title;
+     this.studycards[this.ind].link= this.link;
+      this.edt=0;
       }
-      this.close()
+      else
+      {
+      try {
+        console.log(this.title);
+        console.log(this.link);
+        
+        
+        let data = {
+          title: this.title,
+          link: this.link
+        };
+        let response = await this.$axios.$post(
+          "http://localhost:3000/api/studycards",
+          data
+        );
+    this.studycards.push(data);
+      this.title="";
+      this.link="";
+      } catch (err) {
+        console.log(err);
+      }}
+       //this.studycards.push(data);
+          //this.dialog=false;
+          //this.$router.push("/Dashboard");
+    },
+
+
+    async save2 (id,item) {
+       //this.dialog2=false;
+       onAddAnnouncement();
+      // deleteItem (id,item);
+      //this.$router.push("/Dashboard");
     }
+    
+    
   }
   }
 
-
-  /*<template slot="items" slot-scope="props">
-          <td>{{ props.item.name }}</td>
-          <td class="text-xs-right">{{ props.item.calories }}</td>
-          <td class="text-xs-right">{{ props.item.fat }}</td>
-          <td class="text-xs-right">{{ props.item.carbs }}</td>
-          <td class="text-xs-right">{{ props.item.protein }}</td>
-          <td class="justify-center layout px-0">
-            <v-icon
-              small
-              class="mr-2"
-              color="success"
-              @click="editItem(props.item)"
-            >
-              edit
-            </v-icon>
-            <v-icon
-              small
-              color="error"
-          @click="deleteItem(props.item)"
-            >
-              delete
-            </v-icon>
-          </td>
-        </template>
-        <template slot="no-data">
-          <v-btn color="primary" @click="initialize">Reset</v-btn>
-        </template> */
 </script>
 

@@ -1,11 +1,11 @@
 <template>
-<div class="Dashboard">
+<div class="Dashboard ">
   <v-app >
 
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="cyan lighten-3 "
+      class="cyan lighten-3 elevation-3 rounded-r-xl"
     >
       <v-sheet
         class="pa-4 cyan lighten-3"
@@ -41,34 +41,45 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="white">
+    <v-main class="cyan lighten-5">
         <v-row>
             <v-col  cols="12">
-     <v-container>
+     <v-container class="cyan lighten-5">
+       <v-card class="cyan lighten-3 rounded-ls">
        <div>
-      <v-toolbar flat color="white">
-        <v-toolbar-title>Announcements</v-toolbar-title>
+      <v-toolbar flat color="cyan lighten-3">
+        <v-toolbar-title class="text-h4">Announcements</v-toolbar-title>
         <v-divider
           class="mx-2"
           inset
           vertical
         ></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-btn slot="activator" color="primary" dark class="mb-2" @click="dialog=true">New Item</v-btn>
-          <v-card>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+        <v-spacer></v-spacer>
+        
+        
+        <v-dialog v-model="dialog" max-width="500px" >
+          <v-btn slot="activator" color="cyan darken-1" dark class="mb-2" @click="dialog=true">New Item</v-btn>
+          <v-card  class="cyan darken-3">
             <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
+              <span class="headline">Edits...</span>
             </v-card-title>
 
-            <v-card-text>
-              <v-container grid-list-md>
-                <v-layout wrap>
+            <v-card-text color="cyan darken-3" >
+              <v-container grid-list-md class="cyan darken-3">
+                <v-layout wrap >
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="title" label="Title"></v-text-field>
+                    <v-text-field v-model="title" label="Title" class="cyan darken-3" color="black" ></v-text-field>
                   </v-flex>
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="description" label="Description"></v-text-field>
+                    <v-text-field v-model="description" label="Description" color="black"></v-text-field>
                   </v-flex>
 
                 </v-layout>
@@ -78,23 +89,25 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <!--<v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>-->
-              <v-btn color="blue darken-1" flat @click.native="onAddAnnouncement">Save</v-btn>
+              <v-btn color="cyan darken-1" flat @click.native="onAddAnnouncement">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </v-toolbar>
        
-      
+      <v-container class="cyan lighten-3">
       <v-data-table
         :headers="headers"
         :items="announcementcards"
+         :search="search"
         hide-actions
-        class="elevation-1"
+        class="elevation-1 cyan darken-1"
+
       >
 
       
       <template #item.edit="{ item }">
-       
+       <v-btn class="green darken-4 ">
        <v-icon
               small
               class="mr-2"
@@ -103,6 +116,8 @@
             >
             Edit
             </v-icon>
+            </v-btn>
+            <v-btn>
             <v-icon
               small
               color="error"
@@ -110,14 +125,18 @@
             >
               Delete
             </v-icon>
+            </v-btn>
        <btn>
 
        </btn>
     </template>
 
       </v-data-table>
-    </div>
       </v-container>
+    </div>
+      </v-card>
+      </v-container>
+      
       </v-col>
 
       </v-row>
@@ -177,13 +196,14 @@
           to: '/'
         }
       ],
+       search: '',
       dialog: false,
       edt: 0,
     headers: [
       {
         text: 'Title',
         align: 'left',
-        sortable: false,
+        sortable: true,
         value: 'title'
       },
       { text: 'Description', value: 'description' },
@@ -251,7 +271,7 @@
       this.dialog=false;
        this.announcementcards[this.ind].title=this.title;
      this.announcementcards[this.ind].description= this.description;
-      this.edit=0;
+      this.edt=0;
       }
       else
       {

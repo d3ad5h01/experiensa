@@ -89,7 +89,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Open Dialog
+         Learn More
         </v-btn>
       </template>
       <v-card class="cyan darken-3">
@@ -97,18 +97,8 @@
           <span class="headline">{{item.name}}</span>
         </v-card-title>
         <v-card-text>
-           wisi et, sollicitudin nunc vestibulum, 
-           cursus accumsan nunc pede tempus mi ipsum, 
-           ligula sed. Non condimentum ac dolor sit. 
-           Mollis eu aliquam, vel mattis mollis massa 
-           ut dolor ante, tempus lacinia arcu. Urna vestibulum
-            lorem, nulla fermentum, iaculis ut congue ac vivamus.
-             Nam libero orci, pulvinar nulla, enim pellentesque 
-             consectetuer leo, feugiat rhoncus rhoncus vel. Magna 
-             sociosqu donec, dictum cursus ullamcorper viverra. 
-             Ultricies quis orci lorem, suspendisse ut vestibulum 
-             integer, purus sed lorem pulvinar habitasse turpis.
-          +
+           
+         kj
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
