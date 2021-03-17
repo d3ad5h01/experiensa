@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <nav>
        
         <v-app-bar color="blue darken-1" dark >
@@ -79,14 +78,5 @@ export default {
       right: null,
         }
     }
-=======
-    
-</template>
-
-<script>
-
-export default {
-    
->>>>>>> 8e76b7c24fe41e6840702af0635aa75f0fdb9bf8
 }
 </script>

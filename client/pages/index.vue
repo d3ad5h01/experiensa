@@ -16,9 +16,10 @@
         <v-spacer></v-spacer>
         <div>
         <v-btn
-         class="ma-2"
+         class="ma-2
       
-      color="cyan darken-1"
+      cyan darken-1"
+       active-class="grey lighten--5 cyan--text"
            v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -110,5 +111,3 @@ export default {
   
 }
 </script>
-
-

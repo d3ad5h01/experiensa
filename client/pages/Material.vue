@@ -51,123 +51,68 @@
     </v-navigation-drawer>
 
     <v-main class="white">
-        <v-row>
-            <v-col  cols="6">
-      <v-container
-        class=" white"
-        fluid
-       
+       <v-container >
+          
+        
+       <v-card class="cyan lighten-3">
+      <v-container>
+      <v-card-title>
+        Study Material
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        :search="search"
+        class="cyan darken-1"
+         active-class="cyan darken-4" 
       >
-        <v-row class="white">
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-            class="white"
-          >
-            <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">{{ card }}</v-subheader>
-              
-              <v-container>
-                
-              <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 6">
-                  <div :key="n"
-                    class="white rounded-lg">
-                  <v-list-item
-
-                    
-                   
-                  >
-                    <v-list-item-avatar color="cyan darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                    
-                  </v-list-item>
-                    <v-sheet
-  color="cyan lighten-3 rounded-lg"
-  height="10"
-  
-></v-sheet>
-</div>
-                  
-                </template>
-              </v-list>
-              
-              </v-container>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      </v-col>
-      <v-col  cols="12">
-      <v-container
-        class=" white"
-        fluid
        
-      >
-        <v-row class="white">
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-            class="white"
-          >
-            <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">Applications</v-subheader>
-              
-              <v-container>
-                
-              <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 3">
-                  <div :key="n"
-                    class="white rounded-lg">
-                  <v-list-item
-
-                    
-                   
-                  >
-                    <v-list-item-avatar color="cyan darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                    
-                  </v-list-item>
-                    <v-sheet
-  color="cyan lighten-3 rounded-lg"
-  height="10"
-  
-></v-sheet>
-</div>
-                  
-                </template>
-              </v-list>
-              
-              </v-container>
-            </v-card>
-          </v-col>
-        </v-row>
+     <template #item.val="{ item }">
+        
+        <a a target="_blank" :href="item.website">
+          {{ item.val }}
+        </a>
+    </template>
+      </v-data-table>
       </v-container>
-      </v-col>
-      
-      </v-row>
+    </v-card>
+   
+  
+      </v-container>
     </v-main>
   </v-app>
 </div>
 </template>
+
+<style>
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color:yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+</style>
 
 <script>
   export default {
@@ -187,31 +132,59 @@
           to: '/Dashboard'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-account',
           title: 'Profile',
           to: '/Profile'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-bookshelf',
           title: 'Study Material',
           to: '/Material'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-file-document-multiple',
           title: 'Internships',
           to: '/Internships'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ABOUT US',
-          to: '/AboutUs'
-        },
-        {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-logout',
           title: 'Logout',
           to: '/'
         }
       ],
+       search: '',
+      headers: [
+        {
+          text: 'Topics',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'Learn More', value: 'val' },
+        
+      ],
+      desserts: [
+        {
+          name: 'Frozen Yogurt',
+          val:'Learn More',
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+          name: 'Bkjhkfdl',
+          val:'Learn More',
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+          name: 'ndlal',
+          val:'Learn More',
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+          name: 'Fldkv;d',
+          val:'Learn More',
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+              ],
     }),
   }
 </script>

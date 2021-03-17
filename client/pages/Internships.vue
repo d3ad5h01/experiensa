@@ -51,127 +51,117 @@
     </v-navigation-drawer>
 
     <v-main class="white">
-        <v-row>
-            <v-col  cols="6">
-      <v-container
-        class=" white"
-        fluid
-       
+       <v-container >
+          
+        
+       <v-card class="cyan lighten-3">
+      <v-container>
+      <v-card-title>
+       Internships
+        <v-spacer></v-spacer>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table
+        :headers="headers"
+        :items="desserts"
+        :search="search"
+        class="cyan darken-1"
+         active-class="cyan darken-4" 
       >
-        <v-row class="white">
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-            class="white"
-          >
-            <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">{{ card }}</v-subheader>
-              
-              <v-container>
-                
-              <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 6">
-                  <div :key="n"
-                    class="white rounded-lg">
-                  <v-list-item
-
-                    
-                   
-                  >
-                    <v-list-item-avatar color="cyan darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                    
-                  </v-list-item>
-                    <v-sheet
-  color="cyan lighten-3 rounded-lg"
-  height="10"
-  
-></v-sheet>
-</div>
-                  
-                </template>
-              </v-list>
-              
-              </v-container>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      </v-col>
-      <v-col  cols="12">
-      <v-container
-        class=" white"
-        fluid
        
-      >
-        <v-row class="white">
-          <v-col
-            v-for="card in cards"
-            :key="card"
-            cols="12"
-            class="white"
+     <template #item.val="{ item }">
+        
+       
+    <v-dialog
+      v-model="dialog"
+      width="600px"
+    >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="cyan lighten-3"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Open Dialog
+        </v-btn>
+      </template>
+      <v-card class="cyan darken-3">
+        <v-card-title>
+          <span class="headline">{{item.name}}</span>
+        </v-card-title>
+        <v-card-text>
+           wisi et, sollicitudin nunc vestibulum, 
+           cursus accumsan nunc pede tempus mi ipsum, 
+           ligula sed. Non condimentum ac dolor sit. 
+           Mollis eu aliquam, vel mattis mollis massa 
+           ut dolor ante, tempus lacinia arcu. Urna vestibulum
+            lorem, nulla fermentum, iaculis ut congue ac vivamus.
+             Nam libero orci, pulvinar nulla, enim pellentesque 
+             consectetuer leo, feugiat rhoncus rhoncus vel. Magna 
+             sociosqu donec, dictum cursus ullamcorper viverra. 
+             Ultricies quis orci lorem, suspendisse ut vestibulum 
+             integer, purus sed lorem pulvinar habitasse turpis.
+          +
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
           >
-            <v-card class="cyan lighten-3 ">
-              <v-subheader class="black--text text-h5  font-weight-regular">Applications</v-subheader>
-              
-              <v-container>
-                
-              <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 3">
-                  <div :key="n"
-                    class="white rounded-lg">
-                  <v-list-item
-
-                    
-                   
-                  >
-                    <v-list-item-avatar color="cyan darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                    
-                  </v-list-item>
-                    <v-sheet
-  color="cyan lighten-3 rounded-lg"
-  height="10"
+            Close
+          </v-btn>
+        
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   
-></v-sheet>
-</div>
-                  
-                </template>
-              </v-list>
-              
-              </v-container>
-            </v-card>
-          </v-col>
-        </v-row>
+    </template>
+      </v-data-table>
       </v-container>
-      </v-col>
-      
-      </v-row>
+    </v-card>
+   
+  
+      </v-container>
     </v-main>
   </v-app>
 </div>
 </template>
 
+<style>
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color:yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
+</style>
+
 <script>
   export default {
     data: () => ({
+     
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -187,31 +177,80 @@
           to: '/Dashboard'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-account',
           title: 'Profile',
           to: '/Profile'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-bookshelf',
           title: 'Study Material',
           to: '/Material'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-file-document-multiple',
           title: 'Internships',
           to: '/Internships'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ABOUT US',
-          to: '/AboutUs'
-        },
-        {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-logout',
           title: 'Logout',
           to: '/'
         }
       ],
+       search: '',
+      headers: [
+        {
+          text: 'Companies',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+
+        { text: 'Start Date', value: 'StartDate' },
+        { text: 'Last Date', value: 'EndDate' },
+        { text: 'CTC', value: 'CTC' },
+        { text: 'Apply', value: 'Apply' },
+        { text: 'Learn More', value: 'val' },
+        
+      ],
+      desserts: [
+        {
+          name: 'Airtel',
+          val:'Learn More',
+          StartDate: "12/02/2021",
+          EndDate: "15/03/2021",
+          CTC:"10LPA",
+          Apply:"Apply",
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+           name: 'Bugatti',
+          val:'Learn More',
+          StartDate: "14/02/2021",
+          EndDate: "15/05/2021",
+          CTC:"14LPA",
+          Apply:"Apply",
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+           name: 'HelloWorld',
+          val:'Learn More',
+          StartDate: "19/02/2021",
+          EndDate: "15/03/2021",
+          CTC:"11LPA",
+          Apply:"Done",
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+        {
+           name: 'Netflix',
+          val:'Learn More',
+          StartDate: "13/02/2021",
+          EndDate: "17/03/2021",
+          CTC:"18LPA",
+          Apply:"Done",
+          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
+        },
+              ],
     }),
   }
 </script>

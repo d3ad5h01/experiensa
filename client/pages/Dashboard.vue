@@ -124,37 +124,18 @@
               <v-subheader class="black--text text-h5  font-weight-regular">Applications</v-subheader>
               
               <v-container>
-                
-              <v-list two-line class="cyan lighten-3">
-                <template v-for="n in 3">
+               <v-row>
+                 <v-col cols="12" v-for="n in 3">
                   <div :key="n"
-                    class="white rounded-lg">
-                  <v-list-item
-
-                    
-                   
-                  >
-                    <v-list-item-avatar color="cyan darken-1">
-                    </v-list-item-avatar>
-
-                    <v-list-item-content>
-                      <v-list-item-title class="black--text  font-weight-regular">Message {{ n }}</v-list-item-title>
-
-                      <v-list-item-subtitle class="black--text  font-weight-regular">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                    
-                  </v-list-item>
-                    <v-sheet
-  color="cyan lighten-3 rounded-lg"
-  height="10"
-  
-></v-sheet>
-</div>
-                  
-                </template>
-              </v-list>
+                    class="grey lighten-5 rounded">
+                    <v-container>
+<div class ="black--text">                <p>Hello</p></div>
+      
+                    </v-container>
+                    </div>
+                  </v-col>
+                 </v-row> 
+            
               
               </v-container>
             </v-card>
@@ -187,27 +168,22 @@
           to: '/Dashboard'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-account',
           title: 'Profile',
           to: '/Profile'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-bookshelf',
           title: 'Study Material',
           to: '/Material'
         },
          {
-          icon: 'mdi-apps',
+          icon: 'mdi-file-document-multiple',
           title: 'Internships',
           to: '/Internships'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'ABOUT US',
-          to: '/AboutUs'
-        },
-        {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-logout',
           title: 'Logout',
           to: '/'
         }
