@@ -1,20 +1,11 @@
 <template>
-<div class="Material">
+<div class="Material ">
   <v-app >
-    <v-system-bar app class="cyan darken-3">
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
 
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="cyan lighten-3 "
+      class="cyan lighten-3 elevation-3 rounded-r-xl"
     >
       <v-sheet
         class="pa-4 cyan lighten-3"
@@ -32,7 +23,7 @@
 
       <v-list>
         <v-list-item
-            
+
          v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -50,14 +41,19 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="white">
-       <v-container >
-          
-        
-       <v-card class="cyan lighten-3">
-      <v-container>
-      <v-card-title>
-        Study Material
+    <v-main class="cyan lighten-5">
+        <v-row>
+            <v-col  cols="12">
+     <v-container class="cyan lighten-5">
+       <v-card class="cyan lighten-3 rounded-ls">
+       <div>
+      <v-toolbar flat color="cyan lighten-3">
+        <v-toolbar-title class="text-h4 cyan--text darken-5">Study Material</v-toolbar-title>
+        <v-divider
+          class="mx-2"
+          inset
+          vertical
+        ></v-divider>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -66,58 +62,74 @@
           single-line
           hide-details
         ></v-text-field>
-      </v-card-title>
+        <v-spacer></v-spacer>
+        
+        
+        <v-dialog v-model="dialog" max-width="500px" >
+          <v-btn slot="activator" color="cyan darken-1" dark class="mb-2" @click="dialog=true">New Item</v-btn>
+          <v-card  class="cyan darken-3">
+            <v-card-title>
+              <span class="headline">Edits...</span>
+            </v-card-title>
+
+            <v-card-text color="cyan darken-3" >
+              <v-container grid-list-md class="cyan darken-3">
+                <v-layout wrap >
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="title" label="Title" class="cyan darken-3" color="black" ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="link" label="link" color="black"></v-text-field>
+                  </v-flex>
+
+                </v-layout>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <!--<v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>-->
+              <v-btn color="cyan darken-1" flat @click.native="onAddAnnouncement">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+       
+      <v-container class="cyan lighten-3">
       <v-data-table
         :headers="headers"
         :items="studycards"
-        :search="search"
-        class="cyan darken-1"
-         active-class="cyan darken-4" 
+         :search="search"
+        hide-actions
+        class="elevation-1 cyan darken-1"
+
       >
-       
-     <template #item.val="{ item }">
+
+      
+      <template #item.link="{ item }">
         
         <a a target="_blank" :href="item.link">
           Learn More
         </a>
     </template>
+
       </v-data-table>
       </v-container>
-    </v-card>
-   
-  
+    </div>
+      </v-card>
       </v-container>
+      
+      </v-col>
+
+      </v-row>
     </v-main>
   </v-app>
 </div>
 </template>
 
-<style>
-a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color:yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-
-</style>
-
 <script>
   export default {
-    data: () => ({
-      async asyncData ({ $axios }) {
+    async asyncData ({ $axios }) {
     try {
       let response = await $axios.$get("http://localhost:3000/api/studycards");
 
@@ -126,7 +138,12 @@ a:hover {
       };
     } catch (err) {}
   },
-      cards: ['Materials'],
+    data: () => ({
+      title:"",
+      ide:"",
+      link:"",
+      ind:"",
+      cards: ['Announcements'],
       drawer: null,
       links: [
         ['mdi-inbox-arrow-down', 'Inbox'],
@@ -142,8 +159,8 @@ a:hover {
         },
          {
           icon: 'mdi-account',
-          title: 'Profile',
-          to: '/Profile'
+          title: 'Students',
+          to: '/Students'
         },
          {
           icon: 'mdi-bookshelf',
@@ -162,38 +179,46 @@ a:hover {
         }
       ],
        search: '',
-      headers: [
-        {
-          text: 'Topics',
-          align: 'start',
-          sortable: false,
-          value: 'title',
-        },
-        { text: 'Learn More', value: 'link' },
-        
-      ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          val:'Learn More',
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-          name: 'Bkjhkfdl',
-          val:'Learn More',
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-          name: 'ndlal',
-          val:'Learn More',
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-          name: 'Fldkv;d',
-          val:'Learn More',
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-              ],
+      dialog: false,
+      edt: 0,
+    headers: [
+      {
+        text: 'Title',
+        align: 'left',
+        sortable: true,
+        value: 'title'
+      },
+      { text: 'Learn More', value: 'link' },
+     
+    ],
+    desserts: [],
+    editedIndex: -1,
+    editedItem: {
+      title: '',
+      link: 0,
+    },
+    defaultItem: {
+     title: '',
+    link: 0,
+    }
     }),
+    computed: {
+   
+  },
+
+
+
+
+
   }
+  /*<template #item.val="{ item }">
+        
+        <a a target="_blank" :href="item.link">
+          Learn More
+        </a>
+    </template> */
+
 </script>
+
+
+
