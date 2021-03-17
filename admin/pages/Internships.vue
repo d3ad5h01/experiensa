@@ -1,20 +1,11 @@
 <template>
-<div class="Internships">
+<div class="Internships ">
   <v-app >
-    <v-system-bar app class="cyan darken-3">
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-square</v-icon>
-
-      <v-icon>mdi-circle</v-icon>
-
-      <v-icon>mdi-triangle</v-icon>
-    </v-system-bar>
 
     <v-navigation-drawer
       v-model="drawer"
       app
-      class="cyan lighten-3 "
+      class="cyan lighten-3 elevation-3 rounded-r-xl"
     >
       <v-sheet
         class="pa-4 cyan lighten-3"
@@ -32,7 +23,7 @@
 
       <v-list>
         <v-list-item
-            
+
          v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -50,14 +41,19 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="white">
-       <v-container >
-          
-        
-       <v-card class="cyan lighten-3">
-      <v-container>
-      <v-card-title class="text-h4">
-       Internships
+    <v-main class="cyan lighten-5">
+        <v-row>
+            <v-col  cols="12">
+     <v-container class="cyan lighten-5">
+       <v-card class="cyan lighten-3 rounded-ls">
+       <div>
+      <v-toolbar flat color="cyan lighten-3">
+        <v-toolbar-title class="text-h4 cyan--text darken-5">Internships</v-toolbar-title>
+        <v-divider
+          class="mx-2"
+          inset
+          vertical
+        ></v-divider>
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -66,93 +62,117 @@
           single-line
           hide-details
         ></v-text-field>
-      </v-card-title>
+        <v-spacer></v-spacer>
+        
+        
+        <v-dialog v-model="dialog" max-width="500px" >
+          <v-btn slot="activator" color="cyan darken-1" dark class="mb-2" @click="dialog=true">New Item</v-btn>
+          <v-card  class="cyan darken-3">
+            <v-card-title>
+              <span class="headline">Edits...</span>
+            </v-card-title>
+
+            <v-card-text color="cyan darken-3" >
+              <v-container grid-list-md class="cyan darken-3">
+                <v-layout wrap >
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="company" label="company" class="cyan darken-3" color="black" ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="stipend" label="stipend" color="black"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="duration" label="Duration" color="black"></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 sm6 md4>
+
+                    <v-text-field v-model="startDate" label="Start date" color="black"></v-text-field>
+                  </v-flex>
+                  
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="applyBy" label="Apply By" color="black"></v-text-field>
+                  </v-flex>
+
+                </v-layout>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <!--<v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>-->
+              <v-btn color="cyan darken-1" flat @click.native="onAddinterncard">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+       
+      <v-container class="cyan lighten-3">
       <v-data-table
         :headers="headers"
-        :items="desserts"
-        :search="search"
-        class="cyan darken-1"
-         active-class="cyan darken-4" 
+        :items="interncards"
+         :search="search"
+        hide-actions
+        class="elevation-1 cyan darken-1"
+
       >
-       
-     <template #item.val="{ item }">
-        
-       
-    <v-dialog
-      v-model="dialog"
-      width="600px"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="cyan lighten-1"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-         Learn More
-        </v-btn>
-      </template>
-      <v-card class="cyan darken-3">
-        <v-card-title>
-          <span class="headline">{{item.name}}</span>
-        </v-card-title>
-        <v-card-text>
-           
-         kj
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="green darken-1"
-            text
-            @click="dialog = false"
-          >
-            Close
-          </v-btn>
-        
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  
+
+      
+      <template #item.edit="{ item }">
+       <v-btn class="green darken-4 ">
+       <v-icon
+              small
+              class="mr-2"
+              color="success"
+              @click="editItem(item)"
+            >
+            Edit
+            </v-icon>
+            </v-btn>
+            <v-btn>
+            <v-icon
+              small
+              color="error"
+          @click="deleteItem(interncards[interncards.indexOf(item)]._id,item)"
+            >
+              Delete
+            </v-icon>
+            </v-btn>
+       <btn>
+
+       </btn>
     </template>
+
       </v-data-table>
       </v-container>
-    </v-card>
-   
-  
+    </div>
+      </v-card>
       </v-container>
+      
+      </v-col>
+
+      </v-row>
     </v-main>
   </v-app>
 </div>
 </template>
 
-<style>
-a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color:yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-
-</style>
-
 <script>
   export default {
+    async asyncData ({ $axios }) {
+    try {
+      let response = await $axios.$get("http://localhost:3000/api/interncards");
+
+      return {
+        interncards: response.interncards
+      };
+    } catch (err) {}
+  },
     data: () => ({
-     
-      cards: ['Announcements'],
+      title:"",
+      ide:"",
+      description:"",
+      ind:"",
+      cards: ['interncards'],
       drawer: null,
       links: [
         ['mdi-inbox-arrow-down', 'Inbox'],
@@ -168,8 +188,8 @@ a:hover {
         },
          {
           icon: 'mdi-account',
-          title: 'Profile',
-          to: '/Profile'
+          title: 'Students',
+          to: '/Students'
         },
          {
           icon: 'mdi-bookshelf',
@@ -188,59 +208,142 @@ a:hover {
         }
       ],
        search: '',
-      headers: [
-        {
-          text: 'Companies',
-          align: 'start',
-          sortable: false,
-          value: 'name',
-        },
+      dialog: false,
+      edt: 0,
 
-        { text: 'Start Date', value: 'StartDate' },
-        { text: 'Last Date', value: 'EndDate' },
-        { text: 'CTC', value: 'CTC' },
-        { text: 'Apply', value: 'Apply' },
-        { text: 'Learn More', value: 'val' },
-        
-      ],
-      desserts: [
-        {
-          name: 'Airtel',
-          val:'Learn More',
-          StartDate: "12/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"10LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'Bugatti',
-          val:'Learn More',
-          StartDate: "14/02/2021",
-          EndDate: "15/05/2021",
-          CTC:"14LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'HelloWorld',
-          val:'Learn More',
-          StartDate: "19/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"11LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'Netflix',
-          val:'Learn More',
-          StartDate: "13/02/2021",
-          EndDate: "17/03/2021",
-          CTC:"18LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-              ],
+      /*interncard.company = req.body.company;
+    interncard.role = req.body.role;
+    interncard.stipend = req.body.stipend;
+    interncard.duration = req.body.duration;
+    interncard.startDate = req.body.startDate;
+    interncard.applyBy = req.body.applyBy; */
+    headers: [
+      {
+        text: 'Company',
+        align: 'left',
+        sortable: true,
+        value: 'company'
+      },
+      { text: 'Stipend', value: 'stipend' },
+      { text: 'Duration', value: 'duration' },
+      { text: 'Start Date', value: 'startDate' },
+      { text: 'Apply By', value: 'applyBy' },
+      { text: 'Actions', value: 'edit', sortable: false }
+    ],
+    desserts: [],
+    editedIndex: -1,
+    editedItem: {
+      title: '',
+      description: 0,
+
+    },
+    defaultItem: {
+     title: '',
+    description: 0,
+    company:'',
+    stipend:'',
+    duration:'',
+    startDate: '',
+    applyBy: '',
+    }
     }),
+    computed: {
+   
+  },
+  methods: {
+
+    editItem (item) {
+      this.edt=1;
+      this.company=this.interncards[this.interncards.indexOf(item)].company;
+      this.stipend=this.interncards[this.interncards.indexOf(item)].stipend;
+      //this.stipend=this.interncards[this.interncards.indexOf(item)].stipend;
+      this.duration=this.interncards[this.interncards.indexOf(item)].duration;
+      this.startDate=this.interncards[this.interncards.indexOf(item)].startDate;
+      this.applyBy=this.interncards[this.interncards.indexOf(item)].applyBy;
+      
+      this.ind=this.interncards.indexOf(item);
+      this.dialog=true;
+    },
+
+   async deleteItem (id,item) {
+      const index = this.interncards.indexOf(item)
+
+      //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+     try {
+        let response = await this.$axios.$delete(
+          `http://localhost:3000/api/interncards/${id}`
+        );
+      console.log(response);
+        if (response.status) {
+          this.interncards.splice(index, 1);
+        }
+      } catch (err) {}
+
+
+    },
+
+    async onAddinterncard() {
+      
+      if(this.edt==1)
+      {
+        this.ide = this.interncards[this.ind]._id;
+        let data = {
+        company: this.company,
+        stipend: this.stipend,
+        duration: this.duration,
+        startDate: this.startDate,
+        applyBy: this.applyBy,
+        };
+          let result = await this.$axios.$put(
+        `http://localhost:3000/api/interncards/${this.ide}`,
+        data
+      );
+      this.dialog=false;
+     
+      this.company=this.interncards[this.ind].company;
+      this.stipend=this.interncards[this.ind].stipend;
+      this.duration=this.interncards[this.ind].duration;
+      this.startDate=this.interncards[this.ind].startDate;
+      this.applyBy=this.interncards[this.ind].applyBy;
+      this.edt=0;
+      }
+      else
+      {
+      try {
+        console.log(this.company);
+        //console.log(this.);
+        
+        
+        let data = {
+        company: this.company,
+        stipend: this.stipend,
+        
+        duration: this.duration,
+        startDate: this.startDate,
+        applyBy: this.applyBy,
+        };
+        let response = await this.$axios.$post(
+          "http://localhost:3000/api/interncards",
+          data
+        );
+      this.interncards.push(data);
+       this.company="";
+      this.stipend="";
+      this.duration="";
+      this.startDate="";
+      this.applyBy="";
+      } catch (err) {
+        console.log(err);
+      }}
+          //this.dialog=false;
+      
+    },
+
+
+    
+    
   }
+  }
+
 </script>
+

@@ -294,18 +294,11 @@
       } catch (err) {
         console.log(err);
       }}
-       //this.announcementcards.push(data);
           //this.dialog=false;
-          //this.$router.push("/Dashboard");
+      
     },
 
 
-    async save2 (id,item) {
-       //this.dialog2=false;
-       onAddAnnouncement();
-      // deleteItem (id,item);
-      //this.$router.push("/Dashboard");
-    }
     
     
   }

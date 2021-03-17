@@ -48,7 +48,7 @@
        <v-card class="cyan lighten-3 rounded-ls">
        <div>
       <v-toolbar flat color="cyan lighten-3">
-        <v-toolbar-title class="text-h4">Announcements</v-toolbar-title>
+        <v-toolbar-title class="text-h4 cyan--text darken-5">Study Material</v-toolbar-title>
         <v-divider
           class="mx-2"
           inset
