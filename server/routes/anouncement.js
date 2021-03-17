@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Anouncementcard = require("../models/anouncementcard");
+const Anouncementcard = require("../models/announcementcard");
 
 // POST request - create a new card
 router.post("/anouncementcards", async (req, res) => {
