@@ -1,14 +1,14 @@
 const router = require("express").Router();
-const Anouncementcard = require("../models/announcementcard");
+const Announcementcard = require("../models/announcementcard");
 
 // POST request - create a new card
-router.post("/anouncementcards", async (req, res) => {
+router.post("/announcementcards", async (req, res) => {
   try {
-    let anouncementcard = new Anouncementcard();
-    anouncementcard.title = req.body.title;
-    anouncementcard.description = req.body.description;
+    let announcementcard = new Announcementcard();
+    announcementcard.title = req.body.title;
+    announcementcard.description = req.body.description;
 
-    await anouncementcard.save();
+    await announcementcard.save();
 
     res.json({
       status: true,
@@ -23,13 +23,13 @@ router.post("/anouncementcards", async (req, res) => {
 });
 
 // GET request - get all interncards
-router.get("/anouncementcards", async (req, res) => {
+router.get("/announcementcards", async (req, res) => {
   try {
-    let anouncementcards = await Anouncementcard.find().exec();
+    let announcementcards = await Announcementcard.find().exec();
 
     res.json({
       success: true,
-      anouncementcards: anouncementcards,
+      announcementcards: announcementcards,
     });
   } catch (err) {
     res.status(500).json({
@@ -40,12 +40,12 @@ router.get("/anouncementcards", async (req, res) => {
 });
 
 // GET request - get a single interncard
-router.get("/anouncementcards/:id", async (req, res) => {
+router.get("/announcementcards/:id", async (req, res) => {
   try {
-    let anouncementcard = await Anouncementcard.findOne({ _id: req.params.id });
+    let announcementcard = await Announcementcard.findOne({ _id: req.params.id });
     res.json({
       success: true,
-      anouncementcard: anouncementcard,
+      announcementcard: announcementcard,
     });
   } catch (err) {
     res.status(500).json({
@@ -56,9 +56,9 @@ router.get("/anouncementcards/:id", async (req, res) => {
 });
 
 // PUT request - update a single interncard
-router.put("/anouncementcards/:id", async (req, res) => {
+router.put("/announcementcards/:id", async (req, res) => {
   try {
-    let anouncementcard = await Anouncementcard.findOneAndUpdate(
+    let announcementcard = await Announcementcard.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
@@ -71,7 +71,7 @@ router.put("/anouncementcards/:id", async (req, res) => {
 
     res.json({
       success: true,
-      updateAnouncementcard: anouncementcard,
+      updateAnnouncementcard: announcementcard,
     });
   } catch (err) {
     res.status(500).json({
@@ -82,11 +82,11 @@ router.put("/anouncementcards/:id", async (req, res) => {
 });
 
 // DELETE request - delete a single interncard
-router.delete("/anouncementcards/:id", async (req, res) => {
+router.delete("/announcementcards/:id", async (req, res) => {
   try {
-    let deleteAnouncementcard = await Anouncementcard.findOneAndDelete({ _id: req.params.id });
+    let deleteAnnouncementcard = await Announcementcard.findOneAndDelete({ _id: req.params.id });
 
-    if (deleteAnouncementcard) {
+    if (deleteAnnouncementcard) {
       res.json({
         status: true,
         message: "Successfuly deleted!",
