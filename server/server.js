@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-const User = require("./models/user");
-
 dotenv.config();
 
 const app = express();
@@ -32,12 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // require apis
 const InterncardRoutes = require("./routes/interncard");
 const userRoutes = require("./routes/auth");
-const AnouncementRoutes = require("./routes/anouncement")
+const AnnouncementRoutes = require("./routes/announcement")
 const studyRoutes = require("./routes/study");
 
 app.use("/api", InterncardRoutes);
 app.use("/api", userRoutes);
-app.use("/api", AnouncementRoutes);
+app.use("/api", AnnouncementRoutes);
 app.use("/api", studyRoutes);
 
 app.listen(3000, (err) => {

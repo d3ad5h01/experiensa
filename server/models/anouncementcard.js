@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AnouncementSchema = new Schema({
+const AnnouncementSchema = new Schema({
   title: String,
   description: String,
+  date: Date
 });
 
-module.exports = mongoose.model("Anouncement", AnouncementSchema);
+module.exports = mongoose.model("Announcement", AnnouncementSchema);
