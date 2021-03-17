@@ -117,9 +117,10 @@ export default {
   components: {
     Logo
   },
-   data: () => ({
+   data () {
+     return{
       dialog: true,
-    
+
       clipped: false,
       drawer: true,
       fixed: false,
@@ -143,9 +144,12 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
+      
       title: 'IIIT INTERNSHIP PORTAL'
-    }
-   )
-  
+      }
+    },
+    methods (){
+
+    }  
 }
 </script>

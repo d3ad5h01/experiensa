@@ -32,9 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // require apis
 const InterncardRoutes = require("./routes/interncard");
 const userRoutes = require("./routes/auth");
+const AnouncementRoutes = require("./routes/anouncement")
 
 app.use("/api", InterncardRoutes);
 app.use("/api", userRoutes);
+app.use("/api", AnouncementRoutes);
 
 app.listen(3000, (err) => {
   if (err) {
