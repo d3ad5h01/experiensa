@@ -83,15 +83,18 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
-
+       
+      
       <v-data-table
         :headers="headers"
         :items="announcementcards"
         hide-actions
         class="elevation-1"
       >
-      <template #item.edit="{ item }">
 
+      
+      <template #item.edit="{ item }">
+       
        <v-icon
               small
               class="mr-2"
@@ -103,7 +106,7 @@
             <v-icon
               small
               color="error"
-          @click="deleteItem(announcemntcard._id,item)"
+          @click="deleteItem(announcementcards[announcementcards.indexOf(item)]._id,item)"
             >
               Delete
             </v-icon>
@@ -136,7 +139,9 @@
   },
     data: () => ({
       title:"",
+      ide:"",
       description:"",
+      ind:"",
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -173,6 +178,7 @@
         }
       ],
       dialog: false,
+      edt: 0,
     headers: [
       {
         text: 'Title',
@@ -195,9 +201,7 @@
     }
     }),
     computed: {
-    formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-    }
+   
   },
 
 
@@ -207,24 +211,22 @@
   methods: {
 
     editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
-      //this.editedItem = Object.assign({}, item)
-      this.editedItem = {
-          title: item.title,
-          description: item.description
-        };
-      this.dialog = true
+      this.edt=1;
+      this.title=this.announcementcards[this.announcementcards.indexOf(item)].title;
+      this.description=this.announcementcards[this.announcementcards.indexOf(item)].description;
+      this.ind=this.announcementcards.indexOf(item);
+      this.dialog=true;
     },
 
    async deleteItem (id,item) {
-      const index = this.desserts.indexOf(item)
+      const index = this.announcementcards.indexOf(item)
 
       //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
      try {
         let response = await this.$axios.$delete(
           `http://localhost:3000/api/announcementcards/${id}`
         );
-
+      console.log(response);
         if (response.status) {
           this.announcementcards.splice(index, 1);
         }
@@ -234,9 +236,30 @@
     },
 
     async onAddAnnouncement() {
+      
+      if(this.edt==1)
+      {
+         this.ide = this.announcementcards[this.ind]._id;
+        let data = {
+          title: this.title,
+          description: this.description
+        };
+          let result = await this.$axios.$put(
+        `http://localhost:3000/api/announcementcards/${this.ide}`,
+        data
+      );
+      this.dialog=false;
+       this.announcementcards[this.ind].title=this.title;
+     this.announcementcards[this.ind].description= this.description;
+      this.edit=0;
+      }
+      else
+      {
       try {
         console.log(this.title);
         console.log(this.description);
+        
+        
         let data = {
           title: this.title,
           description: this.description
@@ -246,35 +269,26 @@
           data
         );
     this.announcementcards.push(data);
-
+      this.title="";
+      this.description="";
       } catch (err) {
         console.log(err);
-      }
+      }}
        //this.announcementcards.push(data);
-          this.dialog=false;
-          this.$router.push("/Dashboard");
-    },
-  },
-
-    close () {
-      this.dialog = false
-
+          //this.dialog=false;
+          //this.$router.push("/Dashboard");
     },
 
-    async save () {
-        let data = {
-        title: this.title,
-        description: this.description
-      }
-       {
-        let result = await this.$axios.$put(
-        `http://localhost:3000/api/announcementcards/${this.$route.params.id}`,
-        data
-      );
-        this.desserts.push(this.editedItem)
-      }
-      //this.close()
+
+    async save2 (id,item) {
+       //this.dialog2=false;
+       onAddAnnouncement();
+      // deleteItem (id,item);
+      //this.$router.push("/Dashboard");
     }
+    
+    
+  }
   }
 
 </script>

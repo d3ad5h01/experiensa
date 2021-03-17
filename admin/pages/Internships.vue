@@ -56,7 +56,7 @@
         
        <v-card class="cyan lighten-3">
       <v-container>
-      <v-card-title>
+      <v-card-title class="text-h4">
        Internships
         <v-spacer></v-spacer>
         <v-text-field
@@ -84,7 +84,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          color="cyan lighten-3"
+          color="cyan lighten-1"
           dark
           v-bind="attrs"
           v-on="on"
