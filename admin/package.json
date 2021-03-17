@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "client",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,14 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
-    "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "nuxt": "^2.14.0"
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/pwa": "^3.3.5",
+    "axios": "^0.21.1",
+    "core-js": "^3.8.3",
+    "nuxt": "^2.14.12",
+    "vue-axios": "^3.2.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3"
+  }
 }
