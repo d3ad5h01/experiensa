@@ -1,11 +1,11 @@
 <template>
 <div class="Login">
-     
+
     <v-app class="cyan lighten-5">
     <v-app-bar
       app
       color="cyan lighten-3"
-      
+
     >
 
       <v-container class="py-0 fill-height">
@@ -16,7 +16,7 @@
         <div>
         <v-btn
           class="ma-2
-      
+
       cyan darken-1"
        active-class="grey lighten--5 cyan--text"
            v-for="(item, i) in items"
@@ -27,18 +27,18 @@
           {{item.title}}
         </v-btn>
 </div>
-        
 
-       
+
+
       </v-container>
     </v-app-bar>
-         
-    
-    
+
+
+
     <v-main class="cyan lighten-5">
       <v-container >
         <div class="Home ">
-       
+
         <v-layout
           align-center
           justify-center
@@ -52,17 +52,17 @@
               <v-toolbar
                 class="cyan darken-1"
               >
-             
+
               <v-layout
           align-center
           justify-center
-          
+
         >
                 <v-toolbar-title >Login</v-toolbar-title>
               </v-layout>
-                
+
                 <v-tooltip bottom>
-                  
+
                 </v-tooltip>
                 <v-tooltip right>
                 </v-tooltip>
@@ -76,7 +76,7 @@
                      color="cyan darken-2"
                      clearable
                   ></v-text-field>
-                  
+
                   <v-text-field
                     id="password"
                     label="Password"
@@ -90,14 +90,14 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="cyan darken-1" to="/Dashboard" @click= "onLogin">Login</v-btn>
+                <v-btn color="cyan darken-1" @click= "onLogin">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
         </v-layout>
      </div>
       </v-container>
-    </v-main> 
+    </v-main>
   </v-app>
     </div>
 </template>
@@ -115,7 +115,7 @@ export default {
   layout: "none",
   data () {
     return{
-      dialog: true,    
+      dialog: true,
       clipped: false,
       drawer: true,
       fixed: false,
@@ -141,7 +141,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      
+
       title: 'IIIT INTERNSHIP PORTAL'
       };
     },
@@ -159,6 +159,6 @@ export default {
           console.log(error);
         }
       },
-    }  
+    }
 };
 </script>
