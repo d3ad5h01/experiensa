@@ -29,7 +29,7 @@ router.post("/interncards", async (req, res) => {
 // GET request - get all interncards
 router.get("/interncards", async (req, res) => {
   try {
-    let interncards = await Interncard.find().populate("owner category").exec();
+    let interncards = await Interncard.find().exec();
 
     res.json({
       success: true,

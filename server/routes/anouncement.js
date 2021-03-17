@@ -4,7 +4,7 @@ const Anouncementcard = require("../models/anouncementcard");
 // POST request - create a new card
 router.post("/anouncementcards", async (req, res) => {
   try {
-    let anouncementcard = new Interncard();
+    let anouncementcard = new Anouncementcard();
     anouncementcard.title = req.body.title;
     anouncementcard.description = req.body.description;
 
@@ -25,7 +25,7 @@ router.post("/anouncementcards", async (req, res) => {
 // GET request - get all interncards
 router.get("/anouncementcards", async (req, res) => {
   try {
-    let anouncementcards = await Anouncementcard.find().populate("title").exec();
+    let anouncementcards = await Anouncementcard.find().exec();
 
     res.json({
       success: true,
