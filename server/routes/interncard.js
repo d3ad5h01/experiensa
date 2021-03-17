@@ -68,7 +68,7 @@ router.put("/interncards/:id", async (req, res) => {
         $set: {
             company: req.body.company,
             role: req.body.role,
-            stipend: req.body.sipend,
+            stipend: req.body.stipend,
             duration: req.body.duration,
             startDate: req.body.startDate,
             applyBy: req.body.applyBy,

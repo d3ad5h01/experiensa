@@ -238,13 +238,11 @@
 
     },
     defaultItem: {
-     title: '',
-    description: 0,
-    company:'',
-    stipend:'',
-    duration:'',
-    startDate: '',
-    applyBy: '',
+    company:"",
+    stipend:"",
+    duration:"",
+    startDate: "",
+    applyBy: "",
     }
     }),
     computed: {
@@ -256,7 +254,6 @@
       this.edt=1;
       this.company=this.interncards[this.interncards.indexOf(item)].company;
       this.stipend=this.interncards[this.interncards.indexOf(item)].stipend;
-      //this.stipend=this.interncards[this.interncards.indexOf(item)].stipend;
       this.duration=this.interncards[this.interncards.indexOf(item)].duration;
       this.startDate=this.interncards[this.interncards.indexOf(item)].startDate;
       this.applyBy=this.interncards[this.interncards.indexOf(item)].applyBy;
@@ -294,17 +291,19 @@
         startDate: this.startDate,
         applyBy: this.applyBy,
         };
+
+        console.log(data);
           let result = await this.$axios.$put(
         `http://localhost:3000/api/interncards/${this.ide}`,
         data
       );
       this.dialog=false;
      
-      this.company=this.interncards[this.ind].company;
-      this.stipend=this.interncards[this.ind].stipend;
-      this.duration=this.interncards[this.ind].duration;
-      this.startDate=this.interncards[this.ind].startDate;
-      this.applyBy=this.interncards[this.ind].applyBy;
+      this.interncards[this.ind].company=this.company;
+      this.interncards[this.ind].stipend=this.stipend;
+      this.interncards[this.ind].duration=this.duration;
+      this.interncards[this.ind].startDate=this.startDate;
+      this.interncards[this.ind].applyBy=this.applyBy;
       this.edt=0;
       }
       else
@@ -317,7 +316,6 @@
         let data = {
         company: this.company,
         stipend: this.stipend,
-        
         duration: this.duration,
         startDate: this.startDate,
         applyBy: this.applyBy,
