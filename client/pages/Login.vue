@@ -70,17 +70,18 @@
               <v-card-text>
                 <v-form >
                   <v-text-field
+                    v-model="email"
                     label="Email"
-                    name="login"
-                    type="text"
                      prepend-icon="mdi-email"
                      color="cyan darken-2"
+                     clearable
                   ></v-text-field>
                   
                   <v-text-field
                     id="password"
                     label="Password"
                     name="password"
+                    v-model="password"
                     prepend-icon="mdi-lock"
                     type="password"
                      color="cyan darken-2"
@@ -89,26 +90,18 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="cyan darken-1" to="/Dashboard">Login</v-btn>
+                <v-btn color="cyan darken-1" to="/Dashboard" @click= "onLogin">Login</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
         </v-layout>
-    
-        
-             
-        
-   
-         
-
      </div>
       </v-container>
-    </v-main>
-    
-    
+    </v-main> 
   </v-app>
     </div>
 </template>
+
 
 <script>
 import Logo from '~/components/Logo.vue'
@@ -117,13 +110,17 @@ export default {
   components: {
     Logo
   },
-   data () {
-     return{
-      dialog: true,
-
+  middleware: "auth",
+  auth: "guest",
+  layout: "none",
+  data () {
+    return{
+      dialog: true,    
       clipped: false,
       drawer: true,
       fixed: false,
+      email: "",
+      password: "",
       items: [
         {
           icon: 'mdi-apps',
@@ -146,10 +143,22 @@ export default {
       rightDrawer: false,
       
       title: 'IIIT INTERNSHIP PORTAL'
-      }
+      };
     },
-    methods (){
-
+    methods: {
+      async onLogin() {
+        try {
+          await this.$auth.loginWith("local", {
+            data: {
+              email: this.email,
+              password: this.password
+            }
+          });
+          this.$router.push("/Dashboard");
+        } catch (error) {
+          console.log(error);
+        }
+      },
     }  
-}
+};
 </script>
