@@ -81,6 +81,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-apps',
+          title: 'Sign Up',
+          to: '/Register'
+        },
+        {
           icon: 'mdi-chart-bubble',
           title: 'ABOUT US',
           to: '/AboutUs'
