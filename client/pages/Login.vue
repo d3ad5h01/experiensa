@@ -153,17 +153,35 @@ export default {
     methods: {
       async onLogin() {
         try {
+          let data = {
+            email: this.email,
+            password: this.password
+          };
+          let response = await this.$axios.$post(
+            "http://localhost:3000/api/auth/login",
+            data
+          );
+          if(response) {
+            this.email = "";
+            this.password = "";
+            this.$router.push("/Dashboard");
+          }
+        } catch (err) {
+          console.log(err);
+        }}
+
+    },
         /*  await this.$auth.loginWith("local", {
             data: {
               email: this.email,
               password: this.password
             }
           });*/
-          this.$router.push("/Dashboard");
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    }
+
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   },
+    // }
 };
 </script>

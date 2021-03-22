@@ -1,11 +1,11 @@
 <template>
 <div class="Register">
-     
+
     <v-app class="cyan lighten-5">
     <v-app-bar
       app
       color="cyan lighten-3"
-      
+
     >
 
       <v-container class="py-0 fill-height">
@@ -16,7 +16,7 @@
         <div>
         <v-btn
           class="ma-2
-      
+
       cyan darken-1"
        active-class="grey lighten--5 cyan--text"
            v-for="(item, i) in items"
@@ -27,18 +27,18 @@
           {{item.title}}
         </v-btn>
 </div>
-        
 
-       
+
+
       </v-container>
     </v-app-bar>
-         
-    
-    
+
+
+
     <v-main class="cyan lighten-5">
       <v-container >
         <div class="Home ">
-       
+
         <v-layout
           align-center
           justify-center
@@ -52,17 +52,17 @@
               <v-toolbar
                 class="cyan darken-1"
               >
-             
+
               <v-layout
           align-center
           justify-center
-          
+
         >
                 <v-toolbar-title >Register</v-toolbar-title>
               </v-layout>
-                
+
                 <v-tooltip bottom>
-                  
+
                 </v-tooltip>
                 <v-tooltip right>
                 </v-tooltip>
@@ -70,15 +70,26 @@
               <v-card-text>
                 <v-form >
                   <v-text-field
+                    label="Name"
+                    v-model="name"
+                    name="login"
+                    type="text"
+                    prepend-icon="mdi-name"
+                    color="cyan darken-2"
+                  ></v-text-field>
+
+                  <v-text-field
                     label="Email"
+                    v-model="email"
                     name="login"
                     type="text"
                      prepend-icon="mdi-email"
                      color="cyan darken-2"
                   ></v-text-field>
-                  
+
                   <v-text-field
                     id="password"
+                    v-model="password"
                     label="Password"
                     name="password"
                     prepend-icon="mdi-lock"
@@ -89,23 +100,23 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="cyan darken-1" to="/Login">Sign Up</v-btn>
+                <v-btn color="cyan darken-1" @click="onRegister">Sign Up</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
         </v-layout>
-    
-        
-             
-        
-   
-         
+
+
+
+
+
+
 
      </div>
       </v-container>
     </v-main>
-    
-    
+
+
   </v-app>
     </div>
 </template>
@@ -119,7 +130,7 @@ export default {
   },
    data: () => ({
       dialog: true,
-    
+
       clipped: false,
       drawer: true,
       fixed: false,
@@ -134,7 +145,7 @@ export default {
           title: 'Sign Up',
           to: '/Register'
         },
-        
+
         {
           icon: 'mdi-chart-bubble',
           title: 'ABOUT US',
@@ -149,9 +160,34 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
+       email: "",
+       password: "",
+       name: "",
       title: 'IIIT INTERNSHIP PORTAL'
     }
-   )
-  
-}
+   ),
+  methods: {
+    async onRegister() {
+      try {
+        let data = {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        };
+        let response = await this.$axios.$post(
+          "http://localhost:3000/api/auth/signup",
+          data
+        );
+        if(response) {
+          this.name="";
+          this.email = "";
+          this.password = "";
+          this.$router.push("/Login");
+        }
+      } catch (err) {
+        console.log(err);
+      }}
+
+  },
+};
 </script>
