@@ -8,6 +8,7 @@ const InterncardSchema = new Schema({
     duration: String,
     startDate: String,
     applyBy: String,
+    //array of applied interns here
 });
 
 module.exports = mongoose.model("Interncard", InterncardSchema);

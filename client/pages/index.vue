@@ -1,12 +1,12 @@
 
 <template>
 <div class="index">
-     
+
     <v-app class="cyan lighten-5">
     <v-app-bar
       app
       color="cyan lighten-3"
-      
+
     >
 
       <v-container class="py-0 fill-height">
@@ -17,7 +17,7 @@
         <div>
         <v-btn
          class="ma-2
-      
+
       cyan darken-1"
        active-class="grey lighten--5 cyan--text"
            v-for="(item, i) in items"
@@ -28,37 +28,37 @@
           {{item.title}}
         </v-btn>
 </div>
-        
 
-       
+
+
       </v-container>
     </v-app-bar>
-         
-    
-    
+
+
+
     <v-main class="white">
       <v-container >
-         
+
 
 
    <div>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        
+
         <vuetify-logo />
       </div>
       <v-card class="cyan lighten-1 " align="center">
         <div class="text-h5"> Welcome to IIITA Internship Portal</div>
-       
+
         <v-card-text>
           <div class="text-subtitle-2">This portal is to help students .</div>
-          
-          
+
+
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-        
+
         </v-card-actions>
       </v-card>
     </v-col>
@@ -66,8 +66,8 @@
   </div>
       </v-container>
     </v-main>
-    
-    
+
+
   </v-app>
     </div>
 </template>
@@ -81,7 +81,7 @@ export default {
   },
    data: () => ({
       dialog: true,
-    
+
       clipped: false,
       drawer: true,
       fixed: false,
@@ -101,7 +101,7 @@ export default {
           title: 'ABOUT US',
           to: '/AboutUs'
         },
-        
+
         {
           icon: 'mdi-chart-bubble',
           title: 'Login',
@@ -113,7 +113,25 @@ export default {
       rightDrawer: false,
       title: 'IIIT INTERNSHIP PORTAL'
     }
-   )
-  
+   ),
+  methods: {
+    async verify() {
+      try{
+        let cookie = this.$cookies.get("jwt");
+        let verify_response = await this.$axios.$get(`http://localhost:3000/api/verify/${cookie}`)
+        if (verify_response.success) {
+          this.$router.push("/Dashboard");
+        }
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    }
+  },
+  beforeMount() {
+    this.verify()
+  }
+
 }
 </script>

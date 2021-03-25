@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   address: { type: Schema.Types.ObjectId, ref: "Address" },
+  //array of applied internships here
 });
 
 // UserSchema.pre("save", function(next) {

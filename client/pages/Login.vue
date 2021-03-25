@@ -105,7 +105,6 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
-
 export default {
   components: {
     Logo
@@ -161,27 +160,13 @@ export default {
             "http://localhost:3000/api/auth/login",
             data
           );
-          if(response) {
-            this.email = "";
-            this.password = "";
+          if(response.success) {
+            this.$cookies.set('jwt', response.token);
             this.$router.push("/Dashboard");
           }
         } catch (err) {
           console.log(err);
         }}
-
     },
-        /*  await this.$auth.loginWith("local", {
-            data: {
-              email: this.email,
-              password: this.password
-            }
-          });*/
-
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   },
-    // }
 };
 </script>

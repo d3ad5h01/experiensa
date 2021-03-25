@@ -172,17 +172,16 @@ export default {
         let data = {
           name: this.name,
           email: this.email,
-          password: this.password
+          password: this.password,
         };
         let response = await this.$axios.$post(
           "http://localhost:3000/api/auth/signup",
           data
         );
-        if(response) {
-          this.name="";
+        if(response.success) {
           this.email = "";
           this.password = "";
-          this.$router.push("/Login");
+          this.$router.push("/login");
         }
       } catch (err) {
         console.log(err);

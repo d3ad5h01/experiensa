@@ -32,7 +32,7 @@
 
       <v-list>
         <v-list-item
-            
+
          v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -52,8 +52,8 @@
 
     <v-main class="white">
        <v-container >
-          
-        
+
+
        <v-card class="cyan lighten-3">
       <v-container>
       <v-card-title>
@@ -72,14 +72,14 @@
         :items="interncards"
         :search="search"
         class="cyan darken-1"
-         active-class="cyan darken-4" 
+         active-class="cyan darken-4"
       >
-    
 
-       
+
+
      <template #item.val="{ item }">
-        
-       
+
+
     <v-dialog
       v-model="dialog"
       width="600px"
@@ -99,16 +99,16 @@
           <span class="headline"></span>
         </v-card-title>
         <v-card-text>
-           wisi et, sollicitudin nunc vestibulum, 
-           cursus accumsan nunc pede tempus mi ipsum, 
-           ligula sed. Non condimentum ac dolor sit. 
-           Mollis eu aliquam, vel mattis mollis massa 
+           wisi et, sollicitudin nunc vestibulum,
+           cursus accumsan nunc pede tempus mi ipsum,
+           ligula sed. Non condimentum ac dolor sit.
+           Mollis eu aliquam, vel mattis mollis massa
            ut dolor ante, tempus lacinia arcu. Urna vestibulum
             lorem, nulla fermentum, iaculis ut congue ac vivamus.
-             Nam libero orci, pulvinar nulla, enim pellentesque 
-             consectetuer leo, feugiat rhoncus rhoncus vel. Magna 
-             sociosqu donec, dictum cursus ullamcorper viverra. 
-             Ultricies quis orci lorem, suspendisse ut vestibulum 
+             Nam libero orci, pulvinar nulla, enim pellentesque
+             consectetuer leo, feugiat rhoncus rhoncus vel. Magna
+             sociosqu donec, dictum cursus ullamcorper viverra.
+             Ultricies quis orci lorem, suspendisse ut vestibulum
              integer, purus sed lorem pulvinar habitasse turpis.
           +
         </v-card-text>
@@ -121,17 +121,17 @@
           >
             Close
           </v-btn>
-        
+
         </v-card-actions>
       </v-card>
     </v-dialog>
-  
+
     </template>
       </v-data-table>
       </v-container>
     </v-card>
-   
-  
+
+
       </v-container>
     </v-main>
   </v-app>
@@ -172,7 +172,7 @@ a:hover {
     } catch (err) {}
   },
     data: () => ({
-     
+
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -222,7 +222,7 @@ a:hover {
         { text: 'Stipend', value: 'stipend' },
         { text: 'Apply', value: 'Apply' },
         { text: 'Learn More', value: 'val' },
-        
+
       ],/*
       desserts: [
         {
@@ -263,6 +263,28 @@ a:hover {
         },
               ],*/
     }),
+    methods: {
+      async verify() {
+        try{
+          let cookie = this.$cookies.get("jwt");
+          if(cookie==null)
+          {
+            this.$router.push("/login");
+          }
+          let verify_response = await this.$axios.$get(`http://localhost:3000/api/verify/${cookie}`)
+          if (!verify_response.success) {
+            this.$router.push("/login");
+          }
+        }
+        catch(err)
+        {
+          console.log(err);
+        }
+      }
+    },
+    beforeMount() {
+        this.verify()
+    }
   }
   /*
       company: String,
@@ -271,7 +293,7 @@ a:hover {
     duration: String,
     startDate: String,
     applyBy: String,
-  
+
   */
 </script>
 

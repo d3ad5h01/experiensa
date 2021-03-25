@@ -63,8 +63,8 @@
           hide-details
         ></v-text-field>
         <v-spacer></v-spacer>
-        
-        
+
+
         <v-dialog v-model="dialog" max-width="500px" >
           <v-btn slot="activator" color="cyan darken-1" dark class="mb-2" @click="dialog=true">New Item</v-btn>
           <v-card  class="cyan darken-3">
@@ -94,7 +94,7 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
-       
+
       <v-container class="cyan lighten-3">
       <v-data-table
         :headers="headers"
@@ -105,9 +105,9 @@
 
       >
 
-      
+
       <template #item.link="{ item }">
-        
+
         <a a target="_blank" :href="item.link">
           Learn More
         </a>
@@ -118,7 +118,7 @@
     </div>
       </v-card>
       </v-container>
-      
+
       </v-col>
 
       </v-row>
@@ -189,7 +189,7 @@
         value: 'title'
       },
       { text: 'Learn More', value: 'link' },
-     
+
     ],
     desserts: [],
     editedIndex: -1,
@@ -203,16 +203,37 @@
     }
     }),
     computed: {
-   
-  },
 
+  },
+    methods: {
+      async verify() {
+        try{
+          let cookie = this.$cookies.get("jwt");
+          if(cookie==null)
+          {
+            this.$router.push("/login");
+          }
+          let verify_response = await this.$axios.$get(`http://localhost:3000/api/verify/${cookie}`)
+          if (!verify_response.success) {
+            this.$router.push("/login");
+          }
+        }
+        catch(err)
+        {
+          console.log(err);
+        }
+      }
+    },
+    beforeMount() {
+      this.verify()
+    }
 
 
 
 
   }
   /*<template #item.val="{ item }">
-        
+
         <a a target="_blank" :href="item.link">
           Learn More
         </a>

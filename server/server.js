@@ -33,12 +33,16 @@ const authUserRoutes = require("./routes/auth");
 const AnnouncementRoutes = require("./routes/announcement")
 const studyRoutes = require("./routes/study");
 const userRoutes = require("./routes/user")
+const profileRoute = require("./routes/profile")
+const verifyRoute = require("./routes/verifytoken")
 
 app.use("/api", InterncardRoutes);
 app.use("/api", authUserRoutes);
 app.use("/api", AnnouncementRoutes);
 app.use("/api", studyRoutes);
 app.use("/api",userRoutes);
+app.use("/api",profileRoute);
+app.use("/api",verifyRoute);
 
 app.listen(3000, (err) => {
   if (err) {

@@ -1,7 +1,7 @@
 <template>
 <div class="Profile">
   <v-app >
-    
+
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -23,7 +23,7 @@
 
       <v-list>
         <v-list-item
-            
+
          v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -48,7 +48,7 @@
       <v-container
         class=" grey lighten-3"
         fluid
-       
+
       >
         <v-row class="grey lighten-3">
           <v-col
@@ -61,12 +61,12 @@
                 <v-sheet
   color="cyan lighten-3 rounded-lg"
   height="10"
-  
+
 ></v-sheet>
               <v-layout
           align-center
           justify-center
-          
+
         >
 
          <v-avatar
@@ -77,7 +77,7 @@
               <v-subheader class="black--text text-h5  font-weight-regular"></v-subheader>
               </v-layout>
               <v-container>
-                
+
               <v-list two-line class="cyan lighten-3">
                 <v-row>
                   <v-col cols="6">
@@ -86,18 +86,18 @@
                   <v-list-item
                   >
                     <v-list-item-content>
-                      <v-list-item-subtitle class="black--text  text-h5 font-weight-regular">
-                       user.name
+                      <v-list-item-subtitle class="black--text  text-h5 font-weight-regular" v-model="name">
+                       {{name}}
                       </v-list-item-subtitle>
                       <v-list-item-title class="black--text text-subtitle-2  font-weight-light">Name</v-list-item-title>
 
-                      
+
                     </v-list-item-content>
-                    
+
                   </v-list-item>
-                    
+
 </div>
-                  
+
                 </template>
                 </v-col>
                 <v-col cols="6">
@@ -106,18 +106,18 @@
                   <v-list-item
                   >
                     <v-list-item-content>
-                      <v-list-item-subtitle class="black--text  text-h5 font-weight-regular">
-                       user.email
+                      <v-list-item-subtitle class="black--text  text-h5 font-weight-regular" v-model="email">
+                        {{email}}
                       </v-list-item-subtitle>
                       <v-list-item-title class="black--text text-subtitle-2  font-weight-light">Email</v-list-item-title>
 
-                      
+
                     </v-list-item-content>
-                    
+
                   </v-list-item>
-                    
+
 </div>
-                  
+
                 </template>
                 </v-col>
                 <v-col cols="12">
@@ -130,16 +130,16 @@
 
 Wikipedia was launched on January 15, 2001, by Jimmy Wales and Larry Sanger; Sanger coined its name as a portmanteau of "wiki" and "encyclopedia".[7][8] Initially available only in English, versions in other languages were quickly developed. The English Wikipedia, with 6.3 million articles as of March 2021, is the largest of the 319 language editions. Combined, Wikipedia's editions comprise more than 56 million articles, and attract more than 17 million edits and more than 1.7 billion unique visitors per month.[9][10]
 
-Wikipedia has been criticized for its uneven.</p> 
+Wikipedia has been criticized for its uneven.</p>
                       <v-list-item-title class="black--text text-subtitle-2  font-weight-light">About Me</v-list-item-title>
 
-                      
+
                     </v-list-item-content>
-                    
+
                   </v-list-item>
-           
+
 </div>
-                  
+
                 </template>
                 </v-col>
  <v-col cols="6">
@@ -153,18 +153,18 @@ Wikipedia has been criticized for its uneven.</p>
                       </v-list-item-subtitle>
                       <v-list-item-title class="black--text text-subtitle-2  font-weight-light">Semester</v-list-item-title>
 
-                      
+
                     </v-list-item-content>
-                    
+
                   </v-list-item>
-                  
+
 </div>
-                  
+
                 </template>
                 </v-col>
                 </v-row>
               </v-list>
-              
+
               </v-container>
             </v-card>
           </v-col>
@@ -180,7 +180,10 @@ Wikipedia has been criticized for its uneven.</p>
 
 <script>
   export default {
+
     data: () => ({
+      email : "",
+      name : "",
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -217,5 +220,29 @@ Wikipedia has been criticized for its uneven.</p>
         }
       ],
     }),
+    methods : {
+      async getUser() {
+        try{
+          let cookie = this.$cookies.get("jwt");
+          if(cookie==null)
+          {
+            this.$router.push("/login");
+          }
+          let response = await this.$axios.$get(`http://localhost:3000/api/profile/${cookie}`)
+          if (!response.success) {
+            this.$router.push("/login");
+          }
+          this.name = response.user.name;
+          this.email = response.user.email;
+        }
+        catch(err)
+        {
+          console.log(err);
+        }
+      }
+    },
+    beforeMount() {
+      this.getUser();
+    }
   }
 </script>
