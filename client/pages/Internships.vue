@@ -172,7 +172,8 @@ a:hover {
     } catch (err) {}
   },
     data: () => ({
-
+      cookie: null,
+      internship_id: null,
       cards: ['Announcements'],
       drawer: null,
       links: [
@@ -221,47 +222,9 @@ a:hover {
         { text: 'Apply Deadline', value: 'applyBy' },
         { text: 'Stipend', value: 'stipend' },
         { text: 'Apply', value: 'Apply' },
-        { text: 'Learn More', value: 'val' },
+        { text: 'Learn More', value: ' val'},
 
-      ],/*
-      desserts: [
-        {
-          name: 'Airtel',
-          val:'Learn More',
-          StartDate: "12/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"10LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'Bugatti',
-          val:'Learn More',
-          StartDate: "14/02/2021",
-          EndDate: "15/05/2021",
-          CTC:"14LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'HelloWorld',
-          val:'Learn More',
-          StartDate: "19/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"11LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-           name: 'Netflix',
-          val:'Learn More',
-          StartDate: "13/02/2021",
-          EndDate: "17/03/2021",
-          CTC:"18LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-              ],*/
+      ],
     }),
     methods: {
       async verify() {
@@ -275,12 +238,29 @@ a:hover {
           if (!verify_response.success) {
             this.$router.push("/login");
           }
+          console.log(this.val);
         }
         catch(err)
         {
           console.log(err);
         }
       }
+    },
+    async apply(index) {
+        try
+        {
+          this.cookie = this.$cookies.get("jwt");
+          this.internship_id = this.Announcements[index]._id;
+          let data = {
+            cookie: this.cookie,
+            internship_id: this.internship_id,
+          }
+
+        }
+        catch(err)
+        {
+          console.log(err);
+        }
     },
     beforeMount() {
         this.verify()

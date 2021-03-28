@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Interncard = require("./interncard").schema;
 //const bcrypt = require('bcrypt-nodejs');
+
 
 const UserSchema = new Schema({
   name: String,
@@ -8,6 +10,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   address: { type: Schema.Types.ObjectId, ref: "Address" },
   //array of applied internships here
+  internships: [{type: Interncard, unique: true}],
 });
 
 // UserSchema.pre("save", function(next) {
