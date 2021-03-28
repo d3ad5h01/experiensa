@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://root:2dmb1ZEGlGr3UNuJ@cluster0.qo2y6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  process.env.DB,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) {
