@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+//const multer = require("multer");
 
 dotenv.config();
 
@@ -45,6 +46,8 @@ app.use("/api",userRoutes);
 app.use("/api",profileRoute);
 app.use("/api",verifyRoute);
 app.use("/api",applyRoute);
+app.use("/api",azureRoute);
+
 app.listen(3000, (err) => {
   if (err) {
     console.log(err);

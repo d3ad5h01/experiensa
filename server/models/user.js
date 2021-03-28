@@ -6,11 +6,14 @@ const Interncard = require("./interncard").schema;
 
 const UserSchema = new Schema({
   name: String,
+  profile: {type : String},
+  resume: {type : String},
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   address: { type: Schema.Types.ObjectId, ref: "Address" },
   //array of applied internships here
   internships: [{type: Interncard, unique: true}],
+
 });
 
 // UserSchema.pre("save", function(next) {

@@ -22,14 +22,14 @@ router.put("/apply", async(req,res) => {
                 decoded_user = decoded;
             }
         });
-        let list = decoded_user.internships;
+        let user_internships = decoded_user.internships;
         //add check for duplicates
-        list.push(interncard);
+        user_internships.push(interncard);
         let user = await  User.findOneAndUpdate(
             { _id: decoded_user._id },
             {
                 $set: {
-                    internships: list,
+                    internships: user_internships,
                 },
             },
             { upsert: true }
