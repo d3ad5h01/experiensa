@@ -37,6 +37,7 @@ const userRoutes = require("./routes/user")
 const profileRoute = require("./routes/profile")
 const verifyRoute = require("./routes/verifytoken")
 const applyRoute = require("./routes/apply")
+const azureRoute = require("./routes/azure");
 
 app.use("/api", InterncardRoutes);
 app.use("/api", authUserRoutes);
