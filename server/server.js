@@ -4,13 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+//const multer = require("multer");
 
 dotenv.config();
 
 const app = express();
 
 mongoose.connect(
-  "mongodb+srv://root:2dmb1ZEGlGr3UNuJ@cluster0.qo2y6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  process.env.DB,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   (err) => {
     if (err) {
@@ -35,6 +36,8 @@ const studyRoutes = require("./routes/study");
 const userRoutes = require("./routes/user")
 const profileRoute = require("./routes/profile")
 const verifyRoute = require("./routes/verifytoken")
+const applyRoute = require("./routes/apply")
+const azureRoute = require("./routes/azure");
 
 app.use("/api", InterncardRoutes);
 app.use("/api", authUserRoutes);
@@ -43,6 +46,8 @@ app.use("/api", studyRoutes);
 app.use("/api",userRoutes);
 app.use("/api",profileRoute);
 app.use("/api",verifyRoute);
+app.use("/api",applyRoute);
+app.use("/api",azureRoute);
 
 app.listen(3000, (err) => {
   if (err) {

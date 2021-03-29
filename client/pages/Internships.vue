@@ -335,23 +335,22 @@ export default {
           website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
         },
         {
-           name: 'Bugatti',
-          val:'Learn More',
-          StartDate: "14/02/2021",
-          EndDate: "15/05/2021",
-          CTC:"14LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
+          console.log(err);
+        }
+      }
+    },
+    async apply(index) {
+        try
         {
-           name: 'HelloWorld',
-          val:'Learn More',
-          StartDate: "19/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"11LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
+          this.cookie = this.$cookies.get("jwt");
+          this.internship_id = this.Announcements[index]._id;
+          let data = {
+            cookie: this.cookie,
+            internship_id: this.internship_id,
+          }
+
+        }
+        catch(err)
         {
            name: 'Netflix',
           val:'Learn More',
