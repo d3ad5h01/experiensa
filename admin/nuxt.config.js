@@ -1,6 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  devServer: {
+    port: 8000
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - client',
@@ -21,6 +24,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~plugins/cookies.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -30,6 +34,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/auth-next',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -38,6 +43,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -74,5 +80,7 @@ export default {
   },
   server: {
     port: 8080
-  }
+  },
+
+
 }

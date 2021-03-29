@@ -81,10 +81,10 @@ router.post("/auth/login", async(req,res) => {
         if(!foundUser){
             res.status(403).json({
                 success: false,
-                message: "Authentication failed, USer not found"
+                message: "Authentication failed, User not found"
             });
         } else {
-            if(foundUser.comparePassword(req.body.password)) {
+            if(foundUser.password === req.body.password) {
                 let token = jwt.sign(foundUser.toJSON(), process.env.SECRET, {
                     expiresIn: 604800 // 1 week
                 });
@@ -101,6 +101,7 @@ router.post("/auth/login", async(req,res) => {
             }
         }
     } catch(error) {
+        console.log(req.body);
         res.status(500).json({
             success: false,
             message: error.message

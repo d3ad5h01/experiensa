@@ -1,4 +1,4 @@
-
+const verifyToken = require("../middlewares/verify-token");
 const router = require("express").Router();
 const User = require("../models/user");
 
@@ -8,7 +8,6 @@ router.post("/users", async (req, res) => {
     let user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
-   
 
     await user.save();
 
@@ -41,7 +40,7 @@ router.get("/users", async (req, res) => {
   }
 });
 
-// GET request - get a single interncard
+// GET request - get a single usercard
 router.get("/users/:id", async (req, res) => {
   try {
     let user = await User.findOne({ _id: req.params.id });
