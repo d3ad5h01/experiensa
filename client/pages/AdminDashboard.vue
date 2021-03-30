@@ -252,27 +252,27 @@ export default {
       {
         icon: "mdi-apps",
         title: "Dashboard",
-        to: "/Dashboard",
+        to: "/AdminDashboard",
       },
       {
         icon: "mdi-account",
         title: "Students",
-        to: "/Students",
+        to: "/AdminStudents",
       },
       {
         icon: "mdi-bookshelf",
         title: "Study Material",
-        to: "/Material",
+        to: "/AdminMaterial",
       },
       {
         icon: "mdi-file-document-multiple",
         title: "Internships",
-        to: "/Internships",
+        to: "/AdminInternships",
       },
       {
         icon: "mdi-logout",
         title: "Logout",
-        to: "/",
+        to: "/Logout",
       },
     ],
     search: "",
@@ -330,7 +330,7 @@ export default {
     },
 
     async onAddAnnouncement() {
-      if (this.edt == 1) {
+      if (this.edt === 1) {
         this.ide = this.announcementcards[this.ind]._id;
         let data = {
           title: this.title,
@@ -366,6 +366,26 @@ export default {
       }
       //this.dialog=false;
     },
+    async verify() {
+      try {
+        let cookie = this.$cookies.get("jwt");
+        if (cookie == null) {
+          this.$router.push("/AdminLogin");
+        }
+        let verify_response = await this.$axios.$get(
+          `http://localhost:3000/api/adminverify/${cookie}`
+        );
+        console.log(verify_response);
+        if (!verify_response.success) {
+          this.$router.push("/AdminLogin");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+  beforeMount() {
+    this.verify();
   },
 };
 </script>

@@ -18,4 +18,31 @@ router.get("/verify/:id", verifyToken, async (req, res) => {
     }
 });
 
+router.get("/adminverify/:id", verifyToken, async (req, res) => {
+    try {
+        let user = await User.findOne({ _id: req.decoded._id }).populate(
+            "adress"
+        );
+        if(user.role === "admin")
+        {
+            res.json({
+                success: true,
+            });
+        }
+        else
+        {
+            res.json({
+                success: false,
+            });
+        }
+
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+});
+
+
 module.exports = router;
