@@ -45,6 +45,15 @@ const getBlobName = originalName => {
 
 const imageUpload = async(req, res, next) => {
     try {
+        console.log(req.body.profile);
+        if(req.body.profile === 'null')
+        {
+            res.json({
+                success: false,
+                message: "File error"
+            });
+            return res;
+        }
         const image = await uploadFileToBlob('profiles', req.file); // profiles is a directory in the Azure container
         // console.log(image);
         let url = image.url;
@@ -76,6 +85,15 @@ const imageUpload = async(req, res, next) => {
 
 const resumeUpload = async(req, res, next) => {
     try {
+        console.log(req.body);
+        if(req.body.resume === 'null')
+        {
+            res.json({
+                success: false,
+                message: "File error"
+            });
+            return res;
+        }
         const resume = await uploadFileToBlob('resumes', req.file); // resumes is a directory in the Azure container
         let url = resume.url;
         let cookie = req.body.cookie;

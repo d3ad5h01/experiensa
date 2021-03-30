@@ -223,7 +223,6 @@
                           :key="i"
                           :href="item.to"
                           item.to
-                          }}
                         >
                           {{ item.title }}
                         </v-btn>

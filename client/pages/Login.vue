@@ -191,7 +191,6 @@
                           :key="i"
                           :href="item.to"
                           item.to
-                          }}
                         >
                           {{ item.title }}
                         </v-btn>
@@ -231,8 +230,8 @@
   top: 75px;
 }
 .back {
-  background-image: url("https://i.picsum.photos/id/1033/2048/1365.jpg?hmac=zEuPfX7t6U866nzXjWF41bf-uxkKOnf1dDrHXmhcK-Q");
-
+  background-image: url("https://rasput1n.blob.core.windows.net/internship-portal/website-images/cc3_2.jpg");
+  background-position-y: center;
   background-attachment: fixed;
   height: 100%;
   width: 100%;

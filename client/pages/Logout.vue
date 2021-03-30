@@ -10,6 +10,7 @@ name: "Logout",
   {
     this.$cookies.set("jwt",null);
     this.$router.push("/login");
+    // this.$router.go();
   }
   },
   beforeMount() {

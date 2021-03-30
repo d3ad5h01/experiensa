@@ -5,7 +5,7 @@
         v-model="drawer"
         app
         dark
-        src="https://images.unsplash.com/photo-1561795845-1c76443dbec3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=632&q=80"
+        src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/night.jpg"
         width="15%"
         permanent
         class="elevation-12"
@@ -28,7 +28,6 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item-group
-              v-model="selectedItem"
               class="text--white"
               color="white"
             >
@@ -68,12 +67,12 @@
                           <v-flex justify-center>
                             <div class="justify-center">
                               <v-card
-                                class="green rounded-circle"
+                                class="rounded-circle"
                                 height="150px"
                                 width="150px"
-                                ><v-img
-                                  lazy-src="https://picsum.photos/id/11/10/6"
-                                  src="https://picsum.photos/id/11/500/300"
+                                >
+                                <v-img
+                                  v-bind:src="profile_url"
                                   class="rounded-circle"
                                   height="150px"
                                 ></v-img>
@@ -202,10 +201,17 @@
                       </v-col>
 
                       <v-col cols="9">
-                        <v-file-input multiple label="File input"></v-file-input
-                      ></v-col>
+<!--                        <v-file-input-->
+<!--                          multiple-->
+<!--                          label="File input"-->
+<!--                          on-change="onFileChanged"-->
+<!--                        >-->
+
+<!--                        </v-file-input>-->
+                        <input type="file" @change="onFileChanged">
+                      </v-col>
                       <v-col cols="3">
-                        <v-btn large class="green">Upload Resume</v-btn>
+                        <v-btn large class="green" @click="onUploadResume">Upload Resume</v-btn>
                       </v-col>
                       <v-col cols="10"> </v-col>
                       <v-col cols="2">
@@ -247,6 +253,8 @@ export default {
     images: {
       //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
     },
+      profile_url: "",
+      resume_url: "",
     show1: false,
     show2: false,
     show3: false,
@@ -357,11 +365,15 @@ export default {
         }
         this.name = response.user.name;
         this.email = response.user.email;
+        this.profile_url = response.user.profile;
+        console.log(this.profile_url);
+        this.resume_url = response.user.resume;
       } catch (err) {
         console.log(err);
       }
     },
   },
+
   beforeMount() {
     this.getUser();
   },

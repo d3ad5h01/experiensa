@@ -1186,7 +1186,6 @@
                           :key="i"
                           :href="item.to"
                           item.to
-                          }}
                         >
                           {{ item.title }}
                         </v-btn>
@@ -1227,8 +1226,8 @@
   top: 75px;
 }
 .back {
-  background-image: url("https://placement.iiita.ac.in/images/iiita/campus3.jpg");
-
+  background-image: url("https://rasput1n.blob.core.windows.net/internship-portal/website-images/admin.jpg");
+  background-position-y: center;
   background-attachment: fixed;
   height: 100%;
   width: 100%;
