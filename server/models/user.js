@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   address: { type: Schema.Types.ObjectId, ref: "Address" },
   //array of applied internships here
   internships: [{type: Interncard, unique: true}],
-
+  role: String,
 });
 
 // UserSchema.pre("save", function(next) {

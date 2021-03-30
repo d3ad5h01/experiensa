@@ -372,6 +372,7 @@ export default {
         let verify_response = await this.$axios.$get(
           `http://localhost:3000/api/verify/${cookie}`
         );
+        console.log(verify_response.success);
         if (!verify_response.success) {
           this.$router.push("/login");
         }
