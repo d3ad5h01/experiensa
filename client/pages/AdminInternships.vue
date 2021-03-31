@@ -339,7 +339,7 @@ export default {
         this.edt = 0;
       } else {
         try {
-          console.log(this.company);
+          // console.log(this.company);
           //console.log(this.);
 
           let data = {
@@ -349,6 +349,7 @@ export default {
             startDate: this.startDate,
             applyBy: this.applyBy,
           };
+
           let response = await this.$axios.$post(
             "http://localhost:3000/api/interncards",
             data

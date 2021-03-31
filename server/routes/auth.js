@@ -7,7 +7,12 @@ const verifyToken = require('../middlewares/verify-token');
 router.post('/auth/signup',async(req,res) => {
     if(!req.body.email || !req.body.password) {
         res.json({success: false, message: "Please Enter email or password"});
-    } else {
+    }
+    else if(!req.body.email.endsWith("iiita.ac.in"))
+    {
+        res.json({success: false, message: "Email not in organization. Enter valid email"});
+    }
+    else {
         try {
             let newUser = new User();
             newUser.name = req.body.name;

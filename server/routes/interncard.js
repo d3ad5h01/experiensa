@@ -3,7 +3,8 @@ const Interncard = require("../models/interncard");
 
 // POST request - create a new card
 router.post("/interncards", async (req, res) => {
-  try {
+  try
+  {
     let interncard = new Interncard();
     interncard.company = req.body.company;
     interncard.role = req.body.role;
@@ -11,7 +12,7 @@ router.post("/interncards", async (req, res) => {
     interncard.duration = req.body.duration;
     interncard.startDate = req.body.startDate;
     interncard.applyBy = req.body.applyBy;
-
+    interncard.appliedStudents = [];
     await interncard.save();
 
     res.json({

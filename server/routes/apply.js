@@ -8,9 +8,9 @@ router.put("/apply", async(req,res) => {
     try{
         // console.log("hello");
         let interncard = await Interncard.findOne({ _id: req.body.internship_id });
-        console.log(interncard);
+        // console.log(interncard);
         let cookie = req.body.cookie;
-        console.log(cookie);
+        // console.log(cookie);
         let decoded_user;
         jwt.verify(cookie, process.env.SECRET, (err,decoded) => {
             if(err){
@@ -22,7 +22,10 @@ router.put("/apply", async(req,res) => {
                 decoded_user = decoded;
             }
         });
-        let user_internships = decoded_user.internships;
+        let found_user = await User.findOne({ _id: decoded_user._id }).populate(
+            "adress"
+        );
+        let user_internships = found_user.internships;
         //add check for duplicates
         user_internships.push(interncard);
         let user = await  User.findOneAndUpdate(

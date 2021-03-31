@@ -139,7 +139,7 @@
               </v-card-title>
               <v-data-table
                 :headers="headers1"
-                :items="interncards"
+                :items="my_internships"
                 :search="search"
                 class="grey lighten-2"
                 light
@@ -248,18 +248,19 @@ a:hover {
 
 <script>
 export default {
-  async asyncData({ $axios }) {
-    try {
-      let response = await $axios.$get("http://localhost:3000/api/interncards");
-
-      return {
-        interncards: response.interncards,
-      };
-    } catch (err) {}
-  },
+  // async asyncData({ $axios }) {
+  //   try {
+  //     let response = await $axios.$get("http://localhost:3000/api/interncards");
+  //     return {
+  //       interncards: response.interncards,
+  //     };
+  //   } catch (err) {}
+  // },
   data: () => ({
     cards: ["Announcements"],
     drawer: null,
+    cookie: "",
+    internship_id: "",
     links: [
       ["mdi-inbox-arrow-down", "Inbox"],
       ["mdi-send", "Send"],
@@ -370,16 +371,49 @@ export default {
           this.$router.push("/login");
         }
         let verify_response = await this.$axios.$get(
-          `http://localhost:3000/api/verify/${cookie}`
+          `http://localhost:3000/api/profile/${cookie}`
         );
-        console.log(verify_response.success);
+        // console.log(verify_response.success);
+        this.my_internships = verify_response.user.internships;
         if (!verify_response.success) {
           this.$router.push("/login");
         }
+        let response = await this.$axios.$get("http://localhost:3000/api/interncards");
+          this.interncards = response.interncards;
+        let ids = [];
+        // console.log(this.my_internships);
+        for (let i = 0; i < this.my_internships.length; i++)
+          ids.push(this.my_internships[i]._id);
+        let list = [];
+        for (let i = 0; i < this.interncards.length; i++) {
+          if(!ids.includes(this.interncards[i]._id))
+          {
+            list.push(this.interncards[i]);
+          }
+        }
+        this.interncards = list;
+        // console.log(ids);
       } catch (err) {
         console.log(err);
       }
     },
+    async apply(item) {
+      //this.item.ifA="Applied";
+      this.cookie = this.$cookies.get("jwt");
+      this.internship_id = this.interncards[this.interncards.indexOf(item)]._id;
+      let data = {
+        cookie: this.cookie,
+        internship_id: this.internship_id
+      };
+      let apply_response = await this.$axios.$put(
+        `http://localhost:3000/api/apply/`, data
+      );
+      if (!apply_response.success) {
+        console.log(apply_response);
+      }
+      this.$router.go();
+    },
+
   },
   beforeMount() {
     this.verify();
