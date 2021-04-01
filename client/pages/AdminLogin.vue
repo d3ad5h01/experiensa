@@ -15,7 +15,10 @@
           <v-btn class="transparent ml-2" elevation="0" href="/"> Home </v-btn>
 
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login
+            Login Student
+          </v-btn>
+          <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
+            Login Admin
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
@@ -60,7 +63,7 @@
                                         <h1
                                           class="display-2 font-weight-bold mb-2"
                                         >
-                                          Login
+                                          Admin Login
                                         </h1>
                                       </div>
                                       <!---->

@@ -78,10 +78,15 @@
                 active-class="cyan darken-4"
               >
                 <template #item.Apply="{ item }">
-                 <v-btn color="green" dark v-bind="attrs" v-on="on" @click="apply(item)" >
+                  <v-btn
+                    color="green"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="apply(item)"
+                  >
                     Apply
                   </v-btn>
-
                 </template>
                 <template #item.val="{ item }">
                   <v-dialog v-model="dialog" width="600px">
@@ -141,7 +146,7 @@
               <v-data-table
                 :headers="headers1"
                 :items="my_internships"
-                :search="search"
+                :search="search1"
                 class="grey lighten-2"
                 light
                 active-class="cyan darken-4"
@@ -320,10 +325,9 @@ export default {
 
       { text: "Learn More", value: "val" },
       { text: "Updates", value: "Updates" },
-    ] ,
+    ],
   }),
   methods: {
-
     async verify() {
       try {
         let cookie = this.$cookies.get("jwt");
@@ -332,25 +336,27 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/profile/`, data
+          `http://localhost:3000/api/profile/`,
+          data
         );
         // console.log(verify_response.success);
         this.my_internships = verify_response.user.internships;
         if (!verify_response.success) {
           this.$router.push("/login");
         }
-        let response = await this.$axios.$get("http://localhost:3000/api/interncards");
-          this.interncards = response.interncards;
+        let response = await this.$axios.$get(
+          "http://localhost:3000/api/interncards"
+        );
+        this.interncards = response.interncards;
         let ids = [];
         // console.log(this.my_internships);
         for (let i = 0; i < this.my_internships.length; i++)
           ids.push(this.my_internships[i]._id);
         let list = [];
         for (let i = 0; i < this.interncards.length; i++) {
-          if(!ids.includes(this.interncards[i]._id))
-          {
+          if (!ids.includes(this.interncards[i]._id)) {
             list.push(this.interncards[i]);
           }
         }
@@ -366,24 +372,22 @@ export default {
       this.internship_id = this.interncards[this.interncards.indexOf(item)]._id;
       let data = {
         cookie: this.cookie,
-        internship_id: this.internship_id
+        internship_id: this.internship_id,
       };
       let apply_response = await this.$axios.$put(
-        `http://localhost:3000/api/apply/`, data
+        `http://localhost:3000/api/apply/`,
+        data
       );
       if (!apply_response.success) {
         console.log(apply_response);
       }
       this.$router.go();
     },
-
-
   },
   beforeMount() {
     this.verify();
   },
 };
-
 </script>
 
 

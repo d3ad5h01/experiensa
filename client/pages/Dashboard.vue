@@ -55,66 +55,69 @@
       <v-main class="grey lighten-2">
         <v-container>
           <v-row>
-            <v-col cols="4"
-              ><v-row>
-                <v-col cols="12">
-                  <v-card class="mx-auto pa-1" elevation="12" light>
-                    <v-card-subtitle
-                      ><p class="text-h5 text-center">Companies Registered</p>
-                      <p class="text-h2 text-center font-weight-bold">120</p>
-                    </v-card-subtitle>
-                  </v-card>
-                </v-col>
-                <v-col cols="12">
-                  <v-card class="mx-auto pa-1" elevation="12" light>
-                    <v-card-subtitle
-                      ><p class="text-h5 text-center">Total Internships</p>
-                      <p class="text-h2 text-center font-weight-bold">400</p>
-                    </v-card-subtitle>
-                  </v-card>
-                </v-col>
-                <v-col cols="12">
-                  <v-card class="mx-auto pa-1" elevation="12" light>
-                    <v-card-subtitle
-                      ><p class="text-h5 text-center">Students Registered</p>
-                      <p class="text-h2 text-center font-weight-bold">200</p>
-                    </v-card-subtitle>
-                  </v-card>
-                </v-col>
-                <v-col cols="12">
-                  <v-card class="mx-auto pa-1" elevation="12" light>
-                    <v-card-subtitle
-                      ><p class="text-h5 text-center">Students Placed</p>
-                      <p class="text-h2 text-center font-weight-bold">100</p>
-                    </v-card-subtitle>
-                  </v-card>
-                </v-col>
-              </v-row></v-col
-            >
-            <v-col cols="8">
-              <v-card class="green pa-4 ma-4" elevation="15">
-                <p class="text-h5 font-weight-medium white--text text-center">
+            <v-col cols="3">
+              <p class="text-h5 green--text text-center">
+                Companies Registered
+              </p>
+              <p class="text-h2 text-center font-weight-bold">120</p>
+              <v-divider color="green"></v-divider>
+            </v-col>
+            <v-col cols="3">
+              <p class="text-h5 green--text text-center">Total Internships</p>
+              <p class="text-h2 text-center font-weight-bold">400</p>
+              <v-divider color="green"></v-divider>
+            </v-col>
+            <v-col cols="3">
+              <p class="text-h5 green--text text-center">Students Registered</p>
+              <p class="text-h2 text-center font-weight-bold">200</p>
+              <v-divider color="green"></v-divider>
+            </v-col>
+            <v-col cols="3">
+              <p class="text-h5 green--text text-center">Students Placed</p>
+              <p class="text-h2 text-center font-weight-bold">100</p>
+              <v-divider color="green"></v-divider>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12">
+              <v-carousel
+                cycle
+                height="60"
+                hide-delimiters
+                show-arrows-on-hover
+              >
+                <v-carousel-item v-for="(slide, i) in slides" :key="i">
+                  <v-sheet class="green" height="100%">
+                    <v-row class="fill-height" align="center" justify="center">
+                      <div class="text-subtitle-1">{{ slide }}</div>
+                    </v-row>
+                  </v-sheet>
+                </v-carousel-item>
+              </v-carousel>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="6">
+              <v-card class="transparent pa-0 ml-4 mr-4" elevation="0">
+                <p class="text-h2 font-weight-medium green--text text-center">
                   Announcements
                 </p>
               </v-card>
               <v-spacer></v-spacer>
 
               <v-card
-                class="white"
+                :style="'border: 5px solid red;'"
+                class="grey lighten-2"
                 light
-                elevation="15"
+                elevation="0"
                 style="overflow-y: scroll"
-                height="600px"
+                height="500px"
                 width="100%"
+                outlined
               >
-                <v-card class="transparent" height="20px" flat> </v-card>
-                <v-list three-line>
+                <v-list three-line class="grey lighten-2">
                   <template v-for="announcementcard in announcementcards">
-                    <v-list-item>
-                      <v-list-item-avatar x-large class="">
-                        <v-icon x-large>mdi-arrow-right-bold</v-icon>
-                      </v-list-item-avatar>
-
+                    <v-list-item class="grey lighten-2">
                       <v-list-item-content>
                         <v-list-item-title
                           ><p class="text-h5">
@@ -132,6 +135,41 @@
                 </v-list>
               </v-card>
             </v-col>
+            <v-divider class="green" vertical></v-divider>
+            <v-col cols="6">
+              <v-row
+                ><v-col cols="12 mb-4"
+                  ><v-carousel height="200px" hide-delimiters>
+                    <v-carousel-item
+                      v-for="(item, i) in items44"
+                      :key="i"
+                      :src="item.src"
+                    ></v-carousel-item> </v-carousel></v-col
+              ></v-row>
+              <v-divider color="green"></v-divider>
+              <v-row
+                ><v-col cols="12"
+                  ><v-card class="grey lighten-2 mt-2" light elevation="0"
+                    ><p class="font-weight-bold">Messege from Director</p>
+                    <p>
+                      Indian Institute of Information Technology, Allahabad is
+                      our sacred place of learning, where we learn and remain
+                      committed to lifelong learning with a focused objective
+                      that the outcome of learning is to accomplish notch class
+                      performance all through, and everyone who is associated
+                      thus should create a niche for him/herself. We stand to
+                      ensure Quality in Excellence. We pledge that there shall
+                      be ‘Quality in the Show but certainly not Show in the
+                      Quality’.
+                    </p>
+                    <p class="font-weight-bold text-right">
+                      Prof. P. Nagabhushan <br />
+                      Director IIIT - Allahabad
+                    </p></v-card
+                  ></v-col
+                ></v-row
+              >
+            </v-col>
           </v-row>
         </v-container>
       </v-main>
@@ -140,8 +178,14 @@
 </template>
 
 <style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
 .v-list-item--active {
   background-color: green;
+}
+.out {
+  border-color: rgba(192, 0, 250, 0.986);
 }
 </style>
 <script>
@@ -162,6 +206,27 @@ export default {
     images: {
       //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
     },
+    slides: [
+      "IIITA boasts about its fantastic placements.",
+      "Brunch this weekend?Brunch this weekend?Brunch this weekend?Brunch this weekend?",
+      "Brunch this weekend? weekendweekendweekendweekendweekend ",
+      "Fourth weekendweekendweekendweekendweekend",
+      "Fifth weekendweekendweekendweekend",
+    ],
+    items44: [
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+      },
+    ],
     show1: false,
     show2: false,
     show3: false,
@@ -251,9 +316,10 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/verify/`, data
+          `http://localhost:3000/api/verify/`,
+          data
         );
         if (!verify_response.success) {
           this.$router.push("/login");
@@ -263,6 +329,7 @@ export default {
       }
     },
   },
+
   beforeMount() {
     this.verify();
   },

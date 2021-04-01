@@ -17,7 +17,10 @@
             Sign Up
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login
+            Login Student
+          </v-btn>
+          <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
+            Login Admin
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
@@ -105,7 +108,143 @@
                       </div>
                     </v-card-text>
 
-                    <div class="ml-10 mr-10"></div>
+                    <v-card
+                      class="ml-10 mr-10 transparent"
+                      elevation="0"
+                      height="50px"
+                    ></v-card>
+                    <div class="ml-10 mr-10">
+                      <v-card height="50px" class="transparent" elevation="0"
+                        ><p
+                          class="text-h4 text-sm-h4 mb-3 black--text text-darken-5"
+                        >
+                          Team
+                        </p></v-card
+                      >
+                      <v-row>
+                        <v-col cols="3">
+                          <div>
+                            <img
+                              class="proPic proLight card-img rounded-circle"
+                              src="https://res.cloudinary.com/vivekiscoding/image/upload/v1589372809/lego.jpg"
+                              alt="Profile Pic"
+                            />
+                            <span class="text-subtitle-1 success--text"
+                              >Krishna Kaipa</span
+                            >
+                            <h6 class="lightSubTitle card-subtitle">
+                              Back-End Developer
+                            </h6>
+
+                            <span
+                              class="text-subtitle-2 transparent black--text"
+                              >iit2019203@iiita.ac.in</span
+                            >
+                            <div>
+                              <v-icon color="black" light>mdi-github</v-icon>
+                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-icon color="primary" light
+                                >mdi-linkedin</v-icon
+                              >
+                              <v-icon color="blue" light>mdi-facebook</v-icon>
+                              <v-icon color="red" light>mdi-gmail</v-icon>
+                            </div>
+                          </div>
+                        </v-col>
+                        <v-col cols="3">
+                          <div>
+                            <img
+                              class="proPic proLight card-img rounded-circle"
+                              src="https://res.cloudinary.com/vivekiscoding/image/upload/v1589372809/lego.jpg"
+                              alt="Profile Pic"
+                            />
+                            <span class="text-subtitle-1 success--text"
+                              >Akshat Agrawal</span
+                            >
+                            <h6 class="lightSubTitle card-subtitle">
+                              Front-End Developer
+                            </h6>
+
+                            <span
+                              class="text-subtitle-2 transparent black--text"
+                              >iit2019214@iiita.ac.in</span
+                            >
+                            <div>
+                              <v-icon color="black" light>mdi-github</v-icon>
+                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-icon color="primary" light
+                                >mdi-linkedin</v-icon
+                              >
+                              <v-icon color="blue" light>mdi-facebook</v-icon>
+                              <v-icon color="red" light>mdi-gmail</v-icon>
+                            </div>
+                          </div>
+                        </v-col>
+                        <v-col cols="3">
+                          <div>
+                            <img
+                              class="proPic proLight card-img rounded-circle"
+                              src="https://res.cloudinary.com/vivekiscoding/image/upload/v1589372809/lego.jpg"
+                              alt="Profile Pic"
+                            />
+                            <span class="text-subtitle-1 success--text"
+                              >Divyatez Singh</span
+                            >
+                            <h6 class="lightSubTitle card-subtitle">
+                              Front-End Developer
+                            </h6>
+
+                            <span
+                              class="text-subtitle-2 transparent black--text"
+                              >iit2019220@iiita.ac.in</span
+                            >
+                            <div>
+                              <v-icon color="black" light>mdi-github</v-icon>
+                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-icon color="primary" light
+                                >mdi-linkedin</v-icon
+                              >
+                              <v-icon color="blue" light>mdi-facebook</v-icon>
+                              <v-icon color="red" light>mdi-gmail</v-icon>
+                            </div>
+                          </div>
+                        </v-col>
+                        <v-col cols="3">
+                          <div>
+                            <img
+                              class="proPic proLight card-img rounded-circle"
+                              src="https://res.cloudinary.com/vivekiscoding/image/upload/v1589372809/lego.jpg"
+                              alt="Profile Pic"
+                            />
+                            <span class="text-subtitle-1 success--text"
+                              >Deepak Gajjala</span
+                            >
+                            <h6 class="lightSubTitle card-subtitle">
+                              Back-End Developer
+                            </h6>
+
+                            <span
+                              class="text-subtitle-2 transparent black--text"
+                              >iib2019024@iiita.ac.in</span
+                            >
+                            <div>
+                              <v-icon color="black" light>mdi-github</v-icon>
+                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-icon color="primary" light
+                                >mdi-linkedin</v-icon
+                              >
+                              <v-icon color="blue" light>mdi-facebook</v-icon>
+                              <v-icon color="red" light>mdi-gmail</v-icon>
+                            </div>
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </div>
+                    <v-card
+                      height="100px"
+                      class="transparent"
+                      elevation="0"
+                    ></v-card>
                     <section id="project-sponsors">
                       <h2
                         class="v-heading text-h4 text-sm-h4 mb-3 black--text text-darken-5"
@@ -118,9 +257,7 @@
                         Past Recruiters
                       </h2>
                       <p class="black--text text-darken-5">
-                        With the continious efforts
                         <br />
-                        is made possible by these generous past recruiters:
                       </p>
                       <br />
                       <div
@@ -1247,6 +1384,103 @@
   background-color: #eeeeee;
   opacity: 0.85;
   color: black;
+}
+.proPic {
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.proDark {
+  border: 1px solid white;
+}
+
+.proLight {
+  border: 1px solid black;
+}
+
+.cardBorderCorners {
+  border-radius: 50px 25px;
+  width: 18rem;
+}
+
+.darkCard {
+  background-color: #25235c;
+}
+
+.lightCard {
+  background-color: #ffffff;
+}
+
+.darkTitle {
+  margin-top: 10px;
+  color: #ebecf5;
+  text-align: center;
+}
+
+.lightTitle {
+  margin-top: 10px;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+.darkSubTitle {
+  color: #7e76b6;
+  text-align: center;
+}
+
+.lightSubTitle {
+  color: #37355b;
+  text-align: center;
+}
+
+.darkDesc {
+  margin-top: 20px;
+  color: #b8b7d3;
+  text-align: center;
+}
+
+.lightDesc {
+  margin-top: 20px;
+  color: #333333;
+  text-align: center;
+}
+
+.darkMail {
+  margin-top: 20px;
+  color: #dedcf4;
+  text-align: center;
+}
+
+.lightMail {
+  margin-top: 20px;
+  color: #c2c2e0;
+  text-align: center;
+}
+
+.darkMailText {
+  padding: 5px;
+  background-color: #6b62b9;
+}
+
+.lightMailText {
+  padding: 5px;
+  background-color: #25235c;
+}
+
+.social {
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.attributeText {
+  margin-top: 20px;
+  text-align: center;
+  color: #25235c;
 }
 </style>
 

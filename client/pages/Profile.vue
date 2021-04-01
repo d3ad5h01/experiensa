@@ -27,10 +27,7 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
-            <v-list-item-group
-              class="text--white"
-              color="white"
-            >
+            <v-list-item-group class="text--white" color="white">
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -70,7 +67,7 @@
                                 class="rounded-circle"
                                 height="150px"
                                 width="150px"
-                                >
+                              >
                                 <v-img
                                   v-bind:src="profile_url"
                                   class="rounded-circle"
@@ -82,17 +79,56 @@
                         </v-layout>
                       </v-toolbar>
 
-                      <v-card class="transparent" height="50px" flat
-                        >
-<!--                        <v-file-input-->
-<!--                          hide-input-->
-<!--                          prepend-icon="mdi-camera"-->
-<!--                          @change="onFileChanged"-->
-<!--                        ></v-file-input>-->
-                        <input type="file" @change="onFileChanged">
-                        <v-btn @click="onUpload">Upload!</v-btn>
+                      <v-dialog
+                        light
+                        v-model="dialog1"
+                        persistent
+                        max-width="400"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn
+                            color="transparent"
+                            flat
+                            elevation="0"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            <v-icon>mdi-camera</v-icon>
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title class="headline">
+                            Profile Picture
+                          </v-card-title>
+                          <v-card-text
+                            ><input
+                              color="green"
+                              type="file"
+                              @change="onFileChanged"
+                            />
+                            <v-btn color="green" class="mt-3" @click="onUpload"
+                              >Upload!</v-btn
+                            ></v-card-text
+                          >
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="green darken-1"
+                              text
+                              @click="dialog1 = false"
+                            >
+                              Close
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                      <v-card class="transparent" height="50px" flat>
+                        <!--                        <v-file-input-->
+                        <!--                          hide-input-->
+                        <!--                          prepend-icon="mdi-camera"-->
+                        <!--                          @change="onFileChanged"-->
+                        <!--                        ></v-file-input>-->
                       </v-card>
-
                       <v-row>
                         <v-col cols="2">
                           <v-subheader
@@ -122,11 +158,11 @@
                       </v-row>
 
                       <v-divider></v-divider>
-<!--                      <v-btn-->
-<!--                        class="text-subtitle-1 green white&#45;&#45;text mb-4 mt-4"-->
-<!--                      >-->
-<!--                        <v-icon medium>mdi-pencil</v-icon> Change Password-->
-<!--                      </v-btn>-->
+                      <!--                      <v-btn-->
+                      <!--                        class="text-subtitle-1 green white&#45;&#45;text mb-4 mt-4"-->
+                      <!--                      >-->
+                      <!--                        <v-icon medium>mdi-pencil</v-icon> Change Password-->
+                      <!--                      </v-btn>-->
                     </v-card>
                   </v-container>
                 </v-col>
@@ -203,20 +239,68 @@
                       <v-col cols="4">
                         <v-text-field outlined value="example"></v-text-field>
                       </v-col>
-
-                      <v-col cols="9">
-<!--                        <v-file-input-->
-<!--                          multiple-->
-<!--                          label="File input"-->
-<!--                          on-change="onFileChanged"-->
-<!--                        >-->
-
-<!--                        </v-file-input>-->
-                        <input type="file" @change="onFileChanged">
+                      <v-col cols="12"
+                        ><v-subheader class="text-h5">Resume</v-subheader>
                       </v-col>
-                      <v-col cols="3">
-                        <v-btn large class="green" @click="onUploadResume">Upload Resume</v-btn>
-                      </v-col>
+                      <v-row>
+                        <v-col class="ml-8" cols="3">
+                          <v-btn
+                            color="green"
+                            flat
+                            elevation="0"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            View Resume
+                            <v-icon>mdi-eye</v-icon>
+                          </v-btn></v-col
+                        >
+                        <v-col cols="3">
+                          <v-dialog
+                            light
+                            v-model="dialog2"
+                            persistent
+                            max-width="400"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-btn
+                                color="green"
+                                flat
+                                elevation="0"
+                                v-bind="attrs"
+                                v-on="on"
+                              >
+                                Upload Resume
+                                <v-icon>mdi-file-document-multiple</v-icon>
+                              </v-btn>
+                            </template>
+                            <v-card>
+                              <v-card-title class="headline">
+                                Upload Resume
+                              </v-card-title>
+                              <v-card-text>
+                                <input type="file" @change="onFileChanged" />
+                                <v-btn
+                                  large
+                                  class="mt-4 green"
+                                  @click="onUploadResume"
+                                  >Upload Resume</v-btn
+                                >
+                              </v-card-text>
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  color="green darken-1"
+                                  text
+                                  @click="dialog2 = false"
+                                >
+                                  Close
+                                </v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </v-dialog>
+                        </v-col>
+                      </v-row>
                       <v-col cols="10"> </v-col>
                       <v-col cols="2">
                         <v-btn large class="green">Save</v-btn>
@@ -253,96 +337,99 @@ export default {
     }
   },
   data() {
-    return{
-    bio: "",
-    selectedFile: null,
+    return {
+      dialog1: "",
+      dialog2: "",
+      bio: "",
+      selectedFile: null,
       selectedResume: null,
-    images: {
-      //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
-    },
+      images: {
+        //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
+      },
       profile_url: "",
       resume_url: "",
-    show1: false,
-    show2: false,
-    show3: false,
-    email: "",
-    name: " ",
-    cards: ["Announcements"],
-    drawer: null,
-    items2: [
-      ["mdi-email", "Inbox"],
-      ["mdi-account-supervisor-circle", "Supervisors"],
-      ["mdi-clock-start", "Clock-in"],
-    ],
-    links: [
-      ["mdi-inbox-arrow-down", "Inbox"],
-      ["mdi-send", "Send"],
-      ["mdi-delete", "Trash"],
-      ["mdi-alert-octagon", "Spam"],
-    ],
-    items: [
-      {
-        icon: "mdi-apps",
-        title: "Dashboard",
-        to: "/Dashboard",
-      },
-      {
-        icon: "mdi-account",
-        title: "Profile",
-        to: "/Profile",
-      },
-      {
-        icon: "mdi-bookshelf",
-        title: "Study Material",
-        to: "/Material",
-      },
-      {
-        icon: "mdi-file-document-multiple",
-        title: "Internships",
-        to: "/Internships",
-      },
-      {
-        icon: "mdi-logout",
-        title: "Logout",
-        to: "/Logout",
-      },
-    ],
-    items3: [
-      { header: "Today" },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-        title: "Brunch this weekend?",
-        subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-        title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-        subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-        title: "Oui oui",
-        subtitle:
-          '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
-        title: "Birthday gift",
-        subtitle:
-          '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
-      },
-      { divider: true, inset: true },
-      {
-        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
-        title: "Recipe to try",
-        subtitle:
-          '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
-      },
-    ],
-  }},
+      show1: false,
+      show2: false,
+      show3: false,
+      email: "",
+      name: " ",
+      cards: ["Announcements"],
+      drawer: null,
+      items2: [
+        ["mdi-email", "Inbox"],
+        ["mdi-account-supervisor-circle", "Supervisors"],
+        ["mdi-clock-start", "Clock-in"],
+      ],
+      links: [
+        ["mdi-inbox-arrow-down", "Inbox"],
+        ["mdi-send", "Send"],
+        ["mdi-delete", "Trash"],
+        ["mdi-alert-octagon", "Spam"],
+      ],
+      items: [
+        {
+          icon: "mdi-apps",
+          title: "Dashboard",
+          to: "/Dashboard",
+        },
+        {
+          icon: "mdi-account",
+          title: "Profile",
+          to: "/Profile",
+        },
+        {
+          icon: "mdi-bookshelf",
+          title: "Study Material",
+          to: "/Material",
+        },
+        {
+          icon: "mdi-file-document-multiple",
+          title: "Internships",
+          to: "/Internships",
+        },
+        {
+          icon: "mdi-logout",
+          title: "Logout",
+          to: "/Logout",
+        },
+      ],
+      items3: [
+        { header: "Today" },
+        {
+          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+          title: "Brunch this weekend?",
+          subtitle: `<span class="text--primary">Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?`,
+        },
+        { divider: true, inset: true },
+        {
+          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+          title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
+          subtitle: `<span class="text--primary">to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.`,
+        },
+        { divider: true, inset: true },
+        {
+          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+          title: "Oui oui",
+          subtitle:
+            '<span class="text--primary">Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?',
+        },
+        { divider: true, inset: true },
+        {
+          avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+          title: "Birthday gift",
+          subtitle:
+            '<span class="text--primary">Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?',
+        },
+        { divider: true, inset: true },
+        {
+          avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+          title: "Recipe to try",
+          subtitle:
+            '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
+        },
+      ],
+    };
+  },
   methods: {
     enableEditing: function () {
       this.tempValue = this.value;
@@ -359,19 +446,20 @@ export default {
     },
     onUpload() {
       const formData = new FormData();
-      formData.append('profile', this.selectedFile);
-      formData.append('cookie',this.$cookies.get("jwt"))
-      this.$axios.post('http://localhost:3000/api/upload/profile', formData).then(res => {
-        // console.log(res)
-      })
+      formData.append("profile", this.selectedFile);
+      formData.append("cookie", this.$cookies.get("jwt"));
+      this.$axios
+        .post("http://localhost:3000/api/upload/profile", formData)
+        .then((res) => {
+          // console.log(res)
+        });
       this.getURL();
       this.$router.go();
     },
-    onFileChanged (event) {
+    onFileChanged(event) {
       this.selectedFile = event.target.files[0];
     },
-    async getURL()
-    {
+    async getURL() {
       try {
         let cookie = this.$cookies.get("jwt");
         let response = await this.$axios.$get(
@@ -380,19 +468,19 @@ export default {
         this.profile_url = response.user.profile;
         this.resume_url = response.user.resume;
         // console.log(this.profile_url);
-
       } catch (err) {
         console.log(err);
       }
-
     },
     onUploadResume() {
       const formData = new FormData();
-      formData.append('resume', this.selectedFile);
-      formData.append('cookie',this.$cookies.get("jwt"))
-      this.$axios.post('http://localhost:3000/api/upload/resume', formData).then(res => {
-        // console.log(res)
-      })
+      formData.append("resume", this.selectedFile);
+      formData.append("cookie", this.$cookies.get("jwt"));
+      this.$axios
+        .post("http://localhost:3000/api/upload/resume", formData)
+        .then((res) => {
+          // console.log(res)
+        });
       this.getURL();
       // this.$router.go();
     },
@@ -404,9 +492,10 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let response = await this.$axios.$post(
-          `http://localhost:3000/api/profile/`, data
+          `http://localhost:3000/api/profile/`,
+          data
         );
         if (!response.success) {
           this.$router.push("/login");

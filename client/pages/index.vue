@@ -17,7 +17,10 @@
             Sign Up
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login
+            Login Student
+          </v-btn>
+          <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
+            Login Admin
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
@@ -68,7 +71,12 @@
                         >Sign Up</v-btn
                       >
 
-                      <v-btn class="ml-10" x-large elevation="3" color="primary" href="/Login"
+                      <v-btn
+                        class="ml-10"
+                        x-large
+                        elevation="3"
+                        color="primary"
+                        href="/Login"
                         >Login</v-btn
                       >
                     </div>
@@ -1367,9 +1375,10 @@ export default {
         let cookie = this.$cookies.get("jwt");
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/verify/`, data
+          `http://localhost:3000/api/verify/`,
+          data
         );
         if (verify_response.success) {
           this.$router.push("/Dashboard");

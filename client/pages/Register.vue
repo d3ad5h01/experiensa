@@ -17,7 +17,10 @@
             Sign Up
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login
+            Login Student
+          </v-btn>
+          <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
+            Login Admin
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
@@ -55,7 +58,7 @@
                                 >
                                   <div class="d-flex grow flex-wrap">
                                     <div
-                                      class="text-start v-card--material__heading mb-n6 v-sheet theme--dark elevation-6 pink pa-7"
+                                      class="text-start v-card--material__heading mb-n6 v-sheet theme--dark elevation-6 success pa-7"
                                       style="width: 100%"
                                     >
                                       <div class="text-center">
@@ -171,6 +174,16 @@
                                             <div
                                               class="v-messages__wrapper"
                                             ></div>
+                                            <div class="text-left">
+                                              Already Regstered?
+                                              <v-btn
+                                                class="transparent ml-0 success--text"
+                                                elevation="0"
+                                                href="/Login"
+                                              >
+                                                Login.
+                                              </v-btn>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
