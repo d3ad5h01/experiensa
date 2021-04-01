@@ -83,10 +83,14 @@
                       </v-toolbar>
 
                       <v-card class="transparent" height="50px" flat
-                        ><v-file-input
-                          hide-input
-                          prepend-icon="mdi-camera"
-                        ></v-file-input>
+                        >
+<!--                        <v-file-input-->
+<!--                          hide-input-->
+<!--                          prepend-icon="mdi-camera"-->
+<!--                          @change="onFileChanged"-->
+<!--                        ></v-file-input>-->
+                        <input type="file" @change="onFileChanged">
+                        <v-btn @click="onUpload">Upload!</v-btn>
                       </v-card>
 
                       <v-row>
@@ -248,8 +252,11 @@ export default {
       console.log(err);
     }
   },
-  data: () => ({
+  data() {
+    return{
     bio: "",
+    selectedFile: null,
+      selectedResume: null,
     images: {
       //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
     },
@@ -335,7 +342,7 @@ export default {
           '<span class="text--primary">Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos.',
       },
     ],
-  }),
+  }},
   methods: {
     enableEditing: function () {
       this.tempValue = this.value;
@@ -349,6 +356,45 @@ export default {
       // However we want to save it to the database
       this.value = this.tempValue;
       this.disableEditing();
+    },
+    onUpload() {
+      const formData = new FormData();
+      formData.append('profile', this.selectedFile);
+      formData.append('cookie',this.$cookies.get("jwt"))
+      this.$axios.post('http://localhost:3000/api/upload/profile', formData).then(res => {
+        // console.log(res)
+      })
+      this.getURL();
+      this.$router.go();
+    },
+    onFileChanged (event) {
+      this.selectedFile = event.target.files[0];
+    },
+    async getURL()
+    {
+      try {
+        let cookie = this.$cookies.get("jwt");
+        let response = await this.$axios.$get(
+          `http://localhost:3000/api/profile/${cookie}`
+        );
+        this.profile_url = response.user.profile;
+        this.resume_url = response.user.resume;
+        // console.log(this.profile_url);
+
+      } catch (err) {
+        console.log(err);
+      }
+
+    },
+    onUploadResume() {
+      const formData = new FormData();
+      formData.append('resume', this.selectedFile);
+      formData.append('cookie',this.$cookies.get("jwt"))
+      this.$axios.post('http://localhost:3000/api/upload/resume', formData).then(res => {
+        // console.log(res)
+      })
+      this.getURL();
+      // this.$router.go();
     },
     async getUser() {
       try {

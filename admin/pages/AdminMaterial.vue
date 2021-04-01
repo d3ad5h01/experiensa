@@ -205,22 +205,22 @@ export default {
       {
         icon: "mdi-apps",
         title: "Dashboard",
-        to: "/Dashboard",
+        to: "/AdminDashboard",
       },
       {
         icon: "mdi-account",
         title: "Students",
-        to: "/Students",
+        to: "/AdminStudents",
       },
       {
         icon: "mdi-bookshelf",
         title: "Study Material",
-        to: "/Material",
+        to: "/AdminMaterial",
       },
       {
         icon: "mdi-file-document-multiple",
         title: "Internships",
-        to: "/Internships",
+        to: "/AdminInternships",
       },
       {
         icon: "mdi-logout",

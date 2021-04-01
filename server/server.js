@@ -7,7 +7,6 @@ const cors = require("cors");
 //const multer = require("multer");
 
 dotenv.config();
-
 const app = express();
 
 mongoose.connect(
