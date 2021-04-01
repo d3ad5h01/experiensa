@@ -259,8 +259,7 @@ export default {
     show2: false,
     show3: false,
     email: "",
-    name: "",
-
+    name: " ",
     cards: ["Announcements"],
     drawer: null,
     items2: [

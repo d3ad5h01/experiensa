@@ -78,9 +78,10 @@
                 active-class="cyan darken-4"
               >
                 <template #item.Apply="{ item }">
-                  <v-btn color="green" dark v-bind="attrs" v-on="on">
+                 <v-btn color="green" dark v-bind="attrs" v-on="on" @click="apply(item)" >
                     Apply
                   </v-btn>
+
                 </template>
                 <template #item.val="{ item }">
                   <v-dialog v-model="dialog" width="600px">
@@ -257,6 +258,8 @@ export default {
   //   } catch (err) {}
   // },
   data: () => ({
+    ifA: "Apply",
+    interncards: [],
     cards: ["Announcements"],
     drawer: null,
     cookie: "",
@@ -296,6 +299,7 @@ export default {
     ],
     search: "",
     search1: "",
+    my_internships: [],
     headers: [
       {
         text: "Companies",
@@ -324,46 +328,10 @@ export default {
 
       { text: "Learn More", value: "val" },
       { text: "Updates", value: "Updates" },
-    ] /*
-      desserts: [
-        {
-          name: 'Airtel',
-          val:'Learn More',
-          StartDate: "12/02/2021",
-          EndDate: "15/03/2021",
-          CTC:"10LPA",
-          Apply:"Apply",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-        {
-          console.log(err);
-        }
-      }
-    },
-    async apply(index) {
-        try
-        {
-          this.cookie = this.$cookies.get("jwt");
-          this.internship_id = this.Announcements[index]._id;
-          let data = {
-            cookie: this.cookie,
-            internship_id: this.internship_id,
-          }
-
-        }
-        catch(err)
-        {
-           name: 'Netflix',
-          val:'Learn More',
-          StartDate: "13/02/2021",
-          EndDate: "17/03/2021",
-          CTC:"18LPA",
-          Apply:"Done",
-          website: "https://www.geeksforgeeks.org/count-ways-to-select-n-pairs-of-candies-of-distinct-colors-dynamic-programming-bitmasking/",
-        },
-              ],*/,
+    ] ,
   }),
   methods: {
+
     async verify() {
       try {
         let cookie = this.$cookies.get("jwt");
@@ -419,15 +387,7 @@ export default {
     this.verify();
   },
 };
-/*
-      company: String,
-    role: String,
-    stipend: String,
-    duration: String,
-    startDate: String,
-    applyBy: String,
 
-  */
 </script>
 
 
