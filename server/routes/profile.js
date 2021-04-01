@@ -2,7 +2,7 @@ const verifyToken = require("../middlewares/verify-token");
 const router = require("express").Router();
 const User = require("../models/user");
 
-router.get("/profile/:id", verifyToken, async (req, res) => {
+router.post("/profile/", verifyToken, async (req, res) => {
     try
     {
         let user = await User.findOne({ _id: req.decoded._id }).populate(

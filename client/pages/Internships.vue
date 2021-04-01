@@ -330,8 +330,11 @@ export default {
         if (cookie == null) {
           this.$router.push("/login");
         }
-        let verify_response = await this.$axios.$get(
-          `http://localhost:3000/api/profile/${cookie}`
+        let data = {
+          cookie: cookie,
+        }
+        let verify_response = await this.$axios.$post(
+          `http://localhost:3000/api/profile/`, data
         );
         // console.log(verify_response.success);
         this.my_internships = verify_response.user.internships;

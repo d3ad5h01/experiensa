@@ -249,8 +249,11 @@ export default {
         if (cookie == null) {
           this.$router.push("/login");
         }
-        let verify_response = await this.$axios.$get(
-          `http://localhost:3000/api/verify/${cookie}`
+        let data = {
+          cookie: cookie,
+        }
+        let verify_response = await this.$axios.$post(
+          `http://localhost:3000/api/verify/`, data
         );
         if (!verify_response.success) {
           this.$router.push("/login");

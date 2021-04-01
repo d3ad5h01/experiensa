@@ -27,11 +27,11 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
-            <v-list-item-group
-              v-model="selectedItem"
-              class="text--white"
-              color="white"
-            >
+<!--            <v-list-item-group-->
+<!--              v-model="selectedItem"-->
+<!--              class="text&#45;&#45;white"-->
+<!--              color="white"-->
+<!--            >-->
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -334,8 +334,11 @@ export default {
         if (cookie == null) {
           this.$router.push("/AdminLogin");
         }
-        let verify_response = await this.$axios.$get(
-          `http://localhost:3000/api/adminverify/${cookie}`
+        let data = {
+          cookie: cookie,
+        }
+        let verify_response = await this.$axios.$post(
+          `http://localhost:3000/api/adminverify/`, data
         );
         if (!verify_response.success) {
           this.$router.push("/AdminLogin");

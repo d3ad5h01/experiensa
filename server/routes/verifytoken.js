@@ -2,7 +2,7 @@ const verifyToken = require("../middlewares/verify-token");
 const router = require("express").Router();
 const User = require("../models/user");
 
-router.get("/verify/:id", verifyToken, async (req, res) => {
+router.post("/verify/", verifyToken, async (req, res) => {
     try {
         let user = await User.findOne({ _id: req.decoded._id }).populate(
             "adress"
@@ -18,7 +18,7 @@ router.get("/verify/:id", verifyToken, async (req, res) => {
     }
 });
 
-router.get("/adminverify/:id", verifyToken, async (req, res) => {
+router.post("/adminverify/", verifyToken, async (req, res) => {
     try {
         let user = await User.findOne({ _id: req.decoded._id }).populate(
             "adress"

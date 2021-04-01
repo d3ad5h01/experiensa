@@ -372,8 +372,11 @@ export default {
         if (cookie == null) {
           this.$router.push("/AdminLogin");
         }
-        let verify_response = await this.$axios.$get(
-          `http://localhost:3000/api/adminverify/${cookie}`
+        let data = {
+          cookie: cookie,
+        }
+        let verify_response = await this.$axios.$post(
+          `http://localhost:3000/api/adminverify/`, data
         );
         console.log(verify_response.success);
         if (!verify_response.success) {

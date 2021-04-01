@@ -402,8 +402,11 @@ export default {
         if (cookie == null) {
           this.$router.push("/login");
         }
-        let response = await this.$axios.$get(
-          `http://localhost:3000/api/profile/${cookie}`
+        let data = {
+          cookie: cookie,
+        }
+        let response = await this.$axios.$post(
+          `http://localhost:3000/api/profile/`, data
         );
         if (!response.success) {
           this.$router.push("/login");
