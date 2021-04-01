@@ -122,11 +122,11 @@
                       </v-row>
 
                       <v-divider></v-divider>
-                      <v-btn
-                        class="text-subtitle-1 green white--text mb-4 mt-4"
-                      >
-                        <v-icon medium>mdi-pencil</v-icon> Change Password
-                      </v-btn>
+<!--                      <v-btn-->
+<!--                        class="text-subtitle-1 green white&#45;&#45;text mb-4 mt-4"-->
+<!--                      >-->
+<!--                        <v-icon medium>mdi-pencil</v-icon> Change Password-->
+<!--                      </v-btn>-->
                     </v-card>
                   </v-container>
                 </v-col>

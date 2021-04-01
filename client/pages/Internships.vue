@@ -249,14 +249,6 @@ a:hover {
 
 <script>
 export default {
-  // async asyncData({ $axios }) {
-  //   try {
-  //     let response = await $axios.$get("http://localhost:3000/api/interncards");
-  //     return {
-  //       interncards: response.interncards,
-  //     };
-  //   } catch (err) {}
-  // },
   data: () => ({
     ifA: "Apply",
     interncards: [],
@@ -381,6 +373,7 @@ export default {
       }
       this.$router.go();
     },
+
 
   },
   beforeMount() {
