@@ -3,7 +3,7 @@
   <div class="AboutUs">
     <div id="app" class="index back">
       <v-app app id="inspire">
-        <v-app-bar height="100px" app color="transparent">
+        <v-app-bar height="100px" app color="semi-transparent">
           <div class="ml-2 mt-4">
             <vuetify-logo />
           </div>
