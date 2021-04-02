@@ -178,22 +178,50 @@
                   <v-row>
                     <v-col cols="12">
                       <p class="green--text text-h4">View Profile</p>
+                      <div class="justify-center">
+                        <v-card
+                          class="rounded-circle"
+                          height="150px"
+                          width="150px"
+                        >
+                          <v-img
+                            v-bind:src="profile_url1"
+                            class="rounded-circle"
+                            height="150px"
+                          ></v-img>
+                        </v-card>
+                      </div>
                       <p>Name: {{ name1 }}</p>
                       <p>Email: {{ email1 }}</p>
                       <p>Batch: {{ batch1 }}</p>
+                      <p>Semester: {{ sem1 }}</p>
+
                       <p>Section: {{ section1 }}</p>
                       <p>Phone: {{ phone1 }}</p>
                       <p>Address Line: {{ addressline1 }}</p>
                       <p>City : {{ city1 }}</p>
                       <p>State: {{ state1 }}</p>
                       <p>Country: {{ country1 }}</p>
-                      <p>Bio: {{ bio1 }}</p></v-col
-                    >
+                      <p>Bio: {{ bio1 }}</p>
+
+                      <p>Password: {{ password1 }}</p>
+
+                      <p></p>
+                    </v-col>
                   </v-row>
 
                   <v-row>
                     <v-col cols="12">
-                      <v-btn large class="green">Download Resume</v-btn>
+                      <v-btn large class="green" href="resume_url1">
+                        <a
+                          v-bind:href="resume_url1"
+                          target="_blank"
+                          class="white--text"
+                          style="text-decoration: none"
+                        >
+                          Download Resume
+                        </a></v-btn
+                      >
                     </v-col>
                   </v-row>
                 </v-container>
@@ -211,7 +239,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get("http://localhost:3000/api/users");
-
+      console.log(response.users);
       return {
         users: response.users,
       };
@@ -228,18 +256,18 @@ export default {
     state1: "N/A",
     country1: "N/A",
     bio1: "N/A",
+    password1: "",
     name: "",
     ide: "",
     email: "",
     ind: "",
+    profile_url1: "",
+    resume_url1: "",
+    section1: "",
+
     cards: ["Announcements"],
     drawer: null,
-    links: [
-      ["mdi-inbox-arrow-down", "Inbox"],
-      ["mdi-send", "Send"],
-      ["mdi-delete", "Trash"],
-      ["mdi-alert-octagon", "Spam"],
-    ],
+
     items: [
       {
         icon: "mdi-apps",
@@ -305,12 +333,17 @@ export default {
       this.name1 = this.users[this.users.indexOf(item)].name;
       this.email1 = this.users[this.users.indexOf(item)].email;
       this.batch1 = this.users[this.users.indexOf(item)].batch;
+      this.sem1 = this.users[this.users.indexOf(item)].sem;
+      this.section1 = this.users[this.users.indexOf(item)].section;
       this.phone1 = this.users[this.users.indexOf(item)].phone;
-      this.addressline1 = this.users[this.users.indexOf(item)].addressline;
+      this.addressline1 = this.users[this.users.indexOf(item)].addr_line;
       this.city1 = this.users[this.users.indexOf(item)].city;
       this.state1 = this.users[this.users.indexOf(item)].state;
       this.country1 = this.users[this.users.indexOf(item)].country;
       this.bio1 = this.users[this.users.indexOf(item)].bio;
+      this.profile_url1 = this.users[this.users.indexOf(item)].profile;
+      this.resume_url1 = this.users[this.users.indexOf(item)].resume;
+      this.password1 = this.users[this.users.indexOf(item)].password;
     },
 
     async deleteItem(id, item) {
@@ -382,9 +415,10 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`, data
+          `http://localhost:3000/api/adminverify/`,
+          data
         );
         console.log(verify_response.success);
         if (!verify_response.success) {
