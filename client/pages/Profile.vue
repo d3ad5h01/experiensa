@@ -177,28 +177,28 @@
                         <v-subheader>Semester</v-subheader>
                       </v-col>
                       <v-col cols="2">
-                        <v-text-field value="4" outlined></v-text-field>
+                        <v-text-field  outlined v-model="sem"></v-text-field>
                       </v-col>
 
                       <v-col cols="2">
                         <v-subheader>Batch</v-subheader>
                       </v-col>
                       <v-col cols="2">
-                        <v-text-field value="2019" outlined></v-text-field>
+                        <v-text-field outlined v-model="batch"></v-text-field>
                       </v-col>
 
                       <v-col cols="2">
                         <v-subheader>Section</v-subheader>
                       </v-col>
                       <v-col cols="2">
-                        <v-text-field value="C" outlined></v-text-field>
+                        <v-text-field  outlined v-model="section"></v-text-field>
                       </v-col>
                       <v-col cols="2">
                         <v-subheader>Phone</v-subheader>
                       </v-col>
                       <v-col cols="4">
                         <v-text-field
-                          value="9166207907"
+                          v-model="phone"
                           outlined
                           color="green"
                         ></v-text-field>
@@ -216,28 +216,28 @@
                         <v-subheader>Address Line</v-subheader>
                       </v-col>
                       <v-col cols="4">
-                        <v-text-field outlined value="example"></v-text-field>
+                        <v-text-field outlined v-model="addr_line"></v-text-field>
                       </v-col>
 
                       <v-col cols="2">
                         <v-subheader>City</v-subheader>
                       </v-col>
                       <v-col cols="4">
-                        <v-text-field outlined value="example"></v-text-field>
+                        <v-text-field outlined v-model="city"></v-text-field>
                       </v-col>
 
                       <v-col cols="2">
                         <v-subheader>State</v-subheader>
                       </v-col>
                       <v-col cols="4">
-                        <v-text-field outlined value="example"></v-text-field>
+                        <v-text-field outlined v-model="state"></v-text-field>
                       </v-col>
 
                       <v-col cols="2">
                         <v-subheader>Country</v-subheader>
                       </v-col>
                       <v-col cols="4">
-                        <v-text-field outlined value="example"></v-text-field>
+                        <v-text-field outlined v-model="country"></v-text-field>
                       </v-col>
                       <v-col cols="12"
                         ><v-subheader class="text-h5">Resume</v-subheader>
@@ -303,7 +303,7 @@
                       </v-row>
                       <v-col cols="10"> </v-col>
                       <v-col cols="2">
-                        <v-btn large class="green">Save</v-btn>
+                        <v-btn large class="green" @click="onSaveProfile">Save</v-btn>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -340,7 +340,6 @@ export default {
     return {
       dialog1: "",
       dialog2: "",
-      bio: "",
       selectedFile: null,
       selectedResume: null,
       images: {
@@ -351,8 +350,18 @@ export default {
       show1: false,
       show2: false,
       show3: false,
+      id: "",
       email: "",
       name: " ",
+      sem: " ",
+      batch: " ",
+      bio: " ",
+      section: " ",
+      phone: " ",
+      addr_line: " ",
+      city: " ",
+      state: " ",
+      country:" ",
       cards: ["Announcements"],
       drawer: null,
       items2: [
@@ -484,6 +493,29 @@ export default {
       this.getURL();
       // this.$router.go();
     },
+    async onSaveProfile() {
+      try{
+      //let cookie = this.$cookies.get("jwt");
+      let data = {
+        sem: this.sem,
+        batch: this.batch,
+        section: this.section,
+        phone: this.phone,
+        bio: this.bio,
+        addr_line: this.addr_line,
+        city: this.city,
+        state: this.state,
+        country: this.country,
+      }
+      let response = await this.$axios.$put(
+          `http://localhost:3000/api/users/${this.id}`,data
+        );
+    }
+    catch (err){
+      console.log(err);
+    }
+
+    },
     async getUser() {
       try {
         let cookie = this.$cookies.get("jwt");
@@ -500,8 +532,18 @@ export default {
         if (!response.success) {
           this.$router.push("/login");
         }
+        this.id = response.user._id;
         this.name = response.user.name;
         this.email = response.user.email;
+        this.sem = response.user.sem;
+        this.batch = response.user.batch;
+        this.section = response.user.section;
+        this.phone = response.user.phone;
+        this.bio = response.user.bio;
+        this.addr_line = response.user.addr_line;
+        this.city = response.user.city;
+        this.state = response.user.state;
+        this.country = response.user.country;
         this.profile_url = response.user.profile;
         console.log(this.profile_url);
         this.resume_url = response.user.resume;

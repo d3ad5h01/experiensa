@@ -10,10 +10,20 @@ const UserSchema = new Schema({
   resume: {type : String},
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  address: { type: Schema.Types.ObjectId, ref: "Address" },
+  // address: { type: Schema.Types.ObjectId, ref: "Address" },
   //array of applied internships here
   internships: [{type: Interncard, unique: true}],
   role: String,
+
+  sem: String,
+  bio: String,
+  section: String,
+  batch: String,
+  phone: String,
+  addr_line: String,
+  city: String,
+  state: String,
+  country: String,
 });
 
 // UserSchema.pre("save", function(next) {
