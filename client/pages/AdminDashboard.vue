@@ -27,10 +27,7 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
-            <v-list-item-group
-              class="text--white"
-              color="white"
-            >
+            <v-list-item-group class="text--white" color="white">
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -52,75 +49,35 @@
       </v-navigation-drawer>
 
       <v-main class="grey lighten-2 ml-4">
-        <v-row class="mt-4">
+        <v-row class="mt-0">
           <v-col cols="4"
             ><v-row>
+              <v-col cols="12"> </v-col>
               <v-col cols="12">
-                <v-btn color="green" dark class="mb-2" @click = "putDashboardnums"
+                <v-btn color="green" dark class="mb-2" @click="putDashboardnums"
                   >Save<v-icon>mdi-content-save</v-icon></v-btn
                 >
-              </v-col>
-              <v-col cols="12">
-                <v-card class="mx-auto pa-1" elevation="12" light>
-                  <v-card-subtitle
-                    ><p class="text-h5 text-center">Companies Registered</p>
-                    <p class="text-h2 text-center font-weight-bold">
-                      <v-text-field
-                              outlined
-                              filled
-                              v-model= "cr"
-                            >
-                            </v-text-field>
-                    </p>
-                  </v-card-subtitle>
+                <v-card class="mx-auto pa-10" elevation="12" light>
+                  <p class="text-h5 text-center">Companies Registered</p>
+                  <p class="text-h2 text-center font-weight-bold">
+                    <v-text-field outlined filled v-model="cr"> </v-text-field>
+                  </p>
+
+                  <p class="text-h5 text-center">Total Internships</p>
+                  <p class="text-h2 text-center font-weight-bold">
+                    <v-text-field outlined filled v-model="ti"> </v-text-field>
+                  </p>
+                  <p class="text-h5 text-center">Students Registered</p>
+                  <p class="text-h2 text-center font-weight-bold">
+                    <v-text-field outlined filled v-model="sr"> </v-text-field>
+                  </p>
+                  <p class="text-h5 text-center">Students Placed</p>
+                  <p class="text-h2 text-center font-weight-bold">
+                    <v-text-field outlined filled v-model="sp"> </v-text-field>
+                  </p>
                 </v-card>
-              </v-col>
-              <v-col cols="12">
-                <v-card class="mx-auto pa-1" elevation="12" light>
-                  <v-card-subtitle
-                    ><p class="text-h5 text-center">Total Internships</p>
-                    <p class="text-h2 text-center font-weight-bold">
-                      <v-text-field
-                              outlined
-                              filled
-                              v-model="ti"
-                            >
-                            </v-text-field>
-                    </p>
-                  </v-card-subtitle>
-                </v-card>
-              </v-col>
-              <v-col cols="12">
-                <v-card class="mx-auto pa-1" elevation="12" light>
-                  <v-card-subtitle
-                    ><p class="text-h5 text-center">Students Registered</p>
-                    <p class="text-h2 text-center font-weight-bold">
-                      <v-text-field
-                              outlined
-                              filled
-                              v-model="sr"
-                            >
-                            </v-text-field>
-                    </p>
-                  </v-card-subtitle>
-                </v-card>
-              </v-col>
-              <v-col cols="12">
-                <v-card class="mx-auto pa-1" elevation="12" light>
-                  <v-card-subtitle
-                    ><p class="text-h5 text-center">Students Placed</p>
-                    <p class="text-h2 text-center font-weight-bold"><v-text-field
-                              outlined
-                              filled
-                              v-model="sp"
-                            >
-                            </v-text-field>
-                            </p>
-                  </v-card-subtitle>
-                </v-card>
-              </v-col>
-            </v-row></v-col
-          >
+              </v-col> </v-row
+          ></v-col>
           <v-col cols="8">
             <v-container class="grey lighten-2">
               <v-card class="grey lighten-3 rounded-ls" elevation="0">
@@ -328,22 +285,22 @@ export default {
   computed: {},
 
   methods: {
-    async getDashboardnums(){
+    async getDashboardnums() {
       try {
         let response = await this.$axios.$get(
           "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99"
         );
         //return {
-          this.cr = response.dashboardcard.companiesRegistered;
-          this.ti = response.dashboardcard.totalInternships;
-          this.sr = response.dashboardcard.studentsRegistered;
-          this.sp = response.dashboardcard.studentsPlaced;
-       // };
+        this.cr = response.dashboardcard.companiesRegistered;
+        this.ti = response.dashboardcard.totalInternships;
+        this.sr = response.dashboardcard.studentsRegistered;
+        this.sp = response.dashboardcard.studentsPlaced;
+        // };
       } catch (err) {
         console.log(err);
       }
     },
-    async putDashboardnums(){
+    async putDashboardnums() {
       try {
         let data = {
           companiesRegistered: this.cr,
@@ -352,9 +309,9 @@ export default {
           studentsPlaced: this.sp,
         };
         let response = await this.$axios.$put(
-          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99", data
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99",
+          data
         );
-        
       } catch (err) {
         console.log(err);
       }
@@ -431,9 +388,10 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`, data
+          `http://localhost:3000/api/adminverify/`,
+          data
         );
         console.log(verify_response);
         if (!verify_response.success) {

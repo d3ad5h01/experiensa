@@ -129,19 +129,33 @@
                                       </div>
                                       <div class="v-input__control">
                                         <div class="v-input__slot">
-                                          <div class="v-text-field__slot">
+                                          <!--<div class="v-text-field__slot">
                                             <input
                                               id="input-50"
                                               v-model="password"
                                               type="password"
                                             />
-                                          </div>
+                                          </div>-->
+                                          <v-text-field
+                                            v-model="password"
+                                            :append-icon="
+                                              show1 ? 'mdi-eye' : 'mdi-eye-off'
+                                            "
+                                            :type="show1 ? 'text' : 'password'"
+                                            name="input-10-1"
+                                            @click:append="show1 = !show1"
+                                          ></v-text-field>
                                         </div>
                                         <div class="v-text-field__details">
                                           <div class="v-messages theme--light">
                                             <div
                                               class="v-messages__wrapper"
                                             ></div>
+                                            <div
+                                              class="red--text text-subtitle-2"
+                                            >
+                                              {{ error }}
+                                            </div>
                                             <div class="text-left">
                                               Not Signed Up?
                                               <v-btn
@@ -279,7 +293,10 @@ export default {
   layout: "none",
   data() {
     return {
+      show1: false,
+      show2: false,
       dialog: true,
+      error: "",
       clipped: false,
       drawer: true,
       fixed: false,
@@ -374,9 +391,11 @@ export default {
         if (response.success) {
           this.$cookies.set("jwt", response.token);
           //this.$router.push("/Dashboard");
+          this.error = "";
           window.location.replace("/Dashboard");
         }
       } catch (err) {
+        this.error = "Wrong Credentials";
         console.log(err);
       }
     },

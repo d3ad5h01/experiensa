@@ -193,7 +193,7 @@
                                       @click="onRegister"
                                       class="v-btn--text success--text v-btn v-btn--depressed v-btn--rounded theme--light v-size--large"
                                     >
-                                      Login
+                                      Sign Up
                                     </button>
                                   </div>
                                   <!---->
