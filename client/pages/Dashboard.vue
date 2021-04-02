@@ -28,7 +28,6 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item-group
-              v-model="selectedItem"
               class="text--white"
               color="white"
             >
@@ -59,22 +58,22 @@
               <p class="text-h5 green--text text-center">
                 Companies Registered
               </p>
-              <p class="text-h2 text-center font-weight-bold">120</p>
+              <p class="text-h2 text-center font-weight-bold">{{companiesRegistered}}</p>
               <v-divider color="green"></v-divider>
             </v-col>
             <v-col cols="3">
               <p class="text-h5 green--text text-center">Total Internships</p>
-              <p class="text-h2 text-center font-weight-bold">400</p>
+              <p class="text-h2 text-center font-weight-bold">{{ totalInternships}}</p>
               <v-divider color="green"></v-divider>
             </v-col>
             <v-col cols="3">
               <p class="text-h5 green--text text-center">Students Registered</p>
-              <p class="text-h2 text-center font-weight-bold">200</p>
+              <p class="text-h2 text-center font-weight-bold">{{studentsRegistered}}</p>
               <v-divider color="green"></v-divider>
             </v-col>
             <v-col cols="3">
               <p class="text-h5 green--text text-center">Students Placed</p>
-              <p class="text-h2 text-center font-weight-bold">100</p>
+              <p class="text-h2 text-center font-weight-bold">{{studentsPlaced}}</p>
               <v-divider color="green"></v-divider>
             </v-col>
           </v-row>
@@ -203,6 +202,10 @@ export default {
     }
   },
   data: () => ({
+    companiesRegistered: "",
+    totalInternships: "",
+    studentsRegistered: "",
+    studentsPlaced: "",
     images: {
       //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
     },
@@ -308,6 +311,21 @@ export default {
     ],
   }),
   methods: {
+    async getDashboardnums(){
+      try {
+        let response = await this.$axios.$get(
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99"
+        );
+        //return {
+          this.companiesRegistered = response.dashboardcard.companiesRegistered;
+          this.totalInternships = response.dashboardcard.totalInternships;
+          this.studentsRegistered = response.dashboardcard.studentsRegistered;
+          this.studentsPlaced = response.dashboardcard.studentsPlaced;
+       // };
+      } catch (err) {
+        console.log(err);
+      }
+    },
     async verify() {
       try {
         let cookie = this.$cookies.get("jwt");
@@ -332,6 +350,7 @@ export default {
 
   beforeMount() {
     this.verify();
+    this.getDashboardnums();
   },
 };
 </script>
