@@ -89,6 +89,43 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
+// PUT request - to update password also
+router.put("/userupdatepassword/:id", async (req, res) => {
+  try {
+    let user = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        $set: {
+            sem: req.body.sem,
+            batch: req.body.batch,
+            bio: req.body.bio,
+            section: req.body.section,
+            phone: req.body.phone,
+            addr_line: req.body.addr_line,
+            city: req.body.city,
+            state: req.body.state,
+            country: req.body.country,
+            password: req.body.password,
+            email: req.body.email,
+            name: req.body.name,
+        },
+      },
+      { upsert: true }
+    );
+
+    res.json({
+      success: true,
+      updateUser: user,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+});
+
+
 // DELETE request - delete a single interncard
 router.delete("/users/:id", async (req, res) => {
   try {

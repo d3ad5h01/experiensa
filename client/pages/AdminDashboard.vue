@@ -28,7 +28,6 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item-group
-              v-model="selectedItem"
               class="text--white"
               color="white"
             >
@@ -57,15 +56,22 @@
           <v-col cols="4"
             ><v-row>
               <v-col cols="12">
-                <v-btn color="green" dark class="mb-2"
-                  >Edit<v-icon>mdi-pencil</v-icon></v-btn
+                <v-btn color="green" dark class="mb-2" @click = "putDashboardnums"
+                  >Save<v-icon>mdi-content-save</v-icon></v-btn
                 >
               </v-col>
               <v-col cols="12">
                 <v-card class="mx-auto pa-1" elevation="12" light>
                   <v-card-subtitle
                     ><p class="text-h5 text-center">Companies Registered</p>
-                    <p class="text-h2 text-center font-weight-bold">{{ cr }}</p>
+                    <p class="text-h2 text-center font-weight-bold">
+                      <v-text-field
+                              outlined
+                              filled
+                              v-model= "cr"
+                            >
+                            </v-text-field>
+                    </p>
                   </v-card-subtitle>
                 </v-card>
               </v-col>
@@ -73,7 +79,14 @@
                 <v-card class="mx-auto pa-1" elevation="12" light>
                   <v-card-subtitle
                     ><p class="text-h5 text-center">Total Internships</p>
-                    <p class="text-h2 text-center font-weight-bold">{{ ti }}</p>
+                    <p class="text-h2 text-center font-weight-bold">
+                      <v-text-field
+                              outlined
+                              filled
+                              v-model="ti"
+                            >
+                            </v-text-field>
+                    </p>
                   </v-card-subtitle>
                 </v-card>
               </v-col>
@@ -81,7 +94,14 @@
                 <v-card class="mx-auto pa-1" elevation="12" light>
                   <v-card-subtitle
                     ><p class="text-h5 text-center">Students Registered</p>
-                    <p class="text-h2 text-center font-weight-bold">{{ sr }}</p>
+                    <p class="text-h2 text-center font-weight-bold">
+                      <v-text-field
+                              outlined
+                              filled
+                              v-model="sr"
+                            >
+                            </v-text-field>
+                    </p>
                   </v-card-subtitle>
                 </v-card>
               </v-col>
@@ -89,7 +109,13 @@
                 <v-card class="mx-auto pa-1" elevation="12" light>
                   <v-card-subtitle
                     ><p class="text-h5 text-center">Students Placed</p>
-                    <p class="text-h2 text-center font-weight-bold">{{ sp }}</p>
+                    <p class="text-h2 text-center font-weight-bold"><v-text-field
+                              outlined
+                              filled
+                              v-model="sp"
+                            >
+                            </v-text-field>
+                            </p>
                   </v-card-subtitle>
                 </v-card>
               </v-col>
@@ -232,10 +258,10 @@ export default {
     } catch (err) {}
   },
   data: () => ({
-    cr: "200",
-    sp: "100",
-    sr: "122",
-    ti: "123",
+    cr: "",
+    sp: "",
+    sr: "",
+    ti: "",
     title: "",
     ide: "",
     description: "",
@@ -302,6 +328,37 @@ export default {
   computed: {},
 
   methods: {
+    async getDashboardnums(){
+      try {
+        let response = await this.$axios.$get(
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99"
+        );
+        //return {
+          this.cr = response.dashboardcard.companiesRegistered;
+          this.ti = response.dashboardcard.totalInternships;
+          this.sr = response.dashboardcard.studentsRegistered;
+          this.sp = response.dashboardcard.studentsPlaced;
+       // };
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async putDashboardnums(){
+      try {
+        let data = {
+          companiesRegistered: this.cr,
+          totalInternships: this.ti,
+          studentsRegistered: this.sr,
+          studentsPlaced: this.sp,
+        };
+        let response = await this.$axios.$put(
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99", data
+        );
+        
+      } catch (err) {
+        console.log(err);
+      }
+    },
     editItem(item) {
       this.edt = 1;
       this.title = this.announcementcards[
@@ -389,6 +446,7 @@ export default {
   },
   beforeMount() {
     this.verify();
+    this.getDashboardnums();
   },
 };
 </script>

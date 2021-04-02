@@ -37,6 +37,7 @@ const profileRoute = require("./routes/profile")
 const verifyRoute = require("./routes/verifytoken")
 const applyRoute = require("./routes/apply")
 const azureRoute = require("./routes/azure");
+const DashboardRoute = require("./routes/dashboardnums");
 
 app.use("/api", InterncardRoutes);
 app.use("/api", authUserRoutes);
@@ -47,6 +48,7 @@ app.use("/api",profileRoute);
 app.use("/api",verifyRoute);
 app.use("/api",applyRoute);
 app.use("/api",azureRoute);
+app.use("/api",DashboardRoute);
 
 app.listen(3000, (err) => {
   if (err) {
