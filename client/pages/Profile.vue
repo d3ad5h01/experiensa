@@ -195,11 +195,11 @@
                           <v-col cols="7">
                             <v-text-field
                               outlined
-                              v-model= "password_to_check"
-                              :append-icon= "show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                              :type= "show1 ? 'text' : 'password'"
+                              v-model="password_to_check"
+                              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                              :type="show1 ? 'text' : 'password'"
                               name="input-10-1"
-                              @click:append= "show1 = !show1"
+                              @click:append="show1 = !show1"
                             ></v-text-field>
                           </v-col>
                         </v-row>
@@ -212,17 +212,19 @@
                           <v-col cols="7">
                             <v-text-field
                               outlined
-                              v-model= "password_new"
-                              :append-icon= "show2 ? 'mdi-eye' : 'mdi-eye-off'"
-                              :type= "show2 ? 'text' : 'password'"
+                              v-model="password_new"
+                              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                              :type="show2 ? 'text' : 'password'"
                               name="input-10-1"
-                              @click:append= "show2 = !show2"
+                              @click:append="show2 = !show2"
                             ></v-text-field>
                           </v-col>
                         </v-row>
                         <v-row>
                           <v-col cols="12">
-                            <v-btn class="green mb-4" @click = "changePassword">Change Password</v-btn>
+                            <v-btn class="green mb-4" @click="changePassword"
+                              >Change Password</v-btn
+                            >
                           </v-col>
                         </v-row>
 
@@ -372,15 +374,16 @@
                             </v-card>
                           </v-dialog>
                         </v-col>
+                        <v-col cols="2"></v-col>
+                        <v-col cols="3">
+                          {{ Saved }}
+                          <v-btn large class="green" @click="onSaveProfile"
+                            >Save</v-btn
+                          >
+                        </v-col>
                       </v-row>
                       <v-col cols="8"> </v-col>
                       <v-col cols="1"></v-col>
-                      <v-col cols="3">
-                        {{ Saved }}
-                        <v-btn large class="green" @click="onSaveProfile"
-                          >Save</v-btn
-                        >
-                      </v-col>
                     </v-row>
                   </v-container>
                 </v-card>
@@ -528,30 +531,29 @@ export default {
     async changePassword() {
       try {
         //let cookie = this.$cookies.get("jwt");
-          if(this.password_to_check === this.password){
-            let data = {
-              sem: this.sem,
-              batch: this.batch,
-              section: this.section,
-              phone: this.phone,
-              bio: this.bio,
-              addr_line: this.addr_line,
-              city: this.city,
-              state: this.state,
-              country: this.country,
-              password: this.password_new,
-              email: this.email,
-              name: this.name,
-            };
-            let response = await this.$axios.$put(
-              `http://localhost:3000/api/userupdatepassword/${this.id}`,
-              data
-            );
-            this.password_to_check = "";
-            this.password_new = "";
-            console.log("Successfully updated password...:)");
-        }
-        else{
+        if (this.password_to_check === this.password) {
+          let data = {
+            sem: this.sem,
+            batch: this.batch,
+            section: this.section,
+            phone: this.phone,
+            bio: this.bio,
+            addr_line: this.addr_line,
+            city: this.city,
+            state: this.state,
+            country: this.country,
+            password: this.password_new,
+            email: this.email,
+            name: this.name,
+          };
+          let response = await this.$axios.$put(
+            `http://localhost:3000/api/userupdatepassword/${this.id}`,
+            data
+          );
+          this.password_to_check = "";
+          this.password_new = "";
+          console.log("Successfully updated password...:)");
+        } else {
           console.log("Wrong old password !!");
         }
       } catch (err) {

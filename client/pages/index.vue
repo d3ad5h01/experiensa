@@ -17,54 +17,97 @@
             Sign Up
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login Student
+            Student Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
-            Login Admin
+            Admin Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
           </v-btn>
         </v-app-bar>
         <v-content>
-          <v-container grid-list-lg text-sm-center>
+          <v-container grid-list-lg>
             <v-layout row wrap>
-              <v-flex xs12 md12>
-                <v-card class="mx-auto transparent" min-height="100" flat>
+              <v-flex xs12 md6>
+                <v-card class="mx-auto semi-transparent" min-height="100" flat>
                   <v-card-text
-                    class="text-h1 white--text text-lighten-5 font-weight-black pa-5"
+                    class="text-h1 white--text text-lighten-1 font-weight-black pa-5 mt-10"
                   >
-                    eXperiensaa
-                  </v-card-text>
-                  <v-card-text class="text-h5 font-weight-light pa-5">
-                    the internship portal
+                    eXperiensa<br />
+                    <v-card-text
+                      class="text-h2 success--text font-weight-light pa-5"
+                    >
+                      the internship portal
+                    </v-card-text>
                   </v-card-text>
                 </v-card>
                 <v-card class="mx-auto transparent" dark min-height="50" flat>
                 </v-card>
               </v-flex>
+              <v-flex xs3 md4>
+                <v-flex xs3 md12>
+                  <v-card
+                    class="mx-auto semi-transparent success rounded-r-pill"
+                    flat
+                  >
+                    <v-card-text
+                      class="text-h3 white--text text-left text-lighten-1 font-weight-black pa-5 mt-8"
+                    >
+                      <v-icon x-large>mdi-book-open-page-variant</v-icon
+                      >&nbspLearn
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs3 md12>
+                  <v-card
+                    class="mx-auto semi-transparent success rounded-r-pill"
+                    flat
+                  >
+                    <v-card-text
+                      class="text-h3 white--text text-lighten-1 font-weight-black pa-5"
+                    >
+                      <v-icon x-large>mdi-clipboard-account</v-icon>&nbspApply
+                    </v-card-text>
+                  </v-card>
+                </v-flex>
+                <v-flex xs3 md12>
+                  <v-card
+                    class="mx-auto semi-transparent success rounded-r-pill"
+                    flat
+                  >
+                    <v-card-text
+                      class="text-h3 white--text text-lighten-1 font-weight-black pa-5"
+                    >
+                      <v-icon x-large>mdi-trophy-outline</v-icon>&nbspAchieve
+                    </v-card-text>
+                  </v-card>
+                  <v-card class="mx-auto transparent" dark min-height="1" flat>
+                  </v-card>
+                </v-flex>
+              </v-flex>
             </v-layout>
           </v-container>
+
           <v-container>
-            <v-container grid-list-lg text-sm-center md-12>
+            <v-container grid-list-lg text-sm-center mr-10 ml-10>
               <v-layout row wrap>
                 <v-flex xs12 md12>
                   <v-card
-                    class="mx-auto rounded-b-xl grey lighten-5"
+                    class="semi-transparent mx-auto pb-4 white"
                     elevation="4"
-                    min-height="150"
+                    min-height="0"
                   >
                     <v-card-text>
-                      <span class="display-1 pa-5"> </span><br />
-                      <div class="text-h3 grey--text text-darken-1">
+                      <div class="text-h3 grey--text text-darken-5">
                         Let's Get Started
                       </div>
                     </v-card-text>
                     <div>
                       <v-btn
                         x-large
-                        ml-5
-                        color="primary"
+                        ml-1
+                        color="success"
                         outlined
                         elevation="3"
                         href="/Register"
@@ -72,15 +115,15 @@
                       >
 
                       <v-btn
-                        class="ml-10"
+                        class="ml-1"
                         x-large
                         elevation="3"
-                        color="primary"
+                        color="success"
                         href="/Login"
                         >Login</v-btn
                       >
                     </div>
-                    <v-card
+                    <!--<v-card
                       class="mx-auto rounded-b-xl transparent"
                       min-height="100"
                       flat
@@ -1142,12 +1185,12 @@
                           </div>
                         </div>
                       </div>
-                    </section>
+                    </section>-->
                   </v-card>
                 </v-flex>
               </v-layout>
 
-              <v-container grid-list-lg text-sm-center>
+              <!--<v-container grid-list-lg text-sm-center>
                 <v-layout row wrap>
                   <v-flex xs12 md12>
                     <v-card
@@ -1174,7 +1217,7 @@
                     </v-card>
                   </v-flex>
                 </v-layout>
-              </v-container>
+              </v-container>-->
             </v-container>
           </v-container>
         </v-content>
@@ -1207,8 +1250,8 @@
   top: 75px;
 }
 .back {
-  background-image: url("https://placement.iiita.ac.in/images/iiita/iiitacover.jpg");
-
+  background-image: url("https://rasput1n.blob.core.windows.net/internship-portal/website-images/admin.jpg");
+  background-position-y: center;
   background-attachment: fixed;
   height: 100%;
   width: 100%;
@@ -1222,7 +1265,7 @@
 }
 
 .semi-transparent {
-  opacity: 0.5;
+  opacity: 0.75;
 }
 .semi-transparent-white {
   background-color: #eeeeee;

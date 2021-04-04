@@ -77,6 +77,7 @@ router.put("/interncards/:id", async (req, res) => {
             applyBy: req.body.applyBy,
             learnMore: req.body.learnMore,
             updates: req.body.updates,
+            appliedStudents: req.body.appliedStudents,
         },
       },
       { upsert: true }

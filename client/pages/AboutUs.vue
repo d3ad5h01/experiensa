@@ -17,10 +17,10 @@
             Sign Up
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login Student
+            Student Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
-            Login Admin
+            Admin Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us

@@ -14,11 +14,14 @@
 
           <v-btn class="transparent ml-2" elevation="0" href="/"> Home </v-btn>
 
+          <v-btn class="transparent ml-2" elevation="0" href="/Register">
+            Sign Up
+          </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/Login">
-            Login Student
+            Student Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AdminLogin">
-            Login Admin
+            Admin Login
           </v-btn>
           <v-btn class="transparent ml-2" elevation="0" href="/AboutUs">
             About Us
@@ -56,7 +59,7 @@
                                 >
                                   <div class="d-flex grow flex-wrap">
                                     <div
-                                      class="text-start v-card--material__heading mb-n6 v-sheet theme--dark elevation-6 pink pa-7"
+                                      class="text-start v-card--material__heading mb-n6 v-sheet theme--dark elevation-6 green pa-7"
                                       style="width: 100%"
                                     >
                                       <div class="text-center">
@@ -72,85 +75,44 @@
                                   </div>
                                   <div class="v-card__text text-center">
                                     <div
-                                      class="v-input mt-10 theme--light v-text-field v-text-field--is-booted"
+                                      class="v-input theme--light v-text-field v-text-field--is-booted mt-10"
                                     >
-                                      <div class="v-input__prepend-outer">
-                                        <div
-                                          class="v-input__icon v-input__icon--prepend"
-                                        ></div>
+                                      <div class="v-input__control">
+                                        <v-text-field
+                                          v-model="email"
+                                          id="input-46"
+                                          type="text"
+                                          color="green"
+                                          light
+                                          prepend-icon="mdi-email"
+                                        >
+                                        </v-text-field>
                                       </div>
                                     </div>
                                     <div
-                                      class="v-input theme--light v-text-field v-text-field--is-booted"
+                                      class="v-input mb-0 theme--light v-text-field v-text-field--is-booted"
                                     >
-                                      <div class="v-input__prepend-outer">
-                                        <div
-                                          class="v-input__icon v-input__icon--prepend"
-                                        >
-                                          <i
-                                            aria-hidden="true"
-                                            class="v-icon notranslate mdi mdi-email theme--light"
-                                          ></i>
-                                        </div>
-                                      </div>
                                       <div class="v-input__control">
-                                        <div class="v-input__slot">
-                                          <div class="v-text-field__slot">
-                                            <input
-                                              v-model="email"
-                                              id="input-46"
-                                              type="text"
-                                            />
-                                          </div>
-                                        </div>
-                                        <div class="v-text-field__details">
-                                          <div class="v-messages theme--light">
-                                            <div
-                                              class="v-messages__wrapper"
-                                            ></div>
-                                          </div>
-                                        </div>
+                                        <v-text-field
+                                          light
+                                          color="green"
+                                          v-model="password"
+                                          prepend-icon="mdi-lock-outline"
+                                          :append-icon="
+                                            show1 ? 'mdi-eye' : 'mdi-eye-off'
+                                          "
+                                          :type="show1 ? 'text' : 'password'"
+                                          name="input-10-1"
+                                          @click:append="show1 = !show1"
+                                        ></v-text-field>
+                                        <br />
+                                      </div>
+
+                                      <div class="red--text text-subtitle-2">
+                                        {{ error }}
                                       </div>
                                     </div>
-                                    <div
-                                      class="v-input mb-8 theme--light v-text-field v-text-field--is-booted"
-                                    >
-                                      <div class="v-input__prepend-outer">
-                                        <div
-                                          class="v-input__icon v-input__icon--prepend"
-                                        >
-                                          <i
-                                            aria-hidden="true"
-                                            class="v-icon notranslate mdi mdi-lock-outline theme--light"
-                                          ></i>
-                                        </div>
-                                      </div>
-                                      <div class="v-input__control">
-                                        <div class="v-input__slot">
-                                          <v-text-field
-                                            v-model="password"
-                                            :append-icon="
-                                              show1 ? 'mdi-eye' : 'mdi-eye-off'
-                                            "
-                                            :type="show1 ? 'text' : 'password'"
-                                            name="input-10-1"
-                                            @click:append="show1 = !show1"
-                                          ></v-text-field>
-                                        </div>
-                                        <div class="v-text-field__details">
-                                          <div class="v-messages theme--light">
-                                            <div
-                                              class="v-messages__wrapper"
-                                            ></div>
-                                            <div
-                                              class="red--text text-subtitle-2"
-                                            >
-                                              {{ error }}
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+
                                     <button
                                       type="button"
                                       @click="onLogin"

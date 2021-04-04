@@ -27,10 +27,7 @@
 
           <v-divider></v-divider>
           <v-list nav dense>
-            <v-list-item-group
-              class="text--white"
-              color="white"
-            >
+            <v-list-item-group class="text--white" color="white">
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -53,7 +50,7 @@
 
       <v-main class="grey lighten-2">
         <v-row>
-          <v-col cols="12">
+          <v-col cols="8">
             <v-container class="grey lighten-2">
               <v-card class="grey lighten-2 rounded-ls" elevation="0">
                 <div>
@@ -129,19 +126,19 @@
                               </v-flex>
 
                               <v-flex xs12 sm12 md12>
-                                <v-text-field
+                                <v-textarea
                                   v-model="learnMore"
                                   label="Learn More"
                                   color="black"
-                                ></v-text-field>
+                                ></v-textarea>
                               </v-flex>
 
                               <v-flex xs12 sm12 md12>
-                                <v-text-field
+                                <v-textarea
                                   v-model="updates"
                                   label="Updates"
                                   color="black"
-                                ></v-text-field>
+                                ></v-textarea>
                               </v-flex>
                             </v-layout>
                           </v-container>
@@ -171,6 +168,9 @@
                       class="grey lighten-2"
                     >
                       <template #item.edit="{ item }">
+                        <v-icon x-large color="blue" @click="expItem(item)">
+                          mdi-account-box
+                        </v-icon>
                         <v-icon
                           x-large
                           class="mr-2"
@@ -199,6 +199,77 @@
               </v-card>
             </v-container>
           </v-col>
+          <v-divider class="mt-10 green" vertical></v-divider>
+          <v-col cols="4">
+            <v-card light elevation="0" class="grey lighten-2 ma-10">
+              <v-row>
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Company :</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="text--black">{{ company1 }}</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Duration:</div>
+                </v-col>
+                <v-col cols="6"
+                  ><div class="black--text">
+                    {{ duration1 }}
+                  </div>
+                </v-col>
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Stipend :</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="black--text">
+                    {{ stipend1 }}
+                  </div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Start Date :</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="black--text">
+                    {{ startDate1 }}
+                  </div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Apply By :</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="black--text">
+                    {{ applyBy1 }}
+                  </div></v-col
+                >
+                <v-col cols="12"
+                  ><div class="green--text text-h5">Learn More</div></v-col
+                >
+                <v-col cols="12"
+                  ><p class="black--text">
+                    {{ learnMore1 }}
+                  </p></v-col
+                >
+                <v-col cols="12"
+                  ><div class="green--text text-h5">Updates :</div></v-col
+                >
+                <v-col cols="12 "
+                  ><div class="black--text">{{ updates1 }}</div></v-col
+                >
+                <v-col cols="12"
+                  ><div class="green--text text-h5">Applied Students</div>
+                </v-col>
+                <v-col cols="12">
+                  <ol id="example-1">
+                    <li v-for="(item, i) in appliedStudents1" :key="i">
+                      {{ item }}&nbsp&nbsp&nbsp<v-icon @click="edit(i)"
+                        >mdi-delete</v-icon
+                      >
+                    </li>
+                  </ol></v-col
+                ></v-row
+              ></v-card
+            ></v-col
+          >
         </v-row>
       </v-main>
     </v-app>
@@ -217,6 +288,7 @@ export default {
     } catch (err) {}
   },
   data: () => ({
+    idee: "",
     title: "",
     ide: "",
     text: "",
@@ -278,10 +350,6 @@ export default {
       },
       { text: "Stipend", value: "stipend" },
       { text: "Duration", value: "duration" },
-      { text: "Start Date", value: "startDate" },
-      { text: "Apply By", value: "applyBy" },
-      { text: "Learn More", value: "learnMore" },
-      { text: "Updates", value: "updates" },
 
       { text: "Actions", value: "edit", sortable: false },
     ],
@@ -299,20 +367,47 @@ export default {
       applyBy: "",
       learnMore: "",
       updates: "",
+      appliedStudents: [],
     },
+
+    company1: "N/A",
+    stipend1: "N/A",
+    duration1: "N/A",
+    startDate1: "N/A",
+    applyBy1: "N/A",
+    learnMore1: "N/A",
+    updates1: "N/A",
+    appliedStudents1: [],
   }),
   computed: {},
   methods: {
+    expItem(item) {
+      this.idee = item._id;
+      this.company1 = item.company;
+      this.stipend1 = item.stipend;
+      this.duration1 = item.duration;
+      this.startDate1 = item.startDate;
+      this.applyBy1 = item.applyBy;
+      this.learnMore1 = item.learnMore;
+      this.updates1 = item.updates;
+      this.appliedStudents1 = item.appliedStudents;
+    },
     editItem(item) {
       this.edt = 1;
       this.company = this.interncards[this.interncards.indexOf(item)].company;
       this.stipend = this.interncards[this.interncards.indexOf(item)].stipend;
       this.duration = this.interncards[this.interncards.indexOf(item)].duration;
-      this.startDate = this.interncards[this.interncards.indexOf(item)].startDate;
+      this.startDate = this.interncards[
+        this.interncards.indexOf(item)
+      ].startDate;
       this.applyBy = this.interncards[this.interncards.indexOf(item)].applyBy;
-      this.learnMore = this.interncards[this.interncards.indexOf(item)].learnMore;
+      this.learnMore = this.interncards[
+        this.interncards.indexOf(item)
+      ].learnMore;
       this.updates = this.interncards[this.interncards.indexOf(item)].updates;
-
+      this.appliedStudents = this.interncards[
+        this.interncards.indexOf(item)
+      ].appliedStudents;
       this.ind = this.interncards.indexOf(item);
       this.dialog = true;
     },
@@ -331,7 +426,27 @@ export default {
         }
       } catch (err) {}
     },
+    async edit(ind3) {
+      this.appliedStudents1.splice(ind3, 1);
 
+      this.ide = this.idee;
+      let data = {
+        company: this.company1,
+        stipend: this.stipend1,
+        duration: this.duration1,
+        startDate: this.startDate1,
+        applyBy: this.applyBy1,
+        learnMore: this.learnMore1,
+        updates: this.updates1,
+        appliedStudents: this.appliedStudents1,
+      };
+
+      console.log(data);
+      let result = await this.$axios.$put(
+        `http://localhost:3000/api/interncards/${this.ide}`,
+        data
+      );
+    },
     async onAddinterncard() {
       if (this.edt == 1) {
         this.ide = this.interncards[this.ind]._id;
@@ -343,6 +458,7 @@ export default {
           applyBy: this.applyBy,
           learnMore: this.learnMore,
           updates: this.updates,
+          appliedStudents: this.appliedStudents,
         };
 
         console.log(data);
@@ -358,7 +474,9 @@ export default {
         this.interncards[this.ind].startDate = this.startDate;
         this.interncards[this.ind].applyBy = this.applyBy;
         this.interncards[this.ind].learnMore = this.learnMore;
-        this.interncards[this.ind].updates = this.updates;      
+        this.interncards[this.ind].updates = this.updates;
+        this.interncards[this.ind].updates = this.appliedStudents;
+
         this.edt = 0;
       } else {
         try {
@@ -401,9 +519,10 @@ export default {
         }
         let data = {
           cookie: cookie,
-        }
+        };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`, data
+          `http://localhost:3000/api/adminverify/`,
+          data
         );
         console.log(verify_response.success);
         if (!verify_response.success) {
