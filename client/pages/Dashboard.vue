@@ -210,24 +210,36 @@ export default {
       //sample: require("https://media.gettyimages.com/photos/moored-boats-at-the-sacred-prayag-bathing-ghat-picture-id151731894?s=2048x2048"),
     },
     slides: [
-      "IIITA boasts about its fantastic placements.",
-      "Brunch this weekend?Brunch this weekend?Brunch this weekend?Brunch this weekend?",
-      "Brunch this weekend? weekendweekendweekendweekendweekend ",
-      "Fourth weekendweekendweekendweekendweekend",
-      "Fifth weekendweekendweekendweekend",
+      "Alumni Webinar Talk #4 on 25-04-2021 (11:00 AM to 12:00 noon IST)",
+      "The IIIT-A stands at 10th position in India Today 2020 ranking",
+      "IIIT-A students made an intership portal ... ",
+      "The IIIT-A stands at 23rd position in Education world India 2020 ranking",
+      "The IIIT-A stands at 40th position in QS India University ranking 2020",
     ],
     items44: [
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
+        src: "https://www.iiita.ac.in/uploads/carousel/MBA146.jpg",
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+        src: "https://www.iiita.ac.in/uploads/carousel/IMG-20201229-WA0007698.jpg",
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        src: "https://www.iiita.ac.in/uploads/carousel/IMG_0814538.jpg",
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        src: "https://www.iiita.ac.in/uploads/carousel/IMG_0784469.jpg",
+      },
+      {
+        src: "https://www.iiita.ac.in/uploads/carousel/IMG_1386886.jpg",
+      },
+      {
+        src: "https://www.iiita.ac.in/uploads/carousel/Plantation%20drive%20on126.jpg",
+      },
+      {
+        src: "https://www.iiita.ac.in/uploads/carousel/Plantation%20drive125.jpg",
+      },
+      {
+        src: "https://www.iiita.ac.in/uploads/carousel/b218.jpg",
       },
     ],
     show1: false,

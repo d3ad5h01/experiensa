@@ -99,7 +99,7 @@
                     min-height="0"
                   >
                     <v-card-text>
-                      <div class="text-h3 grey--text text-darken-5">
+                      <div class="text-h3 grey--text text-darken-5 font-weight-bold">
                         Let's Get Started
                       </div>
                     </v-card-text>
@@ -118,7 +118,7 @@
                         class="ml-1"
                         x-large
                         elevation="3"
-                        color="success"
+                        color="success darken-5"
                         href="/Login"
                         >Login</v-btn
                       >

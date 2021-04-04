@@ -94,7 +94,7 @@
                         Learn More
                       </v-btn>
                     </template>
-                    <v-card class="cyan darken-3">
+                    <v-card light class="white">
                       <v-card-title>
                         <span class="headline"></span>
                       </v-card-title>

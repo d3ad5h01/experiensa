@@ -242,7 +242,7 @@
                   </div></v-col
                 >
                 <v-col cols="12"
-                  ><div class="green--text text-h5">Learn More</div></v-col
+                  ><div class="green--text text-h5">Learn More :</div></v-col
                 >
                 <v-col cols="12"
                   ><p class="black--text">
@@ -256,7 +256,7 @@
                   ><div class="black--text">{{ updates1 }}</div></v-col
                 >
                 <v-col cols="12"
-                  ><div class="green--text text-h5">Applied Students</div>
+                  ><div class="green--text text-h5">Applied Students :</div>
                 </v-col>
                 <v-col cols="12">
                   <ol id="example-1">
