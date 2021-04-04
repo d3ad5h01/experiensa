@@ -28,7 +28,6 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item-group
-              v-model="selectedItem"
               class="text--white"
               color="white"
             >
@@ -128,6 +127,22 @@
                                   color="black"
                                 ></v-text-field>
                               </v-flex>
+
+                              <v-flex xs12 sm12 md12>
+                                <v-text-field
+                                  v-model="learnMore"
+                                  label="Learn More"
+                                  color="black"
+                                ></v-text-field>
+                              </v-flex>
+
+                              <v-flex xs12 sm12 md12>
+                                <v-text-field
+                                  v-model="updates"
+                                  label="Updates"
+                                  color="black"
+                                ></v-text-field>
+                              </v-flex>
                             </v-layout>
                           </v-container>
                         </v-card-text>
@@ -207,6 +222,8 @@ export default {
     text: "",
     description: "",
     ind: "",
+    learnMore: "",
+    updates: "",
     cards: ["interncards"],
     drawer: null,
     links: [
@@ -263,6 +280,8 @@ export default {
       { text: "Duration", value: "duration" },
       { text: "Start Date", value: "startDate" },
       { text: "Apply By", value: "applyBy" },
+      { text: "Learn More", value: "learnMore" },
+      { text: "Updates", value: "updates" },
 
       { text: "Actions", value: "edit", sortable: false },
     ],
@@ -278,6 +297,8 @@ export default {
       duration: "",
       startDate: "",
       applyBy: "",
+      learnMore: "",
+      updates: "",
     },
   }),
   computed: {},
@@ -287,11 +308,10 @@ export default {
       this.company = this.interncards[this.interncards.indexOf(item)].company;
       this.stipend = this.interncards[this.interncards.indexOf(item)].stipend;
       this.duration = this.interncards[this.interncards.indexOf(item)].duration;
-
-      this.startDate = this.interncards[
-        this.interncards.indexOf(item)
-      ].startDate;
+      this.startDate = this.interncards[this.interncards.indexOf(item)].startDate;
       this.applyBy = this.interncards[this.interncards.indexOf(item)].applyBy;
+      this.learnMore = this.interncards[this.interncards.indexOf(item)].learnMore;
+      this.updates = this.interncards[this.interncards.indexOf(item)].updates;
 
       this.ind = this.interncards.indexOf(item);
       this.dialog = true;
@@ -321,6 +341,8 @@ export default {
           duration: this.duration,
           startDate: this.startDate,
           applyBy: this.applyBy,
+          learnMore: this.learnMore,
+          updates: this.updates,
         };
 
         console.log(data);
@@ -335,7 +357,8 @@ export default {
         this.interncards[this.ind].duration = this.duration;
         this.interncards[this.ind].startDate = this.startDate;
         this.interncards[this.ind].applyBy = this.applyBy;
-
+        this.interncards[this.ind].learnMore = this.learnMore;
+        this.interncards[this.ind].updates = this.updates;      
         this.edt = 0;
       } else {
         try {
@@ -348,6 +371,8 @@ export default {
             duration: this.duration,
             startDate: this.startDate,
             applyBy: this.applyBy,
+            learnMore: this.learnMore,
+            updates: this.updates,
           };
 
           let response = await this.$axios.$post(
@@ -360,6 +385,8 @@ export default {
           this.duration = "";
           this.startDate = "";
           this.applyBy = "";
+          this.learnMore = "";
+          this.updates = "";
         } catch (err) {
           console.log(err);
         }

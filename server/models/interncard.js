@@ -8,6 +8,8 @@ const InterncardSchema = new Schema({
     duration: String,
     startDate: String,
     applyBy: String,
+    learnMore: String,
+    updates: String,
     appliedStudents: [{type: String}]
 
     //array of applied interns here

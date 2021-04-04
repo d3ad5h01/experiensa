@@ -28,7 +28,6 @@
           <v-divider></v-divider>
           <v-list nav dense>
             <v-list-item-group
-              v-model="selectedItem"
               class="text--white"
               color="white"
             >
@@ -100,16 +99,7 @@
                         <span class="headline"></span>
                       </v-card-title>
                       <v-card-text>
-                        wisi et, sollicitudin nunc vestibulum, cursus accumsan
-                        nunc pede tempus mi ipsum, ligula sed. Non condimentum
-                        ac dolor sit. Mollis eu aliquam, vel mattis mollis massa
-                        ut dolor ante, tempus lacinia arcu. Urna vestibulum
-                        lorem, nulla fermentum, iaculis ut congue ac vivamus.
-                        Nam libero orci, pulvinar nulla, enim pellentesque
-                        consectetuer leo, feugiat rhoncus rhoncus vel. Magna
-                        sociosqu donec, dictum cursus ullamcorper viverra.
-                        Ultricies quis orci lorem, suspendisse ut vestibulum
-                        integer, purus sed lorem pulvinar habitasse turpis. +
+                        {{item.learnMore}}
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
@@ -158,26 +148,17 @@
                         Learn More
                       </v-btn>
                     </template>
-                    <v-card class="cyan darken-3">
+                    <v-card light class="white">
                       <v-card-title>
                         <span class="headline"></span>
                       </v-card-title>
                       <v-card-text>
-                        wisi et, sollicitudin nunc vestibulum, cursus accumsan
-                        nunc pede tempus mi ipsum, ligula sed. Non condimentum
-                        ac dolor sit. Mollis eu aliquam, vel mattis mollis massa
-                        ut dolor ante, tempus lacinia arcu. Urna vestibulum
-                        lorem, nulla fermentum, iaculis ut congue ac vivamus.
-                        Nam libero orci, pulvinar nulla, enim pellentesque
-                        consectetuer leo, feugiat rhoncus rhoncus vel. Magna
-                        sociosqu donec, dictum cursus ullamcorper viverra.
-                        Ultricies quis orci lorem, suspendisse ut vestibulum
-                        integer, purus sed lorem pulvinar habitasse turpis. +
+                        {{item.learnMore}}
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
-                          color="green darken-1"
+                          color="green"
                           text
                           @click="dialog = false"
                         >
@@ -194,26 +175,17 @@
                         Updates
                       </v-btn>
                     </template>
-                    <v-card class="cyan darken-3">
+                    <v-card light class="white">
                       <v-card-title>
                         <span class="headline"></span>
                       </v-card-title>
                       <v-card-text>
-                        wisi et, sollicitudin nunc vestibulum, cursus accumsan
-                        nunc pede tempus mi ipsum, ligula sed. Non condimentum
-                        ac dolor sit. Mollis eu aliquam, vel mattis mollis massa
-                        ut dolor ante, tempus lacinia arcu. Urna vestibulum
-                        lorem, nulla fermentum, iaculis ut congue ac vivamus.
-                        Nam libero orci, pulvinar nulla, enim pellentesque
-                        consectetuer leo, feugiat rhoncus rhoncus vel. Magna
-                        sociosqu donec, dictum cursus ullamcorper viverra.
-                        Ultricies quis orci lorem, suspendisse ut vestibulum
-                        integer, purus sed lorem pulvinar habitasse turpis. +
+                        {{item.updates}}
                       </v-card-text>
                       <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
-                          color="green darken-1"
+                          color="green"
                           text
                           @click="dialog = false"
                         >
@@ -322,7 +294,6 @@ export default {
       { text: "Start Date", value: "startDate" },
       { text: "Apply Deadline", value: "applyBy" },
       { text: "Stipend", value: "stipend" },
-
       { text: "Learn More", value: "val" },
       { text: "Updates", value: "Updates" },
     ],

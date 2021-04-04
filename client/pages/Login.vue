@@ -128,7 +128,6 @@
                                         </div>
                                       </div>
                                       <div class="v-input__control">
-                                        <div class="v-input__slot">
                                           <!--<div class="v-text-field__slot">
                                             <input
                                               id="input-50"
@@ -137,20 +136,19 @@
                                             />
                                           </div>-->
                                           <v-text-field
-                                            v-model="password"
-                                            :append-icon="
+                                            light
+                                            color = "green"
+                                            v-model= "password"
+                                            :append-icon= "
                                               show1 ? 'mdi-eye' : 'mdi-eye-off'
                                             "
                                             :type="show1 ? 'text' : 'password'"
                                             name="input-10-1"
                                             @click:append="show1 = !show1"
                                           ></v-text-field>
+                                          <br/>
                                         </div>
-                                        <div class="v-text-field__details">
-                                          <div class="v-messages theme--light">
-                                            <div
-                                              class="v-messages__wrapper"
-                                            ></div>
+                                        
                                             <div
                                               class="red--text text-subtitle-2"
                                             >
@@ -166,9 +164,6 @@
                                                 Register.
                                               </v-btn>
                                             </div>
-                                          </div>
-                                        </div>
-                                      </div>
                                     </div>
                                     <button
                                       type="button"

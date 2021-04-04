@@ -12,6 +12,8 @@ router.post("/interncards", async (req, res) => {
     interncard.duration = req.body.duration;
     interncard.startDate = req.body.startDate;
     interncard.applyBy = req.body.applyBy;
+    interncard.learnMore = req.body.learnMore;
+    interncard.updates = req.body.updates;
     interncard.appliedStudents = [];
     await interncard.save();
 
@@ -73,6 +75,8 @@ router.put("/interncards/:id", async (req, res) => {
             duration: req.body.duration,
             startDate: req.body.startDate,
             applyBy: req.body.applyBy,
+            learnMore: req.body.learnMore,
+            updates: req.body.updates,
         },
       },
       { upsert: true }
