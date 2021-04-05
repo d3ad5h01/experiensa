@@ -94,12 +94,12 @@
               <v-layout row wrap>
                 <v-flex xs12 md12>
                   <v-card
-                    class="semi-transparent mx-auto pb-4 white"
+                    class="semi-transparent mx-auto pb-4 gray"
                     elevation="4"
                     min-height="0"
                   >
                     <v-card-text>
-                      <div class="text-h3 grey--text text-darken-5 font-weight-bold">
+                      <div class="text-h3 white--text text-darken-5 font-weight-bold">
                         Let's Get Started
                       </div>
                     </v-card-text>
