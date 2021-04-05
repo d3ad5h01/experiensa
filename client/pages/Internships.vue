@@ -277,7 +277,7 @@ export default {
         value: "company",
       },
 
-      { text: "Start Date", value: "startDate" },
+      { text: "Role", value: "role" },
       { text: "Apply Deadline", value: "applyBy" },
       { text: "Stipend", value: "stipend" },
       { text: "Apply", value: "Apply" },
@@ -291,7 +291,7 @@ export default {
         value: "company",
       },
 
-      { text: "Start Date", value: "startDate" },
+      { text: "Role", value: "role" },
       { text: "Apply Deadline", value: "applyBy" },
       { text: "Stipend", value: "stipend" },
       { text: "Learn More", value: "val" },

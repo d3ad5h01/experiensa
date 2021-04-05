@@ -97,6 +97,13 @@
                               </v-flex>
                               <v-flex xs12 sm12 md12>
                                 <v-text-field
+                                  v-model="role"
+                                  label="role"
+                                  color="black"
+                                ></v-text-field>
+                              </v-flex>
+                              <v-flex xs12 sm12 md12>
+                                <v-text-field
                                   v-model="stipend"
                                   label="stipend"
                                   color="black"
@@ -208,6 +215,12 @@
                 >
                 <v-col cols="6"
                   ><div class="text--black">{{ company1 }}</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="green--text text-h5">Role :</div></v-col
+                >
+                <v-col cols="6"
+                  ><div class="text--black">{{ role1 }}</div></v-col
                 >
                 <v-col cols="6"
                   ><div class="green--text text-h5">Duration:</div>
@@ -343,10 +356,10 @@ export default {
     interncard.applyBy = req.body.applyBy; */
     headers: [
       {
-        text: "Company",
+        text: "Role",
         align: "left",
         sortable: true,
-        value: "company",
+        value: "role",
       },
       { text: "Stipend", value: "stipend" },
       { text: "Duration", value: "duration" },
@@ -361,6 +374,7 @@ export default {
     },
     defaultItem: {
       company: "",
+      role: "",
       stipend: "",
       duration: "",
       startDate: "",
@@ -371,6 +385,7 @@ export default {
     },
 
     company1: "N/A",
+    role1: "N/A",
     stipend1: "N/A",
     duration1: "N/A",
     startDate1: "N/A",
@@ -384,6 +399,7 @@ export default {
     expItem(item) {
       this.idee = item._id;
       this.company1 = item.company;
+      this.role1 = item.role;
       this.stipend1 = item.stipend;
       this.duration1 = item.duration;
       this.startDate1 = item.startDate;
@@ -395,6 +411,7 @@ export default {
     editItem(item) {
       this.edt = 1;
       this.company = this.interncards[this.interncards.indexOf(item)].company;
+      this.role = this.interncards[this.interncards.indexOf(item)].role;
       this.stipend = this.interncards[this.interncards.indexOf(item)].stipend;
       this.duration = this.interncards[this.interncards.indexOf(item)].duration;
       this.startDate = this.interncards[
@@ -432,6 +449,7 @@ export default {
       this.ide = this.idee;
       let data = {
         company: this.company1,
+        role: this.role1,
         stipend: this.stipend1,
         duration: this.duration1,
         startDate: this.startDate1,
@@ -452,6 +470,7 @@ export default {
         this.ide = this.interncards[this.ind]._id;
         let data = {
           company: this.company,
+          role: this.role,
           stipend: this.stipend,
           duration: this.duration,
           startDate: this.startDate,
@@ -469,6 +488,7 @@ export default {
         this.dialog = false;
 
         this.interncards[this.ind].company = this.company;
+        this.interncards[this.ind].role = this.role;
         this.interncards[this.ind].stipend = this.stipend;
         this.interncards[this.ind].duration = this.duration;
         this.interncards[this.ind].startDate = this.startDate;
@@ -485,6 +505,7 @@ export default {
 
           let data = {
             company: this.company,
+            role: this.role,
             stipend: this.stipend,
             duration: this.duration,
             startDate: this.startDate,
@@ -499,6 +520,7 @@ export default {
           );
           this.interncards.push(data);
           this.company = "";
+          this.role = "";
           this.stipend = "";
           this.duration = "";
           this.startDate = "";
