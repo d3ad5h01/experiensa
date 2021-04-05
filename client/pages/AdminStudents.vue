@@ -53,15 +53,15 @@
       </v-navigation-drawer>
 
       <v-main class="grey lighten-2">
+        <div class="text-h3 green--text text-center mt-10 mb-10">
+          Student Database
+        </div>
         <v-row>
-          <v-col cols="8">
+          <v-col cols="6">
             <v-container class="grey lighten-2">
               <v-card class="grey lighten-2 rounded-ls" elevation="0">
                 <div>
                   <v-toolbar flat color="grey lighten-2">
-                    <v-toolbar-title class="text-h4 green--text"
-                      >Student Database</v-toolbar-title
-                    >
                     <v-divider class="mx-2" inset vertical></v-divider>
                     <v-spacer></v-spacer>
                     <v-text-field
@@ -164,7 +164,8 @@
               </v-card>
             </v-container>
           </v-col>
-          <v-col cols="4">
+          <v-divider class="green" vertical></v-divider>
+          <v-col cols="6">
             <v-card
               class="grey lighten-2 ma-4"
               height="20px"
@@ -172,11 +173,160 @@
               light
             >
             </v-card>
-            <v-card class="grey lighten-2 ma-4" elevation="2" light>
+            <v-card class="grey lighten-2 ma-4" elevation="0" light>
               <v-card class="transparent" flat>
                 <v-container fluid>
                   <v-row>
                     <v-col cols="12">
+                      <v-card class="grey lighten-2 mt-5" light elevation="0">
+                        <v-card class="transparent" flat>
+                          <v-container fluid>
+                            <v-row>
+                              <v-col cols="4"> </v-col>
+                              <v-col cols="4">
+                                <div class="justify-center">
+                                  <v-card
+                                    class="rounded-circle green"
+                                    height="150px"
+                                    width="150px"
+                                  >
+                                    <v-img
+                                      v-bind:src="profile_url1"
+                                      class="rounded-circle"
+                                      height="150px"
+                                    ></v-img>
+                                  </v-card></div
+                              ></v-col>
+                              <v-col cols="4"> </v-col>
+                              <v-col cols="2">
+                                <v-subheader>Semester</v-subheader>
+                              </v-col>
+                              <v-col cols="2">
+                                <v-text-field
+                                  outlined
+                                  v-model="sem1"
+                                  disabled
+                                ></v-text-field>
+                              </v-col>
+
+                              <v-col cols="2">
+                                <v-subheader>Batch</v-subheader>
+                              </v-col>
+                              <v-col cols="2">
+                                <v-text-field
+                                  disabled
+                                  outlined
+                                  v-model="batch1"
+                                ></v-text-field>
+                              </v-col>
+
+                              <v-col cols="2">
+                                <v-subheader>Section</v-subheader>
+                              </v-col>
+                              <v-col cols="2">
+                                <v-text-field
+                                  outlined
+                                  disabled
+                                  v-model="section1"
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="2">
+                                <v-subheader>Phone</v-subheader>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-text-field
+                                  disabled
+                                  v-model="phone1"
+                                  outlined
+                                  color="green"
+                                ></v-text-field>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-subheader>BIO</v-subheader>
+                                <v-textarea
+                                  disabled
+                                  outlined
+                                  v-model="bio1"
+                                  color="green"
+                                >
+                                </v-textarea>
+                              </v-col>
+                            </v-row>
+                            <v-subheader class="text-h5">Address</v-subheader>
+
+                            <v-row>
+                              <v-col cols="2">
+                                <v-subheader>Address Line</v-subheader>
+                              </v-col>
+                              <v-col cols="12">
+                                <v-textarea
+                                  disabled
+                                  outlined
+                                  v-model="addressline1"
+                                ></v-textarea>
+                              </v-col>
+
+                              <v-col cols="2">
+                                <v-subheader>City</v-subheader>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-text-field
+                                  disabled
+                                  outlined
+                                  v-model="city1"
+                                ></v-text-field>
+                              </v-col>
+
+                              <v-col cols="2">
+                                <v-subheader>State</v-subheader>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-text-field
+                                  disabled
+                                  outlined
+                                  v-model="state1"
+                                ></v-text-field>
+                              </v-col>
+
+                              <v-col cols="2">
+                                <v-subheader>Country</v-subheader>
+                              </v-col>
+                              <v-col cols="4">
+                                <v-text-field
+                                  disabled
+                                  outlined
+                                  v-model="country1"
+                                ></v-text-field>
+                              </v-col>
+
+                              <v-col cols="2"> </v-col>
+
+                              <v-col cols="12"
+                                ><v-subheader class="text-h5"
+                                  >Resume</v-subheader
+                                >
+                              </v-col>
+                              <v-row>
+                                <v-col cols="1"></v-col>
+                                <v-col cols="8">
+                                  <v-btn large class="green" href="resume_url1">
+                                    <a
+                                      v-bind:href="resume_url1"
+                                      target="_blank"
+                                      class="black--text"
+                                      style="text-decoration: none"
+                                    >
+                                      Download Resume
+                                    </a></v-btn
+                                  >
+                                </v-col>
+                              </v-row>
+                            </v-row>
+                          </v-container>
+                        </v-card>
+                      </v-card>
+                    </v-col>
+                    <!-- <v-col cols="12">
                       <p class="green--text text-h4">View Profile</p>
                       <div class="justify-center">
                         <v-card
@@ -207,22 +357,7 @@
                       <p>Password: {{ password1 }}</p>
 
                       <p></p>
-                    </v-col>
-                  </v-row>
-
-                  <v-row>
-                    <v-col cols="12">
-                      <v-btn large class="green" href="resume_url1">
-                        <a
-                          v-bind:href="resume_url1"
-                          target="_blank"
-                          class="white--text"
-                          style="text-decoration: none"
-                        >
-                          Download Resume
-                        </a></v-btn
-                      >
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                 </v-container>
               </v-card>
@@ -247,6 +382,8 @@ export default {
   },
   data: () => ({
     name1: "N/A",
+    sem1: "N/A",
+    section1: "N/A",
     email1: "N/A",
     batch1: "N/A",
     section1: "N/A",
@@ -263,7 +400,6 @@ export default {
     ind: "",
     profile_url1: "",
     resume_url1: "",
-    section1: "",
 
     cards: ["Announcements"],
     drawer: null,
