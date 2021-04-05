@@ -14,6 +14,14 @@ router.post('/auth/signup',async(req,res) => {
     }
     else {
         try {
+            let foundUser = await User.findOne({ email: req.body.email});
+            if(foundUser) {
+                res.status(403).json({
+                    success: false,
+                    message: "User already exists."
+                });
+                return;
+            }
             let newUser = new User();
             newUser.name = req.body.name;
             newUser.email = req.body.email;
@@ -23,7 +31,6 @@ router.post('/auth/signup',async(req,res) => {
             let token = jwt.sign(newUser.toJSON(), process.env.SECRET, {
                 expiresIn: 604800 // 1 week
             });
-
             res.json({
                 success: true,
                 token: token,
@@ -93,7 +100,7 @@ router.post("/auth/login", async(req,res) => {
             }
         }
     } catch(error) {
-        console.log(req.body);
+        // console.log(req.body);
         res.status(500).json({
             success: false,
             message: error.message
