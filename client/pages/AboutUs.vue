@@ -237,7 +237,6 @@
                             <h6 class="lightSubTitle card-subtitle">
                               Back-End Developer
                             </h6>
-
                             <span
                               class="text-subtitle-2 transparent black--text"
                               >iib2019024@iiita.ac.in</span

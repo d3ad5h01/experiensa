@@ -309,16 +309,17 @@
                               <v-row>
                                 <v-col cols="1"></v-col>
                                 <v-col cols="8">
-                                  <v-btn large class="green" href="resume_url1">
+                                  
                                     <a
-                                      v-bind:href="resume_url1"
+                                      v-bind:href= "resume_url1"
                                       target="_blank"
                                       class="black--text"
                                       style="text-decoration: none"
                                     >
+                                    <v-btn large class="green" >
                                       Download Resume
-                                    </a></v-btn
-                                  >
+                                    </v-btn
+                                  ></a>
                                 </v-col>
                               </v-row>
                             </v-row>
