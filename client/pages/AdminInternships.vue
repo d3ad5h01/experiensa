@@ -293,7 +293,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/interncards");
+      let response = await $axios.$get("http://40.122.131.188:3000/api/interncards");
 
       return {
         interncards: response.interncards,
@@ -435,7 +435,7 @@ export default {
       //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
       try {
         let response = await this.$axios.$delete(
-          `http://localhost:3000/api/interncards/${id}`
+          `http://40.122.131.188:3000/api/interncards/${id}`
         );
         console.log(response);
         if (response.status) {
@@ -461,7 +461,7 @@ export default {
 
       console.log(data);
       let result = await this.$axios.$put(
-        `http://localhost:3000/api/interncards/${this.ide}`,
+        `http://40.122.131.188:3000/api/interncards/${this.ide}`,
         data
       );
     },
@@ -482,7 +482,7 @@ export default {
 
         console.log(data);
         let result = await this.$axios.$put(
-          `http://localhost:3000/api/interncards/${this.ide}`,
+          `http://40.122.131.188:3000/api/interncards/${this.ide}`,
           data
         );
         this.dialog = false;
@@ -515,7 +515,7 @@ export default {
           };
 
           let response = await this.$axios.$post(
-            "http://localhost:3000/api/interncards",
+            "http://40.122.131.188:3000/api/interncards",
             data
           );
           this.interncards.push(data);
@@ -543,7 +543,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`,
+          `http://40.122.131.188:3000/api/adminverify/`,
           data
         );
         console.log(verify_response.success);

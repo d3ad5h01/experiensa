@@ -406,7 +406,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get(
-        "http://localhost:3000/api/announcementcards"
+        "http://40.122.131.188:3000/api/announcementcards"
       );
       return {
         announcementcards: response.announcementcards,
@@ -547,7 +547,7 @@ export default {
             name: this.name,
           };
           let response = await this.$axios.$put(
-            `http://localhost:3000/api/userupdatepassword/${this.id}`,
+            `http://40.122.131.188:3000/api/userupdatepassword/${this.id}`,
             data
           );
           this.password_to_check = "";
@@ -565,7 +565,7 @@ export default {
       formData.append("profile", this.selectedFile);
       formData.append("cookie", this.$cookies.get("jwt"));
       this.$axios
-        .post("http://localhost:3000/api/upload/profile", formData)
+        .post("http://40.122.131.188:3000/api/upload/profile", formData)
         .then((res) => {
           // console.log(res)
         });
@@ -579,7 +579,7 @@ export default {
       try {
         let cookie = this.$cookies.get("jwt");
         let response = await this.$axios.$get(
-          `http://localhost:3000/api/profile/${cookie}`
+          `http://40.122.131.188:3000/api/profile/${cookie}`
         );
         this.profile_url = response.user.profile;
         this.resume_url = response.user.resume;
@@ -594,7 +594,7 @@ export default {
       formData.append("cookie", this.$cookies.get("jwt"));
       this.Uploaded = "Uploaded";
       this.$axios
-        .post("http://localhost:3000/api/upload/resume", formData)
+        .post("http://40.122.131.188:3000/api/upload/resume", formData)
         .then((res) => {
           // console.log(res)
         });
@@ -617,7 +617,7 @@ export default {
           password: this.password,
         };
         let response = await this.$axios.$put(
-          `http://localhost:3000/api/users/${this.id}`,
+          `http://40.122.131.188:3000/api/users/${this.id}`,
           data
         );
         this.Saved = "Saved";
@@ -635,7 +635,7 @@ export default {
           cookie: cookie,
         };
         let response = await this.$axios.$post(
-          `http://localhost:3000/api/profile/`,
+          `http://40.122.131.188:3000/api/profile/`,
           data
         );
         if (!response.success) {

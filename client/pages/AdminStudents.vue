@@ -309,7 +309,7 @@
                               <v-row>
                                 <v-col cols="1"></v-col>
                                 <v-col cols="8">
-                                  
+
                                     <a
                                       v-bind:href= "resume_url1"
                                       target="_blank"
@@ -374,7 +374,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/users");
+      let response = await $axios.$get("http://40.122.131.188:3000/api/users");
       console.log(response.users);
       return {
         users: response.users,
@@ -489,7 +489,7 @@ export default {
       //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
       try {
         let response = await this.$axios.$delete(
-          `http://localhost:3000/api/users/${id}`
+          `http://40.122.131.188:3000/api/users/${id}`
         );
         console.log(response);
         if (response.status) {
@@ -506,7 +506,7 @@ export default {
           email: this.email,
         };
         let result = await this.$axios.$put(
-          `http://localhost:3000/api/users/${this.ide}`,
+          `http://40.122.131.188:3000/api/users/${this.ide}`,
           data
         );
         this.dialog = false;
@@ -523,7 +523,7 @@ export default {
             email: this.email,
           };
           let response = await this.$axios.$post(
-            "http://localhost:3000/api/users",
+            "http://40.122.131.188:3000/api/users",
             data
           );
           this.users.push(data);
@@ -554,7 +554,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`,
+          `http://40.122.131.188:3000/api/adminverify/`,
           data
         );
         console.log(verify_response.success);

@@ -180,7 +180,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://localhost:3000/api/studycards");
+      let response = await $axios.$get("http://40.122.131.188:3000/api/studycards");
 
       return {
         studycards: response.studycards,
@@ -272,7 +272,7 @@ export default {
       //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
       try {
         let response = await this.$axios.$delete(
-          `http://localhost:3000/api/studycards/${id}`
+          `http://40.122.131.188:3000/api/studycards/${id}`
         );
         console.log(response);
         if (response.status) {
@@ -289,7 +289,7 @@ export default {
           link: this.link,
         };
         let result = await this.$axios.$put(
-          `http://localhost:3000/api/studycards/${this.ide}`,
+          `http://40.122.131.188:3000/api/studycards/${this.ide}`,
           data
         );
         this.dialog = false;
@@ -306,7 +306,7 @@ export default {
             link: this.link,
           };
           let response = await this.$axios.$post(
-            "http://localhost:3000/api/studycards",
+            "http://40.122.131.188:3000/api/studycards",
             data
           );
           this.studycards.push(data);
@@ -338,7 +338,7 @@ export default {
           cookie: cookie,
         }
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/adminverify/`, data
+          `http://40.122.131.188:3000/api/adminverify/`, data
         );
         if (!verify_response.success) {
           this.$router.push("/AdminLogin");

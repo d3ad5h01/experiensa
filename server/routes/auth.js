@@ -77,6 +77,7 @@ router.post('/auth/adminsignup',async(req,res) => {
 router.post("/auth/login", async(req,res) => {
     try{
         let foundUser = await User.findOne({ email: req.body.email});
+        // console.log(foundUser);
         if(!foundUser){
             res.status(403).json({
                 success: false,

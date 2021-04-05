@@ -309,7 +309,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/profile/`,
+          `http://40.122.131.188:3000/api/profile/`,
           data
         );
         // console.log(verify_response.success);
@@ -318,7 +318,7 @@ export default {
           this.$router.push("/login");
         }
         let response = await this.$axios.$get(
-          "http://localhost:3000/api/interncards"
+          "http://40.122.131.188:3000/api/interncards"
         );
         this.interncards = response.interncards;
         let ids = [];
@@ -346,7 +346,7 @@ export default {
         internship_id: this.internship_id,
       };
       let apply_response = await this.$axios.$put(
-        `http://localhost:3000/api/apply/`,
+        `http://40.122.131.188:3000/api/apply/`,
         data
       );
       if (!apply_response.success) {

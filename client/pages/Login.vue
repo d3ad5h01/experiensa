@@ -337,7 +337,7 @@ export default {
           password: this.password,
         };
         let response = await this.$axios.$post(
-          "http://localhost:3000/api/auth/login",
+          "http://10.107.0.47:3000/api/auth/login",
           data
         );
         if (response.success) {

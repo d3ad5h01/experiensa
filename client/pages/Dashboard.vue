@@ -192,7 +192,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get(
-        "http://localhost:3000/api/announcementcards"
+        "http://40.122.131.188:3000/api/announcementcards"
       );
       return {
         announcementcards: response.announcementcards,
@@ -326,7 +326,7 @@ export default {
     async getDashboardnums(){
       try {
         let response = await this.$axios.$get(
-          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99"
+          "http://40.122.131.188:3000/api/dashboardcards/60670965a42f7954707fcd99"
         );
         //return {
           this.companiesRegistered = response.dashboardcard.companiesRegistered;
@@ -348,7 +348,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://localhost:3000/api/verify/`,
+          `http://40.122.131.188:3000/api/verify/`,
           data
         );
         if (!verify_response.success) {

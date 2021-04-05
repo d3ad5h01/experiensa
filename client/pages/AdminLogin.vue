@@ -329,7 +329,7 @@ export default {
           password: this.password,
         };
         let response = await this.$axios.$post(
-          "http://localhost:3000/api/auth/adminlogin",
+          "http://40.122.131.188:3000/api/auth/adminlogin",
           data
         );
         if (response.success) {
