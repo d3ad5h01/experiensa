@@ -141,13 +141,18 @@
                               >iit2019203@iiita.ac.in</span
                             >
                             <div>
-                              <v-icon color="black" light>mdi-github</v-icon>
-                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-btn icon href="https://github.com/ra5put1n/" >
+                              <v-icon color="black" light>mdi-github</v-icon></v-btn>
+                              <v-btn icon href="https://www.instagram.com/kr1shna.k/" >
+                              <v-icon color="pink" light>mdi-instagram</v-icon></v-btn>
+                              <v-btn icon href="https://www.linkedin.com/in/krishna-kaipa-a14405184/" >
                               <v-icon color="primary" light
                                 >mdi-linkedin</v-icon
-                              >
-                              <v-icon color="blue" light>mdi-facebook</v-icon>
-                              <v-icon color="red" light>mdi-gmail</v-icon>
+                              ></v-btn>
+                              <v-btn icon href="https://www.facebook.com/krishna.kaipa.98/" >
+                              <v-icon color="blue" light>mdi-facebook</v-icon></v-btn>
+                              <v-btn icon href="mailto:iit2019203@iiita.ac.in" >
+                              <v-icon color="red" light>mdi-gmail</v-icon></v-btn>
                             </div>
                           </div>
                         </v-col>
@@ -170,13 +175,18 @@
                               >iit2019214@iiita.ac.in</span
                             >
                             <div>
-                              <v-icon color="black" light>mdi-github</v-icon>
-                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-btn icon href="https://github.com/akshatagrawal22/" >
+                              <v-icon color="black" light>mdi-github</v-icon></v-btn>
+                              <v-btn icon href="https://www.instagram.com/akshat.agrwl/" >
+                              <v-icon color="pink" light>mdi-instagram</v-icon></v-btn>
+                              <v-btn icon href="https://www.linkedin.com/in/divyatez-singh-ab201a193/" >
                               <v-icon color="primary" light
                                 >mdi-linkedin</v-icon
-                              >
-                              <v-icon color="blue" light>mdi-facebook</v-icon>
-                              <v-icon color="red" light>mdi-gmail</v-icon>
+                              ></v-btn>
+                              <v-btn icon href="https://www.facebook.com/akshat.agrawal.520562" >
+                              <v-icon color="blue" light>mdi-facebook</v-icon></v-btn>
+                              <v-btn icon href="mailto:iit2019214@iiita.ac.in" >
+                              <v-icon color="red" light>mdi-gmail</v-icon></v-btn>
                             </div>
                           </div>
                         </v-col>
@@ -199,13 +209,18 @@
                               >iit2019220@iiita.ac.in</span
                             >
                             <div>
-                              <v-icon color="black" light>mdi-github</v-icon>
-                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-btn icon href="https://github.com/d3ad5h01/" >
+                              <v-icon color="black" light>mdi-github</v-icon></v-btn>
+                              <v-btn icon href="https://www.instagram.com/divyatez/" >
+                              <v-icon color="pink" light>mdi-instagram</v-icon></v-btn>
+                              <v-btn icon href="https://www.linkedin.com/in/divyatez-singh-ab201a193/" >
                               <v-icon color="primary" light
                                 >mdi-linkedin</v-icon
-                              >
-                              <v-icon color="blue" light>mdi-facebook</v-icon>
-                              <v-icon color="red" light>mdi-gmail</v-icon>
+                              ></v-btn>
+                              <v-btn icon href="https://www.facebook.com/divi.singh.9469" >
+                              <v-icon color="blue" light>mdi-facebook</v-icon></v-btn>
+                              <v-btn icon href="mailto:iit2019220@iiita.ac.in" >
+                              <v-icon color="red" light>mdi-gmail</v-icon></v-btn>
                             </div>
                           </div>
                         </v-col>
@@ -228,13 +243,18 @@
                               >iib2019024@iiita.ac.in</span
                             >
                             <div>
-                              <v-icon color="black" light>mdi-github</v-icon>
-                              <v-icon color="pink" light>mdi-instagram</v-icon>
+                              <v-btn icon href="https://github.com/D33PAK-6AJJA7A" >
+                              <v-icon color="black" light >mdi-github</v-icon></v-btn>
+                              <v-btn icon href="https://www.instagram.com/_deepak_._gajjala_/" >
+                              <v-icon color="pink" light>mdi-instagram</v-icon></v-btn>
+                              <v-btn icon href="https://www.linkedin.com/in/gajjala-deepak-67b35a192/">
                               <v-icon color="primary" light
                                 >mdi-linkedin</v-icon
-                              >
-                              <v-icon color="blue" light>mdi-facebook</v-icon>
-                              <v-icon color="red" light>mdi-gmail</v-icon>
+                              ></v-btn>
+                              <v-btn icon href="https://www.facebook.com/deepak.gajjala.31/">
+                              <v-icon color="blue" light>mdi-facebook</v-icon></v-btn>
+                              <v-btn icon href="mailto:iib2019024@iiita.ac.in">
+                              <v-icon color="red" light>mdi-gmail</v-icon></v-btn>
                             </div>
                           </div>
                         </v-col>
