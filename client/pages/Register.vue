@@ -8,7 +8,7 @@
           </div>
           <v-toolbar-title
             class="text-h5 grey--text text-lighten-1 font-weight-light"
-            >eXperiensaa</v-toolbar-title
+            >eXperiensa</v-toolbar-title
           >
           <v-spacer></v-spacer>
 

@@ -9,7 +9,7 @@
           </div>
           <v-toolbar-title
             class="text-h4 white--text text-lighten-1 font-weight-light"
-            >eXperiensaa</v-toolbar-title
+            >eXperiensa</v-toolbar-title
           >
           <v-spacer></v-spacer>
           <v-btn class="transparent ml-2" elevation="0" href="/"> Home </v-btn>
@@ -29,7 +29,7 @@
                   <v-card-text
                     class="text-h1 white--text text-lighten-5 font-weight-black pa-5"
                   >
-                    eXperiensaa
+                    eXperiensa
                   </v-card-text>
                   <v-card-text class="text-h5 font-weight-light pa-5">
                     the internship portal

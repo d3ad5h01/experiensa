@@ -9,7 +9,7 @@
           </div>
           <v-toolbar-title
             class="text-h4 white--text text-lighten-1 font-weight-light"
-            >eXperiensaa</v-toolbar-title
+            >eXperiensa</v-toolbar-title
           >
           <v-spacer></v-spacer>
           <v-btn class="transparent ml-2" elevation="0" href="/"> Home </v-btn>
