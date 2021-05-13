@@ -5,7 +5,7 @@
         v-model="drawer"
         app
         dark
-        src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/night.jpg"
+        src="https://ra5put1n.blob.core.windows.net/internship-portal/website-images/night.jpg"
         width="15%"
         permanent
         class="elevation-12"

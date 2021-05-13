@@ -209,7 +209,7 @@
   top: 75px;
 }
 .back {
-  background-image: url("https://rasput1n.blob.core.windows.net/internship-portal/website-images/cc3_2.jpg");
+  background-image: url("https://ra5put1n.blob.core.windows.net/internship-portal/website-images/cc3_2.jpg");
   background-position-y: center;
   background-attachment: fixed;
   height: 100%;

@@ -126,7 +126,7 @@
                           <div>
                             <img
                               class="proPic proLight card-img rounded-circle"
-                              src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/krishna.jpg"
+                              src="https://ra5put1n.blob.core.windows.net/internship-portal/website-images/krishna.jpg"
                               alt="Profile Pic"
                             />
                             <span class="text-subtitle-1 success--text"
@@ -160,7 +160,7 @@
                           <div>
                             <img
                               class="proPic proLight card-img rounded-circle"
-                              src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/akshat.jpg"
+                              src="https://ra5put1n.blob.core.windows.net/internship-portal/website-images/akshat.jpg"
                               alt="Profile Pic"
                             />
                             <span class="text-subtitle-1 success--text"
@@ -194,7 +194,7 @@
                           <div>
                             <img
                               class="proPic proLight card-img rounded-circle"
-                              src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/tez.jpg"
+                              src="https://ra5put1n.blob.core.windows.net/internship-portal/website-images/tez.jpg"
                               alt="Profile Pic"
                             />
                             <span class="text-subtitle-1 success--text"
@@ -228,7 +228,7 @@
                           <div>
                             <img
                               class="proPic proLight card-img rounded-circle"
-                              src="https://rasput1n.blob.core.windows.net/internship-portal/website-images/deepak.jpg"
+                              src="https://ra5put1n.blob.core.windows.net/internship-portal/website-images/deepak.jpg"
                               alt="Profile Pic"
                             />
                             <span class="text-subtitle-1 success--text"
@@ -1382,7 +1382,7 @@
   top: 75px;
 }
 .back {
-  background-image: url("https://rasput1n.blob.core.windows.net/internship-portal/website-images/admin.jpg");
+  background-image: url("https://ra5put1n.blob.core.windows.net/internship-portal/website-images/admin.jpg");
   background-position-y: center;
   background-attachment: fixed;
   height: 100%;
