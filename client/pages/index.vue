@@ -1420,7 +1420,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://40.122.131.188:3000/api/verify/`,
+          `http://localhost:3000/api/verify/`,
           data
         );
         if (verify_response.success) {

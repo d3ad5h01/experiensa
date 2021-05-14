@@ -463,7 +463,7 @@ export default {
           password: this.password,
         };
         let response = await this.$axios.$post(
-          "http://40.122.131.188:3000/api/auth/signup",
+          "http://localhost:3000/api/auth/signup",
           data
         );
         if (response.success) {

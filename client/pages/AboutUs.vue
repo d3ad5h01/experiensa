@@ -1647,7 +1647,7 @@ export default {
       try {
         let cookie = this.$cookies.get("jwt");
         let verify_response = await this.$axios.$get(
-          `http://40.122.131.188:3000/api/verify/${cookie}`
+          `http://localhost:3000/api/verify/${cookie}`
         );
         if (verify_response.success) {
           this.$router.push("/Dashboard");

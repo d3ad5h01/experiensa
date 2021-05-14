@@ -206,7 +206,7 @@ export default {
   async asyncData({ $axios }) {
     try {
       let response = await $axios.$get(
-        "http://40.122.131.188:3000/api/announcementcards"
+        "http://localhost:3000/api/announcementcards"
       );
 
       return {
@@ -288,7 +288,7 @@ export default {
     async getDashboardnums() {
       try {
         let response = await this.$axios.$get(
-          "http://40.122.131.188:3000/api/dashboardcards/60670965a42f7954707fcd99"
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99"
         );
         //return {
         this.cr = response.dashboardcard.companiesRegistered;
@@ -309,7 +309,7 @@ export default {
           studentsPlaced: this.sp,
         };
         let response = await this.$axios.$put(
-          "http://40.122.131.188:3000/api/dashboardcards/60670965a42f7954707fcd99",
+          "http://localhost:3000/api/dashboardcards/60670965a42f7954707fcd99",
           data
         );
       } catch (err) {
@@ -334,7 +334,7 @@ export default {
       //confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
       try {
         let response = await this.$axios.$delete(
-          `http://40.122.131.188:3000/api/announcementcards/${id}`
+          `http://localhost:3000/api/announcementcards/${id}`
         );
         console.log(response);
         if (response.status) {
@@ -351,7 +351,7 @@ export default {
           description: this.description,
         };
         let result = await this.$axios.$put(
-          `http://40.122.131.188:3000/api/announcementcards/${this.ide}`,
+          `http://localhost:3000/api/announcementcards/${this.ide}`,
           data
         );
         this.dialog = false;
@@ -368,7 +368,7 @@ export default {
             description: this.description,
           };
           let response = await this.$axios.$post(
-            "http://40.122.131.188:3000/api/announcementcards",
+            "http://localhost:3000/api/announcementcards",
             data
           );
           this.announcementcards.push(data);
@@ -390,7 +390,7 @@ export default {
           cookie: cookie,
         };
         let verify_response = await this.$axios.$post(
-          `http://40.122.131.188:3000/api/adminverify/`,
+          `http://localhost:3000/api/adminverify/`,
           data
         );
         console.log(verify_response);

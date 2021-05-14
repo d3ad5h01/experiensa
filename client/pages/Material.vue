@@ -385,7 +385,7 @@
 export default {
   async asyncData({ $axios }) {
     try {
-      let response = await $axios.$get("http://40.122.131.188:3000/api/studycards");
+      let response = await $axios.$get("http://localhost:3000/api/studycards");
 
       return {
         studycards: response.studycards,
@@ -397,7 +397,7 @@ export default {
     async asyncData({ $axios }) {
       try {
         let response = await $axios.$get(
-          "http://40.122.131.188:3000/api/studycards"
+          "http://localhost:3000/api/studycards"
         );
 
         return {
@@ -537,7 +537,7 @@ export default {
           cookie: cookie,
         }
         let response = await this.$axios.$post(
-          `http://40.122.131.188:3000/api/profile/`, data
+          `http://localhost:3000/api/profile/`, data
         );
         if (!response.success) {
           this.$router.push("/login");
