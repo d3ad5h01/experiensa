@@ -79,7 +79,6 @@ export default {
   build: {
   },
   server: {
-    host: 0,
     port: 8080
   },
 
